@@ -1,5 +1,5 @@
 //
-//  AppDelegate.swift
+//  WPAppDelegate.swift
 //  Waxpacked
 //
 //  Created by Jeremy Peronto on 2/18/15.
@@ -18,18 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Parse.setApplicationId(kParseApplicationID, clientKey: kParseClientKey)
         
-        var gameScore = PFObject(className:"GameScore")
-        gameScore["score"] = 1337
-        gameScore["playerName"] = "Sean Plott"
-        gameScore["cheatMode"] = false
-        gameScore.saveInBackgroundWithBlock {
-            (success: Bool, error: NSError!) -> Void in
-            if (success) {
-                // The object has been saved.
-            } else {
-                // There was a problem, check error.description
-            }
-        }
+//        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+//        if let window = window {
+//            window.backgroundColor = UIColor.whiteColor()
+//            var LoginSignupViewController = WPLoginSignupViewController()
+//            window.rootViewController = UINavigationController(rootViewController: LoginSignupViewController)
+//            window.makeKeyAndVisible()
+//        }
+        
+        //UINavigationBar.appearance().barStyle = UIColor.blueColor()
+        UINavigationBar.appearance().tintColor = UIColor.blueColor()
+        UINavigationBar.appearance().backgroundColor = UIColor.blueColor()
+        UINavigationBar.appearance().translucent = false
+        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: kTitleFontName, size: 25)!, NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         return true
     }
