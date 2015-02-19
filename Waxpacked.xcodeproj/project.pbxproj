@@ -7,16 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		516B0FC21A95AFC800EF6D47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516B0FC11A95AFC800EF6D47 /* AppDelegate.swift */; };
+		516B0FC21A95AFC800EF6D47 /* WPAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516B0FC11A95AFC800EF6D47 /* WPAppDelegate.swift */; };
 		516B0FC71A95AFC800EF6D47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 516B0FC51A95AFC800EF6D47 /* Main.storyboard */; };
 		516B0FC91A95AFC800EF6D47 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 516B0FC81A95AFC800EF6D47 /* Images.xcassets */; };
 		516B0FCC1A95AFC800EF6D47 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 516B0FCA1A95AFC800EF6D47 /* LaunchScreen.xib */; };
 		516B0FD81A95AFC800EF6D47 /* WaxpackedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516B0FD71A95AFC800EF6D47 /* WaxpackedTests.swift */; };
-		516B0FE61A95B3B400EF6D47 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 516B0FE11A95B3B400EF6D47 /* Bolts.framework */; };
-		516B0FE71A95B3B400EF6D47 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 516B0FE21A95B3B400EF6D47 /* Parse.framework */; };
-		516B0FE81A95B3B400EF6D47 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 516B0FE31A95B3B400EF6D47 /* ParseCrashReporting.framework */; };
-		516B0FE91A95B3B400EF6D47 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 516B0FE41A95B3B400EF6D47 /* ParseFacebookUtils.framework */; };
-		516B0FEA1A95B3B400EF6D47 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 516B0FE51A95B3B400EF6D47 /* ParseUI.framework */; };
 		516B0FF91A95B4DB00EF6D47 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 516B0FEC1A95B4DB00EF6D47 /* Accounts.framework */; };
 		516B0FFA1A95B4DB00EF6D47 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 516B0FED1A95B4DB00EF6D47 /* AudioToolbox.framework */; };
 		516B0FFB1A95B4DB00EF6D47 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 516B0FEE1A95B4DB00EF6D47 /* CFNetwork.framework */; };
@@ -34,6 +29,12 @@
 		516B100B1A95B73200EF6D47 /* WPAppGlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516B100A1A95B73200EF6D47 /* WPAppGlobalConstants.swift */; };
 		516B10101A95BBE700EF6D47 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 516B100F1A95BBE700EF6D47 /* Social.framework */; };
 		516B10121A95BEA800EF6D47 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 516B10111A95BEA800EF6D47 /* .gitignore */; };
+		516B10141A95C43500EF6D47 /* WPLoginSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516B10131A95C43500EF6D47 /* WPLoginSignupViewController.swift */; };
+		516B101D1A95C4DE00EF6D47 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 516B10181A95C4DE00EF6D47 /* Parse.framework */; };
+		516B101E1A95C4DE00EF6D47 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 516B10191A95C4DE00EF6D47 /* ParseCrashReporting.framework */; };
+		516B101F1A95C4DE00EF6D47 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 516B101A1A95C4DE00EF6D47 /* ParseFacebookUtils.framework */; };
+		516B10201A95C4DE00EF6D47 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 516B101B1A95C4DE00EF6D47 /* ParseUI.framework */; };
+		516B10221A95C54600EF6D47 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 516B10211A95C54600EF6D47 /* Bolts.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,18 +50,13 @@
 /* Begin PBXFileReference section */
 		516B0FBC1A95AFC800EF6D47 /* Waxpacked.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Waxpacked.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		516B0FC01A95AFC800EF6D47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		516B0FC11A95AFC800EF6D47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		516B0FC11A95AFC800EF6D47 /* WPAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WPAppDelegate.swift; sourceTree = "<group>"; };
 		516B0FC61A95AFC800EF6D47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		516B0FC81A95AFC800EF6D47 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		516B0FCB1A95AFC800EF6D47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		516B0FD11A95AFC800EF6D47 /* WaxpackedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WaxpackedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		516B0FD61A95AFC800EF6D47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		516B0FD71A95AFC800EF6D47 /* WaxpackedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaxpackedTests.swift; sourceTree = "<group>"; };
-		516B0FE11A95B3B400EF6D47 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		516B0FE21A95B3B400EF6D47 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
-		516B0FE31A95B3B400EF6D47 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
-		516B0FE41A95B3B400EF6D47 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
-		516B0FE51A95B3B400EF6D47 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		516B0FEC1A95B4DB00EF6D47 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		516B0FED1A95B4DB00EF6D47 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		516B0FEE1A95B4DB00EF6D47 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -79,6 +75,12 @@
 		516B100E1A95B7D100EF6D47 /* Waxpacked-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Waxpacked-Bridging-Header.h"; sourceTree = "<group>"; };
 		516B100F1A95BBE700EF6D47 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		516B10111A95BEA800EF6D47 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		516B10131A95C43500EF6D47 /* WPLoginSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WPLoginSignupViewController.swift; sourceTree = "<group>"; };
+		516B10181A95C4DE00EF6D47 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Frameworks/Parse.framework; sourceTree = "<group>"; };
+		516B10191A95C4DE00EF6D47 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseCrashReporting.framework; path = Frameworks/ParseCrashReporting.framework; sourceTree = "<group>"; };
+		516B101A1A95C4DE00EF6D47 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = Frameworks/ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		516B101B1A95C4DE00EF6D47 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = Frameworks/ParseUI.framework; sourceTree = "<group>"; };
+		516B10211A95C54600EF6D47 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Frameworks/Bolts.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,24 +89,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				516B10101A95BBE700EF6D47 /* Social.framework in Frameworks */,
+				516B101F1A95C4DE00EF6D47 /* ParseFacebookUtils.framework in Frameworks */,
 				516B0FF91A95B4DB00EF6D47 /* Accounts.framework in Frameworks */,
+				516B101E1A95C4DE00EF6D47 /* ParseCrashReporting.framework in Frameworks */,
 				516B0FFA1A95B4DB00EF6D47 /* AudioToolbox.framework in Frameworks */,
 				516B0FFB1A95B4DB00EF6D47 /* CFNetwork.framework in Frameworks */,
 				516B0FFC1A95B4DB00EF6D47 /* CoreFoundation.framework in Frameworks */,
+				516B101D1A95C4DE00EF6D47 /* Parse.framework in Frameworks */,
 				516B0FFD1A95B4DB00EF6D47 /* CoreGraphics.framework in Frameworks */,
+				516B10201A95C4DE00EF6D47 /* ParseUI.framework in Frameworks */,
 				516B0FFE1A95B4DB00EF6D47 /* CoreLocation.framework in Frameworks */,
 				516B0FFF1A95B4DB00EF6D47 /* libsqlite3.0.dylib in Frameworks */,
 				516B10001A95B4DB00EF6D47 /* libz.dylib in Frameworks */,
 				516B10011A95B4DB00EF6D47 /* MobileCoreServices.framework in Frameworks */,
+				516B10221A95C54600EF6D47 /* Bolts.framework in Frameworks */,
 				516B10021A95B4DB00EF6D47 /* QuartzCore.framework in Frameworks */,
 				516B10031A95B4DB00EF6D47 /* Security.framework in Frameworks */,
 				516B10041A95B4DB00EF6D47 /* StoreKit.framework in Frameworks */,
 				516B10051A95B4DB00EF6D47 /* SystemConfiguration.framework in Frameworks */,
-				516B0FE71A95B3B400EF6D47 /* Parse.framework in Frameworks */,
-				516B0FE81A95B3B400EF6D47 /* ParseCrashReporting.framework in Frameworks */,
-				516B0FEA1A95B3B400EF6D47 /* ParseUI.framework in Frameworks */,
-				516B0FE91A95B3B400EF6D47 /* ParseFacebookUtils.framework in Frameworks */,
-				516B0FE61A95B3B400EF6D47 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,7 +142,8 @@
 			isa = PBXGroup;
 			children = (
 				516B100A1A95B73200EF6D47 /* WPAppGlobalConstants.swift */,
-				516B0FC11A95AFC800EF6D47 /* AppDelegate.swift */,
+				516B0FC11A95AFC800EF6D47 /* WPAppDelegate.swift */,
+				516B10131A95C43500EF6D47 /* WPLoginSignupViewController.swift */,
 				516B0FC51A95AFC800EF6D47 /* Main.storyboard */,
 				516B0FC81A95AFC800EF6D47 /* Images.xcassets */,
 				516B0FCA1A95AFC800EF6D47 /* LaunchScreen.xib */,
@@ -181,9 +184,13 @@
 		516B0FEB1A95B3BD00EF6D47 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				516B10211A95C54600EF6D47 /* Bolts.framework */,
+				516B10181A95C4DE00EF6D47 /* Parse.framework */,
+				516B10191A95C4DE00EF6D47 /* ParseCrashReporting.framework */,
+				516B101A1A95C4DE00EF6D47 /* ParseFacebookUtils.framework */,
+				516B101B1A95C4DE00EF6D47 /* ParseUI.framework */,
 				516B0FEC1A95B4DB00EF6D47 /* Accounts.framework */,
 				516B0FED1A95B4DB00EF6D47 /* AudioToolbox.framework */,
-				516B0FE11A95B3B400EF6D47 /* Bolts.framework */,
 				516B0FEE1A95B4DB00EF6D47 /* CFNetwork.framework */,
 				516B0FEF1A95B4DB00EF6D47 /* CoreFoundation.framework */,
 				516B0FF01A95B4DB00EF6D47 /* CoreGraphics.framework */,
@@ -191,10 +198,6 @@
 				516B0FF21A95B4DB00EF6D47 /* libsqlite3.0.dylib */,
 				516B0FF31A95B4DB00EF6D47 /* libz.dylib */,
 				516B0FF41A95B4DB00EF6D47 /* MobileCoreServices.framework */,
-				516B0FE21A95B3B400EF6D47 /* Parse.framework */,
-				516B0FE31A95B3B400EF6D47 /* ParseCrashReporting.framework */,
-				516B0FE41A95B3B400EF6D47 /* ParseFacebookUtils.framework */,
-				516B0FE51A95B3B400EF6D47 /* ParseUI.framework */,
 				516B0FF51A95B4DB00EF6D47 /* QuartzCore.framework */,
 				516B0FF61A95B4DB00EF6D47 /* Security.framework */,
 				516B100F1A95BBE700EF6D47 /* Social.framework */,
@@ -307,7 +310,8 @@
 			files = (
 				516B10071A95B67300EF6D47 /* APIKeys.swift in Sources */,
 				516B100B1A95B73200EF6D47 /* WPAppGlobalConstants.swift in Sources */,
-				516B0FC21A95AFC800EF6D47 /* AppDelegate.swift in Sources */,
+				516B0FC21A95AFC800EF6D47 /* WPAppDelegate.swift in Sources */,
+				516B10141A95C43500EF6D47 /* WPLoginSignupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +437,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Waxpacked",
+					"$(PROJECT_DIR)/Waxpacked/Frameworks",
 				);
 				INFOPLIST_FILE = Waxpacked/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -447,6 +452,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Waxpacked",
+					"$(PROJECT_DIR)/Waxpacked/Frameworks",
 				);
 				INFOPLIST_FILE = Waxpacked/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
