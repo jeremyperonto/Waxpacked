@@ -1,5 +1,5 @@
 //
-//  WPAppDelegate.swift
+//  AppDelegate.swift
 //  Waxpacked
 //
 //  Created by Jeremy Peronto on 2/18/15.
@@ -18,6 +18,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Parse.setApplicationId(kParseApplicationID, clientKey: kParseClientKey)
         
+        var gameScore = PFObject(className:"GameScore")
+        gameScore["score"] = 1337
+        gameScore["playerName"] = "Sean Plott"
+        gameScore["cheatMode"] = false
+        gameScore.saveInBackgroundWithBlock {
+            (success: Bool, error: NSError!) -> Void in
+            if (success) {
+                // The object has been saved.
+            } else {
+                // There was a problem, check error.description
+            }
+        }
         
         return true
     }
