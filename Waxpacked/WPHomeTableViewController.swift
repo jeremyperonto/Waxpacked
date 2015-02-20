@@ -32,34 +32,34 @@ class WPHomeTableViewController: UITableViewController {
         navigationController?.hidesBarsOnSwipe = true
         tableView.separatorInset.right = tableView.separatorInset.left
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-        view.backgroundColor = UIColor.blueColor() //Change to constant
+        view.backgroundColor = kBackgroundColor
         configureNavigationToolBar()
         
         let logOutIcon = UIBarButtonItem(title: kToolbarLogoutIcon, style: .Plain, target: self, action: "logOut")
-        logOutIcon.tintColor = UIColor.blueColor() //Change to constant
+        logOutIcon.tintColor = kToolbarIconColor
         navigationItem.leftBarButtonItem = logOutIcon
 
         let addIcon = UIBarButtonItem(title: kToolbarLogoutIcon, style: .Plain, target: self, action: "notImplemented")
-        addIcon.tintColor = UIColor.blueColor() //Change to constant
+        addIcon.tintColor = kToolbarIconColor
         navigationItem.rightBarButtonItem = addIcon
     }
     
     func configureNavigationToolBar() {
         //SystemItem Example
         let searchIcon = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: "notImplemented")
-        searchIcon.tintColor = UIColor.blueColor() //Change to constant
+        searchIcon.tintColor = kToolbarIconColor
         //FlexibleSpacer Example
         let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         //Custom Icon Example
-        let profileIcon = UIBarButtonItem(image: UIImage(named: "Profile"), style: .Plain, target: self, action: "notImplemented") //Change image to constant
-        profileIcon.tintColor = UIColor.blueColor() //Change to constant
+        let profileIcon = UIBarButtonItem(image: kToolbarProfileIcon, style: .Plain, target: self, action: "notImplemented")
+        profileIcon.tintColor = kToolbarIconColor
         //Custom Text Example
         let usersIcon = UIBarButtonItem(title: kToolbarUsersIcon, style: .Plain, target: self, action: "pushToUsersViewController")
-        usersIcon.tintColor = UIColor.blueColor() //Change to constant
+        usersIcon.tintColor = kToolbarIconColor
         
         toolbarItems = [searchIcon, spacer, profileIcon, spacer, usersIcon]
         
-        navigationController?.toolbar.barTintColor = UIColor.blueColor() //Change to constant
+        navigationController?.toolbar.barTintColor = kBackgroundColor
         navigationController!.toolbarHidden = false
     }
 
@@ -74,24 +74,20 @@ class WPHomeTableViewController: UITableViewController {
         println("Not implemented")
     }
     
-//    func logOut() {
-//        PFUser.logout()
-//        navigationController?.popToRootViewControllerAnimated(true)
-//        navigationController?.navigationBarHidden = true
-//        navigationController?.toolbarHidden = true
-//    }
+    func logOut() {
+        PFUser.logOut()
+        navigationController?.popToRootViewControllerAnimated(true)
+        navigationController?.navigationBarHidden = true
+        navigationController?.toolbarHidden = true
+    }
     
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
         return 0
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
         return 3
     }
     
