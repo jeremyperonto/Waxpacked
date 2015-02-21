@@ -55,7 +55,6 @@ class WPLoginSignupViewController: PFLogInViewController, PFLogInViewControllerD
         signUpController.signUpView.passwordField.text = ""
         let mainViewController = WPHomeTableViewController(style: .Plain)
         mainViewController.navigationItem.setHidesBackButton(true, animated: true)
-        
         navigationController?.pushViewController(mainViewController, animated: false)
         navigationController?.navigationBarHidden = false
     }

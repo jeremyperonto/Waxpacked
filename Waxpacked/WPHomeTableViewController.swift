@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 
 class WPHomeTableViewController: UITableViewController {
 
@@ -43,25 +42,6 @@ class WPHomeTableViewController: UITableViewController {
         addIcon.tintColor = kToolbarIconColor
         navigationItem.rightBarButtonItem = addIcon
     }
-    
-    func configureNavigationToolBar() {
-        //SystemItem Example
-        let searchIcon = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: "notImplemented")
-        searchIcon.tintColor = kToolbarIconColor
-        //FlexibleSpacer Example
-        let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-        //Custom Icon Example
-        let profileIcon = UIBarButtonItem(image: kToolbarProfileIcon, style: .Plain, target: self, action: "notImplemented")
-        profileIcon.tintColor = kToolbarIconColor
-        //Custom Text Example
-        let usersIcon = UIBarButtonItem(title: kToolbarUsersIcon, style: .Plain, target: self, action: "pushToUsersViewController")
-        usersIcon.tintColor = kToolbarIconColor
-        
-        toolbarItems = [searchIcon, spacer, profileIcon, spacer, usersIcon]
-        
-        navigationController?.toolbar.barTintColor = kBackgroundColor
-        navigationController!.toolbarHidden = false
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -70,16 +50,18 @@ class WPHomeTableViewController: UITableViewController {
 
     // MARK: - Navigation
 
-    func notImplemented() {
-        println("Not implemented")
+    func pushToUsersViewController() {
+        let usersTableViewController = WPUsersTableViewController(style: .Plain, className: "users")
+        navigationController!.pushViewController(usersTableViewController, animated: true)
     }
     
-    override func logOut() {
-        PFUser.logOut()
-        navigationController?.popToRootViewControllerAnimated(true)
-        navigationController?.navigationBarHidden = true
-        navigationController?.toolbarHidden = true
+    func pushToProfileViewController() {
+        let profileViewController = WPProfileViewController()
+        profileViewController.profileUser = PFUser.currentUser()
+        println(PFUser.currentUser().username)
+        navigationController?.pushViewController(profileViewController, animated: true)
     }
+    
     
     // MARK: - Table view data source
     

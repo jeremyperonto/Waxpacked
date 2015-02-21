@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		511B61C61A986D5500889A8A /* WPClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511B61C51A986D5500889A8A /* WPClassExtensions.swift */; };
 		511B61C81A98706E00889A8A /* WPProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511B61C71A98706E00889A8A /* WPProfileViewController.swift */; };
+		511B61CA1A993F0500889A8A /* WPUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511B61C91A993F0500889A8A /* WPUsersTableViewController.swift */; };
 		516B0FC21A95AFC800EF6D47 /* WPAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516B0FC11A95AFC800EF6D47 /* WPAppDelegate.swift */; };
 		516B0FC91A95AFC800EF6D47 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 516B0FC81A95AFC800EF6D47 /* Images.xcassets */; };
 		516B0FCC1A95AFC800EF6D47 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 516B0FCA1A95AFC800EF6D47 /* LaunchScreen.xib */; };
@@ -53,6 +54,7 @@
 		511B61C21A96EF0800889A8A /* Waxpacked-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Waxpacked-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		511B61C51A986D5500889A8A /* WPClassExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WPClassExtensions.swift; sourceTree = "<group>"; };
 		511B61C71A98706E00889A8A /* WPProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WPProfileViewController.swift; sourceTree = "<group>"; };
+		511B61C91A993F0500889A8A /* WPUsersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WPUsersTableViewController.swift; sourceTree = "<group>"; };
 		516B0FBC1A95AFC800EF6D47 /* Waxpacked.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Waxpacked.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		516B0FC01A95AFC800EF6D47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		516B0FC11A95AFC800EF6D47 /* WPAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WPAppDelegate.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				516B0FC11A95AFC800EF6D47 /* WPAppDelegate.swift */,
 				516B10251A95C70700EF6D47 /* WPLoginSignupViewController.swift */,
 				516B10231A95C6EB00EF6D47 /* WPHomeTableViewController.swift */,
+				511B61C91A993F0500889A8A /* WPUsersTableViewController.swift */,
 				511B61C51A986D5500889A8A /* WPClassExtensions.swift */,
 				511B61C71A98706E00889A8A /* WPProfileViewController.swift */,
 				516B0FEB1A95B3BD00EF6D47 /* Frameworks */,
@@ -319,6 +322,7 @@
 				511B61C81A98706E00889A8A /* WPProfileViewController.swift in Sources */,
 				516B10261A95C70700EF6D47 /* WPLoginSignupViewController.swift in Sources */,
 				516B0FC21A95AFC800EF6D47 /* WPAppDelegate.swift in Sources */,
+				511B61CA1A993F0500889A8A /* WPUsersTableViewController.swift in Sources */,
 				516B10281A95D52D00EF6D47 /* WPAppGlobalConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
