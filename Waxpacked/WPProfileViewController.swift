@@ -148,7 +148,7 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func scaleImageWith(image:UIImage) {
+    func scaleImageWith(image:UIImage) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(kProfilePhotoDimensions, false, 0.0)
         image.drawInRect(CGRectMake(0, 0, kProfilePhotoDimensions.width, kProfilePhotoDimensions.height))
         var newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
