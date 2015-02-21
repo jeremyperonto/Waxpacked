@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+extension UIViewController {
+    func logOut(){
+        PFUser.logOut()
+        navigationController?.popToRootViewControllerAnimated(true)
+        navigationController?.navigationBarHidden = true
+        navigationController?.toolbarHidden = true
+    }
+
+}
