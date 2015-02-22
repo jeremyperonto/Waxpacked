@@ -12,6 +12,7 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
     
     var profileUser = PFUser()
     var profileImageView = UIImageView()
+    var profileUsernameLabel = UILabel()
     
     override init() {
         super.init()
@@ -33,7 +34,7 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
                 if let profileImage:PFFile = object["profileImage"] as? PFFile {
                     profileImage.getDataInBackgroundWithBlock({ (imageData: NSData!, error:NSError!) -> Void in
                         if (error == nil) {
-                            let image:UIImage = UIImage(data: imageData)!
+                            let image:UIImage = UIImage(data: imageData)! //NO dispatch async?
                             self.profileImageView.image = image
                         }
                         else {
@@ -67,6 +68,7 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
         returnIcon.tintColor = kToolbarIconColor
         navigationItem.leftBarButtonItem = returnIcon
         configureImageView()
+        configureUsernameLabel()
         loadData()
     }
     
@@ -87,7 +89,7 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
     
     func configureImageView() {
         let defaultProfileImage = kProfileDefaultProfileImage
-        profileImageView.frame = CGRect(x: 0, y: 20, width: view.frame.width/4, height: view.frame.width/4)
+        profileImageView.frame = CGRect(x: 0, y: 40, width: view.frame.width/4, height: view.frame.width/4)
         profileImageView.center.x = view.center.x
         profileImageView.image = kProfileDefaultProfileImage
         profileImageView.contentMode = .ScaleAspectFit
@@ -109,6 +111,7 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
     
     override func viewWillLayoutSubviews() {
         profileImageView.center.x = view.center.x
+        profileUsernameLabel.center.x = view.center.x
     }
     
     func imagePicker() {
@@ -137,8 +140,7 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
             (success: Bool, error: NSError!) -> Void in
             if (success) {
                 self.profileImageView.image = scaledImage
-            }
-            else {
+            } else {
                 var errorAlert = UIAlertController(title: "Oops. Something went wrong.", message: "\(error)", preferredStyle: UIAlertControllerStyle.Alert)
                 errorAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
                     
@@ -146,6 +148,7 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
                 self.presentViewController(errorAlert, animated: true, completion: nil)
             }
         }
+        
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -155,5 +158,16 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
         var newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsGetCurrentContext()
         return newImage
+    }
+    
+    func configureUsernameLabel() {
+        profileUsernameLabel.text = profileUser.username
+        profileUsernameLabel.frame = CGRect(x: 0, y: -75, width: view.frame.width/1.25, height: view.frame.width/2)
+        profileUsernameLabel.center.x = view.center.x
+        profileUsernameLabel.textAlignment = .Center
+        profileUsernameLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
+        profileUsernameLabel.textColor = UIColor.whiteColor()
+        
+        self.view.addSubview(profileUsernameLabel)
     }
 }
