@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WPUsersTableViewController: UITableViewController {
+class WPUsersTableViewController: PFQueryTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
