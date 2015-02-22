@@ -35,7 +35,7 @@ class WPHomeTableViewController: UITableViewController {
         logOutIcon.tintColor = kToolbarIconColor
         navigationItem.leftBarButtonItem = logOutIcon
 
-        let addIcon = UIBarButtonItem(title: kToolbarLogoutIcon, style: .Plain, target: self, action: "notImplemented")
+        let addIcon = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "notImplemented")
         addIcon.tintColor = kToolbarIconColor
         navigationItem.rightBarButtonItem = addIcon
     }

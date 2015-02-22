@@ -23,7 +23,7 @@ extension UIViewController {
         //FlexibleSpacer Example
         let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         //Custom Icon Example
-        let profileIcon = UIBarButtonItem(image: kToolbarProfileIcon, style: .Plain, target: self, action: "notImplemented")
+        let profileIcon = UIBarButtonItem(image: kToolbarProfileIcon, style: .Plain, target: self, action: "pushToProfileViewController")
         profileIcon.tintColor = kToolbarIconColor
         //Custom Text Example
         let usersIcon = UIBarButtonItem(title: kToolbarUsersIcon, style: .Plain, target: self, action: "pushToUsersViewController")
