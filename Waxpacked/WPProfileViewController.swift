@@ -87,8 +87,9 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
     
     func configureImageView() {
         let defaultProfileImage = kProfileDefaultProfileImage
-        profileImageView.frame = CGRect(x: 0, y: 20, width: view.frame.width/4, height: view.frame.height/4)
+        profileImageView.frame = CGRect(x: 0, y: 20, width: view.frame.width/4, height: view.frame.width/4)
         profileImageView.center.x = view.center.x
+        profileImageView.image = kProfileDefaultProfileImage
         profileImageView.contentMode = .ScaleAspectFit
         
         if PFUser.currentUser() == profileUser {

@@ -33,7 +33,7 @@ let kNavBarReturnIcon = UIImage(named: "Return")
 let kTableViewCellIdentifier = "Cell"
 
 //Profile
-let kProfileDefaultProfileImage = UIImage(named: "DefaultProfileImage")
+let kProfileDefaultProfileImage = UIImage(named: "defaultProfileImage")
 let kProfilePhotoDimensions = CGSizeMake(300,300)
 
 enum kProfileMetros: String {
