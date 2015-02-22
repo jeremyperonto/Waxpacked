@@ -13,6 +13,9 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
     var profileUser = PFUser()
     var profileImageView = UIImageView()
     var profileUsernameLabel = UILabel()
+    var profileUserBioLabel = UILabel()
+    var followingNumberLabel = UILabel()
+    var followersNumberLabel = UILabel()
     
     override init() {
         super.init()
@@ -69,6 +72,9 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
         navigationItem.leftBarButtonItem = returnIcon
         configureImageView()
         configureUsernameLabel()
+        configureUserBioLabel()
+        configureFollowersLabel()
+        configureFollowingLabel()
         loadData()
     }
     
@@ -89,8 +95,8 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
     
     func configureImageView() {
         let defaultProfileImage = kProfileDefaultProfileImage
-        profileImageView.frame = CGRect(x: 0, y: 40, width: view.frame.width/4, height: view.frame.width/4)
-        profileImageView.center.x = view.center.x
+        profileImageView.frame = CGRect(x: 0, y: 20, width: view.frame.width/4, height: view.frame.width/4)
+        profileImageView.center.x = view.center.x - 100
         profileImageView.image = kProfileDefaultProfileImage
         profileImageView.contentMode = .ScaleAspectFit
         
@@ -112,6 +118,7 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
     override func viewWillLayoutSubviews() {
         profileImageView.center.x = view.center.x
         profileUsernameLabel.center.x = view.center.x
+        profileUserBioLabel.center.x = view.center.x
     }
     
     func imagePicker() {
@@ -162,12 +169,45 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
     
     func configureUsernameLabel() {
         profileUsernameLabel.text = profileUser.username
-        profileUsernameLabel.frame = CGRect(x: 0, y: -75, width: view.frame.width/1.25, height: view.frame.width/2)
+        profileUsernameLabel.frame = CGRect(x: 0, y: 40, width: view.frame.width/1.5, height: view.frame.width/2)
         profileUsernameLabel.center.x = view.center.x
         profileUsernameLabel.textAlignment = .Center
-        profileUsernameLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
+        profileUsernameLabel.font = UIFont(name: kTitleFontName, size: kTitleFontSize)
         profileUsernameLabel.textColor = UIColor.whiteColor()
         
         self.view.addSubview(profileUsernameLabel)
+    }
+    
+    func configureUserBioLabel() {
+        profileUserBioLabel.text = "Bio not yet implemented"
+        profileUserBioLabel.frame = CGRect(x: 0, y: 75, width: view.frame.width/1.25, height: view.frame.width/2)
+        profileUserBioLabel.center.x = view.center.x
+        profileUserBioLabel.textAlignment = .Center
+        profileUserBioLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
+        profileUserBioLabel.textColor = UIColor.whiteColor()
+        
+        self.view.addSubview(profileUserBioLabel)
+    }
+    
+    func configureFollowersLabel() {
+        followersNumberLabel.text = "Followers: ##"
+        followersNumberLabel.frame = CGRect(x: 0, y: 110, width: view.frame.width/1.25, height: view.frame.width/2)
+        followersNumberLabel.center.x = view.center.x - 100
+        followersNumberLabel.textAlignment = .Center
+        followersNumberLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
+        followersNumberLabel.textColor = UIColor.whiteColor()
+        
+        self.view.addSubview(followersNumberLabel)
+    }
+    
+    func configureFollowingLabel() {
+        followingNumberLabel.text = "Following: ##"
+        followingNumberLabel.frame = CGRect(x: 0, y: 110, width: view.frame.width/1.25, height: view.frame.width/2)
+        followingNumberLabel.center.x = view.center.x + 100
+        followingNumberLabel.textAlignment = .Center
+        followingNumberLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
+        followingNumberLabel.textColor = UIColor.whiteColor()
+        
+        self.view.addSubview(followingNumberLabel)
     }
 }
