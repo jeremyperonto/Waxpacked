@@ -13,23 +13,23 @@ class WPAppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Parse.setApplicationId(kParseApplicationID, clientKey: kParseClientKey)
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         if let window = window {
-
-            var LoginSignupViewController = WPLoginSignupViewController()
+            window.backgroundColor = UIColor.whiteColor()
+            let LoginSignupViewController = WPLoginSignupViewController()
             window.rootViewController = UINavigationController(rootViewController: LoginSignupViewController)
             window.makeKeyAndVisible()
         }
         
         //UINavigationBar.appearance().barStyle = UIColor.blueColor()
-        UINavigationBar.appearance().tintColor = UIColor.blueColor()
-        UINavigationBar.appearance().backgroundColor = UIColor.blueColor()
+        UINavigationBar.appearance().barTintColor = kBackgroundColor
+        UINavigationBar.appearance().tintColor = kBackgroundColor
+        UINavigationBar.appearance().backgroundColor = kBackgroundColor
         UINavigationBar.appearance().translucent = false
-        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: kTitleFontName, size: 25)!, NSForegroundColorAttributeName: UIColor.whiteColor()]
+        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: kTitleFontName, size: kTitleFontSize)!, NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         return true
     }

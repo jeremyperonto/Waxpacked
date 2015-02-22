@@ -52,7 +52,7 @@ extension UIViewController {
 
 extension UITableViewController {
     func configureTableView() {
-        tableView.registerClass(UITableViewCell.self, forHeaderFooterViewReuseIdentifier: kTableViewCellIdentifier)
+        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: kTableViewCellIdentifier)
         tableView.separatorInset.right = tableView.separatorInset.left
         tableView.tableFooterView = UIView(frame: CGRectZero)
         view.backgroundColor = kBackgroundColor
