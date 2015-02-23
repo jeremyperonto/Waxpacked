@@ -83,7 +83,7 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
         println(error)
         var errorAlert = UIAlertController(title: "Oops. Something went wrong.", message: "\(error)", preferredStyle: UIAlertControllerStyle.Alert)
         errorAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
-        
+            
         }))
         self.presentViewController(errorAlert, animated: true, completion: nil)
     }
