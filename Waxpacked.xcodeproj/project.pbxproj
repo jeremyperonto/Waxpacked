@@ -126,6 +126,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		511B61CB1A9AF62D00889A8A /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				516B10231A95C6EB00EF6D47 /* WPHomeTableViewController.swift */,
+			);
+			name = Content;
+			sourceTree = "<group>";
+		};
+		511B61CC1A9AF65900889A8A /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				511B61C91A993F0500889A8A /* WPUsersTableViewController.swift */,
+				511B61C71A98706E00889A8A /* WPProfileViewController.swift */,
+			);
+			name = Users;
+			sourceTree = "<group>";
+		};
 		516B0FB31A95AFC800EF6D47 = {
 			isa = PBXGroup;
 			children = (
@@ -149,11 +166,10 @@
 			children = (
 				516B10271A95D52D00EF6D47 /* WPAppGlobalConstants.swift */,
 				516B0FC11A95AFC800EF6D47 /* WPAppDelegate.swift */,
-				516B10251A95C70700EF6D47 /* WPLoginSignupViewController.swift */,
-				516B10231A95C6EB00EF6D47 /* WPHomeTableViewController.swift */,
-				511B61C91A993F0500889A8A /* WPUsersTableViewController.swift */,
 				511B61C51A986D5500889A8A /* WPClassExtensions.swift */,
-				511B61C71A98706E00889A8A /* WPProfileViewController.swift */,
+				516B10251A95C70700EF6D47 /* WPLoginSignupViewController.swift */,
+				511B61CB1A9AF62D00889A8A /* Content */,
+				511B61CC1A9AF65900889A8A /* Users */,
 				516B0FEB1A95B3BD00EF6D47 /* Frameworks */,
 				516B0FBF1A95AFC800EF6D47 /* Supporting Files */,
 			);
