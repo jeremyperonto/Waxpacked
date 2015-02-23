@@ -24,11 +24,16 @@ class WPUsersTableViewController: PFQueryTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        title = "Users"
+        
+        tableView.registerClass(PFTableViewCell.self, forCellReuseIdentifier: kTableViewCellIdentifier)
+        tableView.separatorInset.right = tableView.separatorInset.left
+        tableView.tableFooterView = UIView(frame: CGRectZero)
+        view.backgroundColor = kBackgroundColor
+        
+        let returnIcon = UIBarButtonItem(image: kNavBarReturnIcon, style: .Plain, target: navigationController, action: "popViewControllerAnimated:")
+        returnIcon.tintColor = kToolbarIconColor
+        navigationItem.leftBarButtonItem = returnIcon
     }
     
     override func queryForTable() -> PFQuery! {
