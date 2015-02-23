@@ -43,24 +43,54 @@ class WPUsersTableViewController: PFQueryTableViewController {
         
         return query
     }
+    
+    // MARK - Navigation
+    
+    override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject) -> PFTableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as PFTableViewCell
+        cell.textLabel?.text = object["username"] as? String
+        
+        if let profileImage = object["profileImage"] as? PFFile {
+            cell.imageView.file = profileImage
+        }
+        else {
+            cell.imageView.image = kProfileDefaultProfileImage
+        }
+        
+        cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width / 2;
+        cell.imageView.clipsToBounds = true
+        cell.imageView.layer.borderWidth = 3.0
+        cell.imageView.layer.borderColor = UIColor.whiteColor().CGColor
+        
+        cell.textLabel?.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
+        cell.textLabel?.textColor = UIColor.whiteColor()
+        cell.backgroundColor = kBackgroundColor
+        
+        return cell
+    }
+    
+    override func objectAtIndexPath(indexPath: NSIndexPath!) -> PFObject! {
+        var obj : PFObject? = nil
+        if(indexPath.row < self.objects.count){
+            obj = self.objects[indexPath.row] as? PFObject
+        }
+        return obj
+    }
+    
+    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        let selectedIndexPath = tableView.indexPathForSelectedRow()
+        let profileViewController = WPProfileViewController()
+        profileViewController.profileUser = objectAtIndexPath(selectedIndexPath) as PFUser
+        navigationController?.pushViewController(profileViewController, animated: true)
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 100
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
-        return 0
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        return 0
     }
 
 }
