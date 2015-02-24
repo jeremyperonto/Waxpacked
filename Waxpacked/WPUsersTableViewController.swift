@@ -12,6 +12,7 @@ class WPUsersTableViewController: PFQueryTableViewController {
 
     override init!(style: UITableViewStyle, className: String!) {
         super.init(style: style, className: className)
+        textKey = "username"
         pullToRefreshEnabled = true
         paginationEnabled = true
         objectsPerPage = 25

@@ -38,7 +38,9 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
                     profileImage.getDataInBackgroundWithBlock({ (imageData: NSData!, error:NSError!) -> Void in
                         if (error == nil) {
                             let image:UIImage = UIImage(data: imageData)! //NO dispatch async?
-                            self.profileImageView.image = image
+                            dispatch_async(dispatch_get_main_queue(), {
+                                self.profileImageView.image = image
+                            });
                         }
                         else {
                             println(error)
