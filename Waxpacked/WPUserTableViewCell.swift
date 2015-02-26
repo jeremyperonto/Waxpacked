@@ -17,7 +17,7 @@ class WPUserTableViewCell: PFTableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         profileImageView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        profileImageView.frame = CGRectMake(10, 10, 60, 60)
+        profileImageView.frame = CGRectMake(contentView.frame.width * 0.05, contentView.frame.height * 0.25, super.frame.height * 0.95, super.frame.height * 0.95)
         
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
         profileImageView.clipsToBounds = true

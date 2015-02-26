@@ -106,7 +106,7 @@ class WPUsersTableViewController: PFQueryTableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 80
+        return self.view.frame.height/7
     }
 
     override func didReceiveMemoryWarning() {
