@@ -9,17 +9,18 @@
 import UIKit
 
 class WPUserTableViewCell: PFTableViewCell {
-
+    
     var profileImageView = PFImageView()
     var label = UILabel()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        profileImageView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        profileImageView.frame = CGRectMake(contentView.frame.width * 0.05, contentView.frame.height * 0.1, contentView.frame.height * 1.75, contentView.frame.height * 1.75)
+        profileImageView.setTranslatesAutoresizingMaskIntoConstraints(true)
+        profileImageView.frame = CGRectMake(contentView.frame.width * 0.05, contentView.frame.height * 0.05, contentView.frame.height * 0.85, contentView.frame.height * 0.85)
         profileImageView.autoresizesSubviews = true
-        profileImageView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
+        profileImageView.contentMode = .ScaleAspectFill
+        profileImageView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
 
         
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
@@ -30,7 +31,7 @@ class WPUserTableViewCell: PFTableViewCell {
         
         addSubview(profileImageView)
         
-        label.frame = CGRectMake((contentView.frame.width - profileImageView.frame.maxX)/2, contentView.frame.height/2+5, 50, 50)
+        label.frame = CGRectMake((contentView.frame.width - profileImageView.frame.maxX)/3, contentView.frame.height/2+5, 50, 50)
         label.tag = 2
         label.textColor = UIColor.whiteColor()
         label.font = UIFont(name: kStandardFontName, size: kStandardFontSize)

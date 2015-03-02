@@ -8,8 +8,11 @@
 
 import UIKit
 
-class WPUsersTableViewController: PFQueryTableViewController {
+class WPUsersTableViewController: PFQueryTableViewController, UISearchBarDelegate {
 
+    var searchBar: UISearchBar!
+    var searchInProgress = Bool()
+    
     override init!(style: UITableViewStyle, className: String!) {
         super.init(style: style, className: className)
         pullToRefreshEnabled = true
@@ -40,6 +43,9 @@ class WPUsersTableViewController: PFQueryTableViewController {
     override func queryForTable() -> PFQuery! {
         let query = PFUser.query()
         query.whereKey("username", notEqualTo: PFUser.currentUser().username)
+        if (searchInProgress) {
+            query.whereKey("username", containsString: searchBar.text)
+        }
         query.orderByAscending("username")
         
         //if network cannot find any data, go to cached (local disk data)
@@ -54,8 +60,12 @@ class WPUsersTableViewController: PFQueryTableViewController {
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
-            let searchBar = UISearchBar(frame: CGRectMake(0, 0, tableView.frame.size.width, 0))
+            searchBar = UISearchBar(frame: CGRectMake(0, 0, tableView.frame.size.width, 0))
             searchBar.barTintColor = kBackgroundColor
+            searchBar.showsCancelButton = true
+            searchBar.showsSearchResultsButton = false
+            searchBar.tintColor = UIColor.whiteColor()
+            searchBar.delegate = self
             return searchBar
         }
         return nil
@@ -68,6 +78,17 @@ class WPUsersTableViewController: PFQueryTableViewController {
         return 0.1
     }
     
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchInProgress = true
+        loadObjects()
+        searchInProgress = false
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchInProgress = false
+        loadObjects()
+        searchBar.resignFirstResponder()
+    }
     
     // MARK - Table View Controller
     
@@ -106,7 +127,7 @@ class WPUsersTableViewController: PFQueryTableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return self.view.frame.height/7
+        return self.view.frame.height / 7
     }
 
     override func didReceiveMemoryWarning() {
