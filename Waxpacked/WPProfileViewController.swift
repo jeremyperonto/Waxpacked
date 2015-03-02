@@ -17,6 +17,8 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
     var followingNumberLabel = UILabel()
     var followersNumberLabel = UILabel()
     
+    var friendStatus = 1
+    
     override init() {
         super.init()
     }
@@ -67,16 +69,25 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
             title = "\(profileUser.username)"
         }
         
+        switch friendStatus {
+        case 1 : navigationItem.rightBarButtonItem?.title = "Follow"
+        case 2 : navigationItem.rightBarButtonItem?.title = "Unfollow"
+        default : navigationItem.rightBarButtonItem = nil
+        }
+        
         view.backgroundColor = kBackgroundColor
         
         let returnIcon = UIBarButtonItem(image: kNavBarReturnIcon, style: .Plain, target: navigationController, action: "popViewControllerAnimated:")
         returnIcon.tintColor = kToolbarIconColor
         navigationItem.leftBarButtonItem = returnIcon
+        let followButton = UIBarButtonItem(title: "", style: .Plain, target: self, action: "notImplemented")
+        followButton.tintColor = kToolbarIconColor
+        navigationItem.rightBarButtonItem = followButton
         configureImageView()
         configureUsernameLabel()
         configureUserBioLabel()
-        configureFollowersLabel()
-        configureFollowingLabel()
+        configureNumberFollowersLabel()
+        configureNumberFollowingLabel()
         loadData()
     }
     
@@ -94,6 +105,8 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     
     func configureImageView() {
         let defaultProfileImage = kProfileDefaultProfileImage
@@ -182,7 +195,7 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
     
     func configureUserBioLabel() {
         profileUserBioLabel.text = "Bio not yet implemented"
-        profileUserBioLabel.frame = CGRect(x: 0, y: 75, width: view.frame.width/1.25, height: view.frame.width/2)
+        profileUserBioLabel.frame = CGRect(x: 0, y: 110, width: view.frame.width/1.25, height: view.frame.width/2)
         profileUserBioLabel.center.x = view.center.x
         profileUserBioLabel.textAlignment = .Center
         profileUserBioLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
@@ -191,9 +204,9 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
         self.view.addSubview(profileUserBioLabel)
     }
     
-    func configureFollowersLabel() {
-        followersNumberLabel.text = "Followers: ##"
-        followersNumberLabel.frame = CGRect(x: 0, y: 110, width: view.frame.width/1.25, height: view.frame.width/2)
+    func configureNumberFollowersLabel() {
+        followersNumberLabel.text = "Followers: 0"
+        followersNumberLabel.frame = CGRect(x: 0, y: 70, width: view.frame.width/1.25, height: view.frame.width/2)
         followersNumberLabel.center.x = view.center.x - 100
         followersNumberLabel.textAlignment = .Center
         followersNumberLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
@@ -202,9 +215,9 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
         self.view.addSubview(followersNumberLabel)
     }
     
-    func configureFollowingLabel() {
-        followingNumberLabel.text = "Following: ##"
-        followingNumberLabel.frame = CGRect(x: 0, y: 110, width: view.frame.width/1.25, height: view.frame.width/2)
+    func configureNumberFollowingLabel() {
+        followingNumberLabel.text = "Following: 0"
+        followingNumberLabel.frame = CGRect(x: 0, y: 70, width: view.frame.width/1.25, height: view.frame.width/2)
         followingNumberLabel.center.x = view.center.x + 100
         followingNumberLabel.textAlignment = .Center
         followingNumberLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)

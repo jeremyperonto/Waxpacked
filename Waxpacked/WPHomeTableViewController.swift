@@ -52,11 +52,17 @@ class WPHomeTableViewController: UITableViewController {
         navigationController!.pushViewController(usersTableViewController, animated: true)
     }
     
-    func pushToProfileViewController() {
-        let profileViewController = WPProfileViewController()
-        profileViewController.profileUser = PFUser.currentUser()
+    func pushToMyFriendsViewController() {
+        let usersTableViewController = WPUsersTableViewController(style: .Plain, className: "users")
+        navigationController!.pushViewController(usersTableViewController, animated: true)
+    }
+    
+    func pushToMyProfileViewController() {
+        let myProfileViewController = WPProfileViewController()
+        myProfileViewController.friendStatus = 0
+        myProfileViewController.profileUser = PFUser.currentUser()
         println(PFUser.currentUser().username)
-        navigationController?.pushViewController(profileViewController, animated: true)
+        navigationController?.pushViewController(myProfileViewController, animated: true)
     }
     
     

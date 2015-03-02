@@ -23,11 +23,13 @@ extension UIViewController {
         //FlexibleSpacer Example
         let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         //Custom Icon Example
-        let profileIcon = UIBarButtonItem(image: kToolbarProfileIcon, style: .Plain, target: self, action: "pushToProfileViewController")
+        let profileIcon = UIBarButtonItem(image: kToolbarProfileIcon, style: .Plain, target: self, action: "pushToMyProfileViewController")
         profileIcon.tintColor = kToolbarIconColor
         //Custom Text Example
         let usersIcon = UIBarButtonItem(title: kToolbarUsersIcon, style: .Plain, target: self, action: "pushToUsersViewController")
         usersIcon.tintColor = kToolbarIconColor
+        let friendsIcon = UIBarButtonItem(title: kToolbarUsersIcon, style: .Plain, target: self, action: "pushToFriendsViewController")
+        friendsIcon.tintColor = kToolbarIconColor
         
         toolbarItems = [searchIcon, spacer, profileIcon, spacer, usersIcon]
         

@@ -12,6 +12,7 @@ class WPUsersTableViewController: PFQueryTableViewController, UISearchBarDelegat
 
     var searchBar: UISearchBar!
     var searchInProgress = Bool()
+    var friendsFilter = Bool()
     
     override init!(style: UITableViewStyle, className: String!) {
         super.init(style: style, className: className)
@@ -122,6 +123,12 @@ class WPUsersTableViewController: PFQueryTableViewController, UISearchBarDelegat
     override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         let selectedIndexPath = tableView.indexPathForSelectedRow()
         let profileViewController = WPProfileViewController()
+        if (friendsFilter) {
+            profileViewController.friendStatus = 2
+        }
+        else {
+            profileViewController.friendStatus = 1
+        }
         profileViewController.profileUser = objectAtIndexPath(selectedIndexPath) as PFUser
         navigationController?.pushViewController(profileViewController, animated: true)
     }
