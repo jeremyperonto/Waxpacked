@@ -28,7 +28,11 @@ class WPUsersTableViewController: PFQueryTableViewController, UISearchBarDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Users"
+        if (friendsFilter) {
+            title = "Following"
+        } else {
+            title = "Users"
+        }
         
         tableView.registerClass(WPUserTableViewCell.self, forCellReuseIdentifier: kTableViewCellIdentifier)
         tableView.separatorInset.right = tableView.separatorInset.left
@@ -42,8 +46,20 @@ class WPUsersTableViewController: PFQueryTableViewController, UISearchBarDelegat
     }
     
     override func queryForTable() -> PFQuery! {
-        let query = PFUser.query()
+        var query = PFUser.query()
+        
+        if (friendsFilter) {
+            var friendsRelation:PFRelation = PFUser.currentUser().relationForKey("friendsRelation")
+            query = friendsRelation.query()
+        } else {
+            var friendsRelation:PFRelation = PFUser.currentUser().relationForKey("friendsRelation")
+            var innerQuery = friendsRelation.query()
+            query = PFUser.query()
+            query.whereKey("username", doesNotMatchKey: "username", inQuery: innerQuery)
+        }
+        
         query.whereKey("username", notEqualTo: PFUser.currentUser().username)
+        
         if (searchInProgress) {
             query.whereKey("username", containsString: searchBar.text)
         }
