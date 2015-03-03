@@ -69,20 +69,22 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
             title = "\(profileUser.username)"
         }
         
+        view.backgroundColor = kBackgroundColor
+        
+        let returnIcon = UIBarButtonItem(image: kNavBarReturnIcon, style: .Plain, target: navigationController, action: "popViewControllerAnimated:")
+        returnIcon.tintColor = kToolbarIconColor
+        navigationItem.leftBarButtonItem = returnIcon
+        
+        let followButton = UIBarButtonItem(title: "Follow", style: .Plain, target: self, action: "followUser")
+        followButton.tintColor = kToolbarIconColor
+        navigationItem.rightBarButtonItem = followButton
+        
         switch friendStatus {
         case 1 : navigationItem.rightBarButtonItem?.title = "Follow"
         case 2 : navigationItem.rightBarButtonItem?.title = "Unfollow"
         default : navigationItem.rightBarButtonItem = nil
         }
         
-        view.backgroundColor = kBackgroundColor
-        
-        let returnIcon = UIBarButtonItem(image: kNavBarReturnIcon, style: .Plain, target: navigationController, action: "popViewControllerAnimated:")
-        returnIcon.tintColor = kToolbarIconColor
-        navigationItem.leftBarButtonItem = returnIcon
-        let followButton = UIBarButtonItem(title: "", style: .Plain, target: self, action: "notImplemented")
-        followButton.tintColor = kToolbarIconColor
-        navigationItem.rightBarButtonItem = followButton
         configureImageView()
         configureUsernameLabel()
         configureUserBioLabel()
@@ -224,5 +226,19 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
         followingNumberLabel.textColor = UIColor.whiteColor()
         
         self.view.addSubview(followingNumberLabel)
+    }
+    
+    func followUser() {
+        var friendsRelation:PFRelation = PFUser.currentUser().relationForKey("friendsRelation")
+        friendsRelation.addObject(profileUser)
+        PFUser.currentUser().saveInBackgroundWithBlock { (success:Bool, error: NSError!) -> Void in
+            if (success) {
+                println("Success!")
+                self.friendStatus = 2
+                self.navigationItem.rightBarButtonItem?.title = "Unfollow"
+            } else {
+                self.presentErrorMessage(error)
+            }
+        }
     }
 }

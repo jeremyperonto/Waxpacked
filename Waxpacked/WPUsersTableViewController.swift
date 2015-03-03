@@ -120,7 +120,7 @@ class WPUsersTableViewController: PFQueryTableViewController, UISearchBarDelegat
         return obj
     }
     
-    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let selectedIndexPath = tableView.indexPathForSelectedRow()
         let profileViewController = WPProfileViewController()
         if (friendsFilter) {
