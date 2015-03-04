@@ -235,9 +235,18 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
             friendsRelation.addObject(profileUser)
             PFUser.currentUser().saveInBackgroundWithBlock { (success:Bool, error: NSError!) -> Void in
                 if (success) {
-                    println("Success!")
-                    self.friendStatus = 2
-                    self.navigationItem.rightBarButtonItem?.title = "Unfollow"
+                    var followers = PFObject(className: "Followers")
+                    followers.setObject(self.profileUser.username, forKey: "user")
+                    followers.setObject(PFUser.currentUser().username, forKey: "follower")
+                    followers.saveInBackgroundWithBlock { (success: Bool, error: NSError!) -> Void in
+                        if (success) {
+                            self.friendStatus = 2
+                            self.navigationItem.rightBarButtonItem?.title = "Unfollow"
+                            self.loadData()
+                        } else {
+                            self.presentErrorMessage(error)
+                        }
+                    }
                 } else {
                     self.presentErrorMessage(error)
                 }
