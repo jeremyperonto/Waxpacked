@@ -14,8 +14,19 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
     var profileImageView = UIImageView()
     var profileUsernameLabel = UILabel()
     var profileUserBioLabel = UILabel()
-    var followingNumberLabel = UILabel()
-    var followersNumberLabel = UILabel()
+    var numberOfFollowersLabel = UILabel()
+    var numberOfFollowers:Int32 = 0 {
+        didSet {
+            numberOfFollowersLabel.text = "Followers: \(numberOfFollowers)"
+        }
+    }
+    
+    var numberFollowingLabel = UILabel()
+    var numberFollowing:Int32 = 0 {
+        didSet {
+            numberFollowingLabel.text = "Following: \(numberFollowing)"
+        }
+    }
     
     var friendStatus = 1
     
@@ -39,24 +50,50 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
                 if let profileImage:PFFile = object["profileImage"] as? PFFile {
                     profileImage.getDataInBackgroundWithBlock({ (imageData: NSData!, error:NSError!) -> Void in
                         if (error == nil) {
-                            let image:UIImage = UIImage(data: imageData)! //NO dispatch async?
+                            let image:UIImage = UIImage(data: imageData)!
                             dispatch_async(dispatch_get_main_queue(), {
                                 self.profileImageView.image = image
                             });
                         }
                         else {
-                            println(error)
                             self.presentErrorMessage(error)
                         }
                     })
                 }
             }
             else {
-                // Log details of failure
-                println(error)
                 self.presentErrorMessage(error)
             }
         }
+        
+        //Get followers number
+        var followers = PFQuery(className: "Followers")
+        followers.whereKey("user", equalTo: self.profileUser.username)
+        followers.countObjectsInBackgroundWithBlock { (numOfFollowers:Int32, error:NSError!) -> Void in
+            if (error == nil) {
+                dispatch_async(dispatch_get_main_queue(),{
+                    self.numberOfFollowers = numOfFollowers
+                });
+            }
+            else{
+                self.presentErrorMessage(error)
+            }
+        }
+        
+        //Get following number
+        var following = PFQuery(className: "Followers")
+        following.whereKey("follower", equalTo: self.profileUser.username)
+        following.countObjectsInBackgroundWithBlock { (numFollowing:Int32, error:NSError!) -> Void in
+            if (error == nil) {
+                dispatch_async(dispatch_get_main_queue(),{
+                    self.numberFollowing = numFollowing
+                });
+            }
+            else{
+                self.presentErrorMessage(error)
+            }
+        }
+        
     }
 
     override func viewDidLoad() {
@@ -207,25 +244,23 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func configureNumberFollowersLabel() {
-        followersNumberLabel.text = "Followers: 0"
-        followersNumberLabel.frame = CGRect(x: 0, y: 70, width: view.frame.width/1.25, height: view.frame.width/2)
-        followersNumberLabel.center.x = view.center.x - 100
-        followersNumberLabel.textAlignment = .Center
-        followersNumberLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
-        followersNumberLabel.textColor = UIColor.whiteColor()
+        numberOfFollowersLabel.frame = CGRect(x: 0, y: 70, width: view.frame.width/1.25, height: view.frame.width/2)
+        numberOfFollowersLabel.center.x = view.center.x - 100
+        numberOfFollowersLabel.textAlignment = .Center
+        numberOfFollowersLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
+        numberOfFollowersLabel.textColor = UIColor.whiteColor()
         
-        self.view.addSubview(followersNumberLabel)
+        self.view.addSubview(numberOfFollowersLabel)
     }
     
     func configureNumberFollowingLabel() {
-        followingNumberLabel.text = "Following: 0"
-        followingNumberLabel.frame = CGRect(x: 0, y: 70, width: view.frame.width/1.25, height: view.frame.width/2)
-        followingNumberLabel.center.x = view.center.x + 100
-        followingNumberLabel.textAlignment = .Center
-        followingNumberLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
-        followingNumberLabel.textColor = UIColor.whiteColor()
+        numberFollowingLabel.frame = CGRect(x: 0, y: 70, width: view.frame.width/1.25, height: view.frame.width/2)
+        numberFollowingLabel.center.x = view.center.x + 100
+        numberFollowingLabel.textAlignment = .Center
+        numberFollowingLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
+        numberFollowingLabel.textColor = UIColor.whiteColor()
         
-        self.view.addSubview(followingNumberLabel)
+        self.view.addSubview(numberFollowingLabel)
     }
     
     func followUser() {
