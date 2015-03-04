@@ -230,15 +230,46 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
     
     func followUser() {
         var friendsRelation:PFRelation = PFUser.currentUser().relationForKey("friendsRelation")
-        friendsRelation.addObject(profileUser)
-        PFUser.currentUser().saveInBackgroundWithBlock { (success:Bool, error: NSError!) -> Void in
-            if (success) {
-                println("Success!")
-                self.friendStatus = 2
-                self.navigationItem.rightBarButtonItem?.title = "Unfollow"
-            } else {
-                self.presentErrorMessage(error)
+        
+        if friendStatus == 1 {
+            friendsRelation.addObject(profileUser)
+            PFUser.currentUser().saveInBackgroundWithBlock { (success:Bool, error: NSError!) -> Void in
+                if (success) {
+                    println("Success!")
+                    self.friendStatus = 2
+                    self.navigationItem.rightBarButtonItem?.title = "Unfollow"
+                } else {
+                    self.presentErrorMessage(error)
+                }
             }
         }
+        else {
+            friendsRelation.removeObject(profileUser)
+            PFUser.currentUser().saveInBackgroundWithBlock({ (success: Bool, error: NSError!) -> Void in
+                if (success) {
+                    var followers = PFQuery(className: "Followers")
+                    followers.whereKey("user", equalTo: self.profileUser.username)
+                    followers.whereKey("follower", equalTo: PFUser.currentUser().username)
+                    followers.getFirstObjectInBackgroundWithBlock({ (object: PFObject!, error:NSError!) -> Void in
+                        if (error == nil) {
+                            object.deleteInBackgroundWithBlock({ (success: Bool, error: NSError!) -> Void in
+                                if success {
+                                    self.friendStatus = 1
+                                    self.navigationItem.rightBarButtonItem?.title = "Follow"
+                                    self.loadData()
+                                }
+                                else {
+                                    self.presentErrorMessage(error)
+                                }
+                            })
+                        }
+                    })
+                }
+                else {
+                    self.presentErrorMessage(error)
+                }
+            })
+        }
     }
+    
 }
