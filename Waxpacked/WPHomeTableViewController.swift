@@ -49,11 +49,13 @@ class WPHomeTableViewController: UITableViewController {
 
     func pushToUsersViewController() {
         let usersTableViewController = WPUsersTableViewController(style: .Plain, className: "users")
+        usersTableViewController.friendsFilter = false
         navigationController!.pushViewController(usersTableViewController, animated: true)
     }
     
-    func pushToMyFriendsViewController() {
+    func pushToFriendsViewController() {
         let usersTableViewController = WPUsersTableViewController(style: .Plain, className: "users")
+        usersTableViewController.friendsFilter = true
         navigationController!.pushViewController(usersTableViewController, animated: true)
     }
     

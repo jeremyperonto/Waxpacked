@@ -28,10 +28,10 @@ extension UIViewController {
         //Custom Text Example
         let usersIcon = UIBarButtonItem(title: kToolbarUsersIcon, style: .Plain, target: self, action: "pushToUsersViewController")
         usersIcon.tintColor = kToolbarIconColor
-        let friendsIcon = UIBarButtonItem(title: kToolbarUsersIcon, style: .Plain, target: self, action: "pushToFriendsViewController")
+        let friendsIcon = UIBarButtonItem(title: kToolbarFriendsIcon, style: .Plain, target: self, action: "pushToFriendsViewController")
         friendsIcon.tintColor = kToolbarIconColor
         
-        toolbarItems = [searchIcon, spacer, profileIcon, spacer, usersIcon]
+        toolbarItems = [searchIcon, spacer, profileIcon, spacer, friendsIcon, spacer, usersIcon]
         
         navigationController?.toolbar.barTintColor = kBackgroundColor
         navigationController!.toolbarHidden = false

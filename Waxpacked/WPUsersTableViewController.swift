@@ -51,7 +51,8 @@ class WPUsersTableViewController: PFQueryTableViewController, UISearchBarDelegat
         if (friendsFilter) {
             var friendsRelation:PFRelation = PFUser.currentUser().relationForKey("friendsRelation")
             query = friendsRelation.query()
-        } else {
+        }
+        else {
             var friendsRelation:PFRelation = PFUser.currentUser().relationForKey("friendsRelation")
             var innerQuery = friendsRelation.query()
             query = PFUser.query()

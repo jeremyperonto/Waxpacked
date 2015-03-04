@@ -26,6 +26,7 @@ let kToolbarLogoutIcon = "Log Out"
 let kToolbarIconColor = UIColor.whiteColor()
 let kToolbarProfileIcon = UIImage(named: "Profile")
 let kToolbarUsersIcon = "Users"
+let kToolbarFriendsIcon = "Friends"
 
 let kNavBarReturnIcon = UIImage(named: "Return")
 
