@@ -18,7 +18,7 @@ class WPAppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         if let window = window {
-            window.backgroundColor = UIColor.whiteColor()
+            window.backgroundColor = UIColor.darkGrayColor()
             let LoginSignupViewController = WPLoginSignupViewController()
             window.rootViewController = UINavigationController(rootViewController: LoginSignupViewController)
             window.makeKeyAndVisible()
@@ -29,7 +29,7 @@ class WPAppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = kBackgroundColor
         UINavigationBar.appearance().backgroundColor = kBackgroundColor
         UINavigationBar.appearance().translucent = false
-        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: kTitleFontName, size: kTitleFontSize)!, NSForegroundColorAttributeName: UIColor.whiteColor()]
+        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: kTitleFontName, size: kTitleFontSize)!, NSForegroundColorAttributeName: UIColor.darkGrayColor()]
         
         return true
     }

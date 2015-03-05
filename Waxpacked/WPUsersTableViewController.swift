@@ -82,7 +82,7 @@ class WPUsersTableViewController: PFQueryTableViewController, UISearchBarDelegat
             searchBar.barTintColor = kBackgroundColor
             searchBar.showsCancelButton = true
             searchBar.showsSearchResultsButton = false
-            searchBar.tintColor = UIColor.whiteColor()
+            searchBar.tintColor = UIColor.darkGrayColor()
             searchBar.delegate = self
             return searchBar
         }

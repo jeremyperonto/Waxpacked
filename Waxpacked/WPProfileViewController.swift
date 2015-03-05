@@ -179,7 +179,7 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
         var imagePicker: UIImagePickerController = UIImagePickerController()
         imagePicker.sourceType = .PhotoLibrary
         imagePicker.delegate = self
-        imagePicker.navigationBar.tintColor = UIColor.whiteColor()
+        imagePicker.navigationBar.tintColor = UIColor.darkGrayColor()
         
         let returnIcon = UIBarButtonItem(image: kNavBarReturnIcon, style: .Plain, target: navigationController, action: "popViewControllerAnimated:")
         returnIcon.tintColor = kToolbarIconColor
@@ -227,38 +227,52 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
         profileUsernameLabel.center.x = view.center.x
         profileUsernameLabel.textAlignment = .Center
         profileUsernameLabel.font = UIFont(name: kTitleFontName, size: kTitleFontSize)
-        profileUsernameLabel.textColor = UIColor.whiteColor()
+        profileUsernameLabel.textColor = UIColor.darkGrayColor()
         
         self.view.addSubview(profileUsernameLabel)
     }
     
     func configureUserBioLabel() {
         profileUserBioLabel.text = "Bio not yet implemented"
-        profileUserBioLabel.frame = CGRect(x: 0, y: 110, width: view.frame.width/1.25, height: view.frame.width/2)
+        profileUserBioLabel.frame = CGRect(x: 0, y: 110, width: view.frame.width/1.25, height: view.frame.width/1.5)
         profileUserBioLabel.center.x = view.center.x
         profileUserBioLabel.textAlignment = .Center
         profileUserBioLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
-        profileUserBioLabel.textColor = UIColor.whiteColor()
+        profileUserBioLabel.textColor = UIColor.darkGrayColor()
         
         self.view.addSubview(profileUserBioLabel)
     }
     
     func configureNumberFollowersLabel() {
-        numberOfFollowersLabel.frame = CGRect(x: 0, y: 70, width: view.frame.width/1.25, height: view.frame.width/2)
+        numberOfFollowersLabel.text = "Followers: 0"
+        numberOfFollowersLabel.frame = CGRect(x: 0, y: 70, width: view.frame.width/1.25, height: view.frame.width/1.5)
         numberOfFollowersLabel.center.x = view.center.x - 100
         numberOfFollowersLabel.textAlignment = .Center
         numberOfFollowersLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
-        numberOfFollowersLabel.textColor = UIColor.whiteColor()
+        numberOfFollowersLabel.textColor = UIColor.darkGrayColor()
+        
+        numberOfFollowersLabel.userInteractionEnabled = true
+        
+        let followersLabelTouch = UITapGestureRecognizer(target: self, action: "pushToFollowersTable")
+        followersLabelTouch.numberOfTapsRequired = 1
+        numberOfFollowersLabel.addGestureRecognizer(followersLabelTouch)
         
         self.view.addSubview(numberOfFollowersLabel)
     }
     
     func configureNumberFollowingLabel() {
-        numberFollowingLabel.frame = CGRect(x: 0, y: 70, width: view.frame.width/1.25, height: view.frame.width/2)
+        numberFollowingLabel.text = "Following: 0"
+        numberFollowingLabel.frame = CGRect(x: 0, y: 70, width: view.frame.width/1.25, height: view.frame.width/1.5)
         numberFollowingLabel.center.x = view.center.x + 100
         numberFollowingLabel.textAlignment = .Center
         numberFollowingLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
-        numberFollowingLabel.textColor = UIColor.whiteColor()
+        numberFollowingLabel.textColor = UIColor.darkGrayColor()
+        
+        numberFollowingLabel.userInteractionEnabled = true
+        
+        let followingLabelTouch = UITapGestureRecognizer(target: self, action: "pushToFollowingTable")
+        followingLabelTouch.numberOfTapsRequired = 1
+        numberFollowingLabel.addGestureRecognizer(followingLabelTouch)
         
         self.view.addSubview(numberFollowingLabel)
     }

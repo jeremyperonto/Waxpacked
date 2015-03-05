@@ -21,14 +21,14 @@ class WPUserTableViewCell: PFTableViewCell {
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
         profileImageView.clipsToBounds = true
         profileImageView.layer.borderWidth = 1.0
-        profileImageView.layer.borderColor = UIColor.whiteColor().CGColor
+        profileImageView.layer.borderColor = UIColor.darkGrayColor().CGColor
         profileImageView.tag = 1
         
         addSubview(profileImageView)
         
         label.frame = CGRectMake((contentView.frame.width - profileImageView.frame.maxX)/3, contentView.frame.height/2+5, 50, 50)
         label.tag = 2
-        label.textColor = UIColor.whiteColor()
+        label.textColor = UIColor.darkGrayColor()
         label.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
         addSubview(label)
         

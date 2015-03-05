@@ -85,7 +85,7 @@ class WPHomeTableViewController: UITableViewController {
             cell.textLabel?.text = "Jackie Robinson 1958"
         }
         cell.textLabel?.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
-        cell.textLabel?.textColor = UIColor.whiteColor()
+        cell.textLabel?.textColor = UIColor.darkGrayColor()
         cell.backgroundColor = kBackgroundColor
         return cell
     }

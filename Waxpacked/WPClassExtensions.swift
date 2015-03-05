@@ -17,6 +17,8 @@ extension UIViewController {
     }
     
     func configureNavigationToolBar() {
+        let homeIcon = UIBarButtonItem(image: kToolbarHomeIcon, style:.Plain, target: self, action: "notImplemented")
+        homeIcon.tintColor = kToolbarIconColor
         //SystemItem Example
         let searchIcon = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: "notImplemented")
         searchIcon.tintColor = kToolbarIconColor
@@ -31,9 +33,9 @@ extension UIViewController {
         let friendsIcon = UIBarButtonItem(title: kToolbarFriendsIcon, style: .Plain, target: self, action: "pushToFriendsViewController")
         friendsIcon.tintColor = kToolbarIconColor
         
-        toolbarItems = [searchIcon, spacer, profileIcon, spacer, friendsIcon, spacer, usersIcon]
+        toolbarItems = [homeIcon, spacer, searchIcon, spacer, profileIcon, spacer, friendsIcon, spacer, usersIcon]
         
-        navigationController?.toolbar.barTintColor = kBackgroundColor
+        navigationController?.toolbar.barTintColor = UIColor.lightGrayColor()
         navigationController!.toolbarHidden = false
 }
 
@@ -62,7 +64,7 @@ extension UITableViewController {
     
     func addPullToRefresh() {
         refreshControl = UIRefreshControl()
-        refreshControl!.tintColor = UIColor.whiteColor()
+        refreshControl!.tintColor = UIColor.darkGrayColor()
         refreshControl?.addTarget(self, action: "loadObjects", forControlEvents: UIControlEvents.ValueChanged)
         tableView.addSubview(refreshControl!)
     }
