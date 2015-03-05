@@ -17,10 +17,10 @@ extension UIViewController {
     }
     
     func configureNavigationToolBar() {
-        let homeIcon = UIBarButtonItem(image: kToolbarHomeIcon, style:.Plain, target: self, action: "notImplemented")
+        let homeIcon = UIBarButtonItem(image: kToolbarHomeIcon, style:.Plain, target: self, action: "pushToHomeViewController")
         homeIcon.tintColor = kToolbarIconColor
         //SystemItem Example
-        let searchIcon = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: "notImplemented")
+        let searchIcon = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: "pushToSearchTableViewController")
         searchIcon.tintColor = kToolbarIconColor
         //FlexibleSpacer Example
         let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
@@ -38,6 +38,47 @@ extension UIViewController {
         navigationController?.toolbar.barTintColor = UIColor.lightGrayColor()
         navigationController!.toolbarHidden = false
 }
+    
+ 
+    // MARK: - Navigation
+    
+    func pushToHomeViewController() {
+        let pushToHomeViewController = WPHomeTableViewController(style: .Plain)
+        println(PFUser.currentUser().username)
+        navigationController?.pushViewController(pushToHomeViewController, animated: false)
+    }
+    
+    func pushToSearchTableViewController() {
+        let pushToSearchTableViewController = WPSearchTableViewController()
+        println(PFUser.currentUser().username)
+        navigationController?.pushViewController(pushToSearchTableViewController, animated: false)
+    }
+    
+    func pushToMyProfileViewController() {
+        let myProfileViewController = WPProfileViewController()
+        myProfileViewController.friendStatus = 0
+        myProfileViewController.profileUser = PFUser.currentUser()
+        println(PFUser.currentUser().username)
+        navigationController?.pushViewController(myProfileViewController, animated: false)
+    }
+    
+    func pushToUsersViewController() {
+        let usersTableViewController = WPUsersTableViewController(style: .Plain, className: "users")
+        usersTableViewController.friendsFilter = false
+        navigationController!.pushViewController(usersTableViewController, animated: true)
+    }
+    
+    func pushToFriendsViewController() {
+        let usersTableViewController = WPUsersTableViewController(style: .Plain, className: "users")
+        usersTableViewController.friendsFilter = true
+        navigationController!.pushViewController(usersTableViewController, animated: true)
+    }
+    
+    
+    
+    
+    
+    //MARK: - Motion Events
 
     public override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
         if (event.subtype == UIEventSubtype.MotionShake) {

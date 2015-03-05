@@ -98,6 +98,8 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureNavigationToolBar()
 
         if PFUser.currentUser() == profileUser {
             title = "My Profile"

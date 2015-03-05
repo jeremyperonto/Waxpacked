@@ -44,28 +44,6 @@ class WPHomeTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // MARK: - Navigation
-
-    func pushToUsersViewController() {
-        let usersTableViewController = WPUsersTableViewController(style: .Plain, className: "users")
-        usersTableViewController.friendsFilter = false
-        navigationController!.pushViewController(usersTableViewController, animated: true)
-    }
-    
-    func pushToFriendsViewController() {
-        let usersTableViewController = WPUsersTableViewController(style: .Plain, className: "users")
-        usersTableViewController.friendsFilter = true
-        navigationController!.pushViewController(usersTableViewController, animated: true)
-    }
-    
-    func pushToMyProfileViewController() {
-        let myProfileViewController = WPProfileViewController()
-        myProfileViewController.friendStatus = 0
-        myProfileViewController.profileUser = PFUser.currentUser()
-        println(PFUser.currentUser().username)
-        navigationController?.pushViewController(myProfileViewController, animated: true)
-    }
     
     
     // MARK: - Table view data source
