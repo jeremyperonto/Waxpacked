@@ -44,13 +44,11 @@ extension UIViewController {
     
     func pushToHomeViewController() {
         let pushToHomeViewController = WPHomeTableViewController(style: .Plain)
-        println(PFUser.currentUser().username)
         navigationController?.pushViewController(pushToHomeViewController, animated: false)
     }
     
     func pushToSearchTableViewController() {
         let pushToSearchTableViewController = WPSearchTableViewController()
-        println(PFUser.currentUser().username)
         navigationController?.pushViewController(pushToSearchTableViewController, animated: false)
     }
     
@@ -58,7 +56,6 @@ extension UIViewController {
         let myProfileViewController = WPProfileViewController()
         myProfileViewController.friendStatus = 0
         myProfileViewController.profileUser = PFUser.currentUser()
-        println(PFUser.currentUser().username)
         navigationController?.pushViewController(myProfileViewController, animated: false)
     }
     

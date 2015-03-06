@@ -172,9 +172,37 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     override func viewWillLayoutSubviews() {
+        profileImageView.frame = CGRect(x: view.center.x, y: 20, width: view.frame.width/4, height: view.frame.width/4)
         profileImageView.center.x = view.center.x
+        
+        profileUsernameLabel.frame = CGRect(x: 0, y: 0, width: view.frame.width/1.5, height: view.frame.width/2)
         profileUsernameLabel.center.x = view.center.x
+        profileUsernameLabel.center.y = view.frame.width/2.8
+
+        profileUserBioLabel.frame = CGRect(x: 0, y: 0, width: view.frame.width/1.25, height: view.frame.width/1.5)
         profileUserBioLabel.center.x = view.center.x
+        profileUserBioLabel.center.y = view.frame.width/2.2
+
+        numberOfFollowersLabel.frame = CGRect(x: 0, y: 70, width: view.frame.width/1.25, height: view.frame.width/1.5)
+        numberOfFollowersLabel.center.x = view.center.x - 100
+        numberOfFollowersLabel.center.y = view.frame.width/1.8
+        
+        numberFollowingLabel.frame = CGRect(x: 0, y: 70, width: view.frame.width/1.25, height: view.frame.width/1.5)
+        numberFollowingLabel.center.x = view.center.x + 100
+        numberFollowingLabel.center.y = view.frame.width/1.8
+    }
+    
+    override func viewDidLayoutSubviews() {
+        profileImageView.frame = CGRect(x: view.center.x, y: 20, width: view.frame.width/4, height: view.frame.width/4)
+        profileImageView.center.x = view.center.x
+        
+        numberOfFollowersLabel.center.x = view.center.x - 100
+        
+        numberFollowingLabel.center.x = view.center.x + 100
+        
+        //profileUserBioLabel.center.y = view.center.y + 40
+        
+        profileUsernameLabel.center.x = view.center.x
     }
     
     func imagePicker() {
@@ -225,8 +253,6 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
     
     func configureUsernameLabel() {
         profileUsernameLabel.text = profileUser.username
-        profileUsernameLabel.frame = CGRect(x: 0, y: 40, width: view.frame.width/1.5, height: view.frame.width/2)
-        profileUsernameLabel.center.x = view.center.x
         profileUsernameLabel.textAlignment = .Center
         profileUsernameLabel.font = UIFont(name: kTitleFontName, size: kTitleFontSize)
         profileUsernameLabel.textColor = UIColor.darkGrayColor()
@@ -236,8 +262,6 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
     
     func configureUserBioLabel() {
         profileUserBioLabel.text = "Bio not yet implemented"
-        profileUserBioLabel.frame = CGRect(x: 0, y: 110, width: view.frame.width/1.25, height: view.frame.width/1.5)
-        profileUserBioLabel.center.x = view.center.x
         profileUserBioLabel.textAlignment = .Center
         profileUserBioLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
         profileUserBioLabel.textColor = UIColor.darkGrayColor()
@@ -247,12 +271,9 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
     
     func configureNumberFollowersLabel() {
         numberOfFollowersLabel.text = "Followers: 0"
-        numberOfFollowersLabel.frame = CGRect(x: 0, y: 70, width: view.frame.width/1.25, height: view.frame.width/1.5)
-        numberOfFollowersLabel.center.x = view.center.x - 100
         numberOfFollowersLabel.textAlignment = .Center
         numberOfFollowersLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
         numberOfFollowersLabel.textColor = UIColor.darkGrayColor()
-        
         numberOfFollowersLabel.userInteractionEnabled = true
         
         let followersLabelTouch = UITapGestureRecognizer(target: self, action: "pushToFollowersTable")
@@ -264,12 +285,9 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
     
     func configureNumberFollowingLabel() {
         numberFollowingLabel.text = "Following: 0"
-        numberFollowingLabel.frame = CGRect(x: 0, y: 70, width: view.frame.width/1.25, height: view.frame.width/1.5)
-        numberFollowingLabel.center.x = view.center.x + 100
         numberFollowingLabel.textAlignment = .Center
         numberFollowingLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
         numberFollowingLabel.textColor = UIColor.darkGrayColor()
-        
         numberFollowingLabel.userInteractionEnabled = true
         
         let followingLabelTouch = UITapGestureRecognizer(target: self, action: "pushToFollowingTable")
