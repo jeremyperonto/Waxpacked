@@ -48,7 +48,7 @@ extension UIViewController {
     }
     
     func pushToSearchTableViewController() {
-        let pushToSearchTableViewController = WPSearchTableViewController()
+        let pushToSearchTableViewController = WPSearchTableViewController(style: .Plain, className: "cards")
         navigationController?.pushViewController(pushToSearchTableViewController, animated: false)
     }
     

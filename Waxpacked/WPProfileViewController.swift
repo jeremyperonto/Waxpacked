@@ -200,8 +200,6 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
         
         numberFollowingLabel.center.x = view.center.x + 100
         
-        //profileUserBioLabel.center.y = view.center.y + 40
-        
         profileUsernameLabel.center.x = view.center.x
     }
     

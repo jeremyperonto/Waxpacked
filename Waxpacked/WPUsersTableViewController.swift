@@ -91,7 +91,8 @@ class WPUsersTableViewController: PFQueryTableViewController, UISearchBarDelegat
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return 30
+            return 32
+            
         }
         return 0.1
     }
