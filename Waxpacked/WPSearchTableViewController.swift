@@ -11,7 +11,7 @@ import UIKit
 class WPSearchTableViewController: PFQueryTableViewController, UISearchBarDelegate {
 
     var searchBar: UISearchBar!
-    var searchBarInProgress = Bool()
+    var searchInProgress = Bool()
     
     override init!(style: UITableViewStyle, className: String!) {
         super.init(style: style, className: className)
@@ -43,16 +43,18 @@ class WPSearchTableViewController: PFQueryTableViewController, UISearchBarDelega
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
-        return 0
-    }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        return 0
+    override func queryForTable() -> PFQuery! {
+        let query = PFQuery(className:"BaseballCard")
+        if (searchInProgress) {
+            query.whereKey("searchQuery", containsString: searchBar.text)
+        }
+        query.orderByAscending("searchQuery")
+        
+        if (self.objects.count == 0) {
+            query.cachePolicy = kPFCachePolicyCacheThenNetwork
+        }
+        return query
     }
 
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -76,10 +78,14 @@ class WPSearchTableViewController: PFQueryTableViewController, UISearchBarDelega
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-
+        searchInProgress = true
+        loadObjects()
+        searchInProgress = false
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        
+        searchInProgress = false
+        loadObjects()
+        searchBar.resignFirstResponder()
     }
 }
