@@ -29,11 +29,11 @@ class WPSearchTableViewController: PFQueryTableViewController, UISearchBarDelega
         
         configureNavigationToolBar()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        tableView.registerClass(WPCardSearchTableViewCell.self, forCellReuseIdentifier: kTableViewCellIdentifier)
+        tableView.separatorInset.right = tableView.separatorInset.left
+        tableView.tableFooterView = UIView(frame: CGRectZero)
+        view.backgroundColor = kBackgroundColor
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,7 +47,16 @@ class WPSearchTableViewController: PFQueryTableViewController, UISearchBarDelega
     override func queryForTable() -> PFQuery! {
         let query = PFQuery(className:"BaseballCard")
         if (searchInProgress) {
-            query.whereKey("searchQuery", containsString: searchBar.text)
+            //let cardSearchCheckOne = PFObject.query()
+            //query.whereKey("searchQuery", containsString: searchBar.text)
+            
+            let cardSearchCheckTwo = PFObject.query()
+            query.whereKey("cardId", containsString: searchBar.text)
+            
+            let cardSearchCheckThree = PFObject.query()
+            query.whereKey("nonPlayerName", containsString: searchBar.text)
+            
+            let cardSearchStringMatch = PFQuery.orQueryWithSubqueries([cardSearchCheckTwo, cardSearchCheckThree])
         }
         query.orderByAscending("searchQuery")
         
@@ -87,5 +96,38 @@ class WPSearchTableViewController: PFQueryTableViewController, UISearchBarDelega
         searchInProgress = false
         loadObjects()
         searchBar.resignFirstResponder()
+        
     }
+    
+    // MARK - Table View Controller
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath!, object: PFObject!) -> WPCardSearchTableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as WPCardSearchTableViewCell
+        cell.imageView.hidden = true
+        
+        cell.textLabel?.text
+        if (object["nonPlayerName"] as NSString == "N/A") {
+            (cell.viewWithTag(2) as UILabel).text = object["firstName"] as? String
+            (cell.viewWithTag(2) as UILabel).sizeToFit()
+        }
+        else {
+            (cell.viewWithTag(2) as UILabel).text = object["nonPlayerName"] as? String
+            (cell.viewWithTag(2) as UILabel).sizeToFit()
+        }
+        
+        cell.textLabel?.text
+        (cell.viewWithTag(3) as UILabel).text = "setNameLabel"
+        (cell.viewWithTag(3) as UILabel).sizeToFit()
+
+        cell.textLabel?.text
+        (cell.viewWithTag(4) as UILabel).text = "subSetNameLabel"
+        (cell.viewWithTag(4) as UILabel).sizeToFit()
+
+        return cell
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 80
+    }
+
 }
