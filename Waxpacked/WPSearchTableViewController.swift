@@ -17,7 +17,7 @@ class WPSearchTableViewController: PFQueryTableViewController, UISearchBarDelega
         super.init(style: style, className: className)
         pullToRefreshEnabled = true
         paginationEnabled = true
-        objectsPerPage = 25
+        objectsPerPage = 100
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -43,19 +43,25 @@ class WPSearchTableViewController: PFQueryTableViewController, UISearchBarDelega
         let query = PFQuery(className:"BaseballCard")
         
         if (searchInProgress) {
+
+            query.whereKey("searchQuery", containsString: searchBar.text)
             
-            let cardSearchCheckOne = PFQuery(className:"BaseballCard")
-            cardSearchCheckOne.whereKey("searchQuery", containsString: searchBar.text)
-            
-            let cardSearchCheckTwo = PFQuery(className:"BaseballCard")
-            cardSearchCheckTwo.whereKey("cardId", containsString: searchBar.text)
-            
-            let cardSearchCheckThree = PFQuery(className:"BaseballCard")
-            cardSearchCheckThree.whereKey("nonPlayerName", containsString: searchBar.text)
-            
-            let cardSearchStringMatch = PFQuery.orQueryWithSubqueries([cardSearchCheckOne, cardSearchCheckTwo, cardSearchCheckThree])
+//            let cardSearchCheckOne = PFQuery(className:"BaseballCard")
+//            cardSearchCheckOne.whereKey("firstName", containsString: searchBar.text)
+//            let cardSearchCheckTwo = PFQuery(className:"BaseballCard")
+//            cardSearchCheckTwo.whereKey("cardId", containsString: searchBar.text)
+//            let cardSearchCheckThree = PFQuery(className:"BaseballCard")
+//            cardSearchCheckThree.whereKey("nonPlayerName", containsString: searchBar.text)
+//            
+//            let cardSearchQuery = PFQuery.orQueryWithSubqueries([cardSearchCheckOne, cardSearchCheckTwo, cardSearchCheckThree])
+//            cardSearchQuery.findObjectsInBackgroundWithBlock {
+//                (results: [AnyObject]!, error: NSError!) -> Void in
+//                if error == nil {
+//                    // results contains players with lots of wins or only a few wins.
+//                }
+//            }
         }
-        query.orderByAscending("searchQuery")
+        query.orderByAscending("objectId")
         
         if (self.objects.count == 0) {
             query.cachePolicy = kPFCachePolicyCacheThenNetwork
@@ -117,11 +123,15 @@ class WPSearchTableViewController: PFQueryTableViewController, UISearchBarDelega
         }
         
         cell.textLabel?.text
-        (cell.viewWithTag(3) as UILabel).text = "setNameLabel"
+        var year = object["year"] as Int
+        var set = object["set"] as String
+        (cell.viewWithTag(3) as UILabel).text = "\(year)" + " " + "\(set)"
         (cell.viewWithTag(3) as UILabel).sizeToFit()
 
         cell.textLabel?.text
-        (cell.viewWithTag(4) as UILabel).text = "subSetNameLabel"
+        var cardId = object["cardId"] as String
+        var subSet = object["subSet"] as String
+        (cell.viewWithTag(4) as UILabel).text = "\(cardId)" + " - " + "\(subSet)"
         (cell.viewWithTag(4) as UILabel).sizeToFit()
 
         return cell
