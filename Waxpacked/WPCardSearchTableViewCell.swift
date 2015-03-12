@@ -20,7 +20,6 @@ class WPCardSearchTableViewCell: PFTableViewCell {
         
         cardImageView.frame = CGRectMake(10, 10, 60, 60)
         
-        cardImageView.layer.cornerRadius = cardImageView.frame.size.width / 2;
         cardImageView.clipsToBounds = true
         cardImageView.layer.borderWidth = 1.0
         cardImageView.layer.borderColor = UIColor.darkGrayColor().CGColor
@@ -28,7 +27,7 @@ class WPCardSearchTableViewCell: PFTableViewCell {
         
         addSubview(cardImageView)
         
-        cardSubjectNameLabel.frame = CGRectMake((contentView.frame.width - cardImageView.frame.maxX)/3, contentView.frame.height/7, 0, 0)
+        cardSubjectNameLabel.frame = CGRectMake((contentView.frame.width - cardImageView.frame.maxX)/3, contentView.frame.height * (0.05), 0, 0)
         cardSubjectNameLabel.tag = 2
         cardSubjectNameLabel.textColor = UIColor.darkGrayColor()
         cardSubjectNameLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
@@ -40,7 +39,7 @@ class WPCardSearchTableViewCell: PFTableViewCell {
         setNameLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
         addSubview(setNameLabel)
         
-        subSetNameLabel.frame = CGRectMake((contentView.frame.width - cardImageView.frame.maxX)/3, contentView.frame.height/(1/7), 0, 0)
+        subSetNameLabel.frame = CGRectMake((contentView.frame.width - cardImageView.frame.maxX)/3, contentView.frame.height * (0.95), 0, 0)
         subSetNameLabel.tag = 4
         subSetNameLabel.textColor = UIColor.darkGrayColor()
         subSetNameLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)

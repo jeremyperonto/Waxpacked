@@ -36,27 +36,24 @@ class WPSearchTableViewController: PFQueryTableViewController, UISearchBarDelega
         
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     // MARK: - Table view data source
 
 
     override func queryForTable() -> PFQuery! {
         let query = PFQuery(className:"BaseballCard")
+        
         if (searchInProgress) {
-            //let cardSearchCheckOne = PFObject.query()
-            //query.whereKey("searchQuery", containsString: searchBar.text)
             
-            let cardSearchCheckTwo = PFObject.query()
-            query.whereKey("cardId", containsString: searchBar.text)
+            let cardSearchCheckOne = PFQuery(className:"BaseballCard")
+            cardSearchCheckOne.whereKey("searchQuery", containsString: searchBar.text)
             
-            let cardSearchCheckThree = PFObject.query()
-            query.whereKey("nonPlayerName", containsString: searchBar.text)
+            let cardSearchCheckTwo = PFQuery(className:"BaseballCard")
+            cardSearchCheckTwo.whereKey("cardId", containsString: searchBar.text)
             
-            let cardSearchStringMatch = PFQuery.orQueryWithSubqueries([cardSearchCheckTwo, cardSearchCheckThree])
+            let cardSearchCheckThree = PFQuery(className:"BaseballCard")
+            cardSearchCheckThree.whereKey("nonPlayerName", containsString: searchBar.text)
+            
+            let cardSearchStringMatch = PFQuery.orQueryWithSubqueries([cardSearchCheckOne, cardSearchCheckTwo, cardSearchCheckThree])
         }
         query.orderByAscending("searchQuery")
         
@@ -66,6 +63,8 @@ class WPSearchTableViewController: PFQueryTableViewController, UISearchBarDelega
         return query
     }
 
+    //MARK - Search
+    
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             searchBar = UISearchBar(frame: CGRectMake(0, 0, tableView.frame.size.width, 0))
@@ -107,7 +106,9 @@ class WPSearchTableViewController: PFQueryTableViewController, UISearchBarDelega
         
         cell.textLabel?.text
         if (object["nonPlayerName"] as NSString == "N/A") {
-            (cell.viewWithTag(2) as UILabel).text = object["firstName"] as? String
+            var cardSubjectFirstName = object["firstName"] as String
+            var cardSubjectLastName = object["lastName"] as String
+            (cell.viewWithTag(2) as UILabel).text = "\(cardSubjectFirstName)" + " " + "\(cardSubjectLastName)"
             (cell.viewWithTag(2) as UILabel).sizeToFit()
         }
         else {
@@ -128,6 +129,11 @@ class WPSearchTableViewController: PFQueryTableViewController, UISearchBarDelega
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 80
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 
 }
