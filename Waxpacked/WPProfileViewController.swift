@@ -110,10 +110,6 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
         
         view.backgroundColor = kBackgroundColor
         
-        let returnIcon = UIBarButtonItem(image: kNavBarReturnIcon, style: .Plain, target: navigationController, action: "popViewControllerAnimated:")
-        returnIcon.tintColor = kToolbarIconColor
-        navigationItem.leftBarButtonItem = returnIcon
-        
         let followButton = UIBarButtonItem(title: "Follow", style: .Plain, target: self, action: "followUser")
         followButton.tintColor = kToolbarIconColor
         navigationItem.rightBarButtonItem = followButton
@@ -153,7 +149,7 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
         let defaultProfileImage = kProfileDefaultProfileImage
         profileImageView.frame = CGRect(x: 0, y: 20, width: view.frame.width/4, height: view.frame.width/4)
         profileImageView.center.x = view.center.x - 100
-        profileImageView.image = kProfileDefaultProfileImage
+        profileImageView.image = defaultProfileImage
         profileImageView.contentMode = .ScaleAspectFit
         
         if PFUser.currentUser() == profileUser {

@@ -16,7 +16,7 @@ class WPSearchTableViewController: PFQueryTableViewController, UISearchBarDelega
     override init!(style: UITableViewStyle, className: String!) {
         super.init(style: style, className: className)
         pullToRefreshEnabled = true
-        paginationEnabled = true
+        paginationEnabled = false
         objectsPerPage = 100
     }
     
@@ -135,6 +135,12 @@ class WPSearchTableViewController: PFQueryTableViewController, UISearchBarDelega
         (cell.viewWithTag(4) as UILabel).sizeToFit()
 
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let selectedIndexPath = tableView.indexPathForSelectedRow()
+        let cardInfoViewController = WPCardInfoViewController()
+        navigationController?.pushViewController(cardInfoViewController, animated: true)
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

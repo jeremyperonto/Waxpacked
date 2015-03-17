@@ -41,6 +41,7 @@
 		516B10261A95C70700EF6D47 /* WPLoginSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516B10251A95C70700EF6D47 /* WPLoginSignupViewController.swift */; };
 		516B10281A95D52D00EF6D47 /* WPAppGlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516B10271A95D52D00EF6D47 /* WPAppGlobalConstants.swift */; };
 		519728E71AAEB9A3006B4C91 /* WPCardSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519728E61AAEB9A3006B4C91 /* WPCardSearchTableViewCell.swift */; };
+		519728E91AB37562006B4C91 /* WPCardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519728E81AB37562006B4C91 /* WPCardInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		516B10251A95C70700EF6D47 /* WPLoginSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WPLoginSignupViewController.swift; sourceTree = "<group>"; };
 		516B10271A95D52D00EF6D47 /* WPAppGlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WPAppGlobalConstants.swift; sourceTree = "<group>"; };
 		519728E61AAEB9A3006B4C91 /* WPCardSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WPCardSearchTableViewCell.swift; sourceTree = "<group>"; };
+		519728E81AB37562006B4C91 /* WPCardInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WPCardInfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 				516B10231A95C6EB00EF6D47 /* WPHomeTableViewController.swift */,
 				515AD8981AA83D8F0056E7FD /* WPSearchTableViewController.swift */,
 				519728E61AAEB9A3006B4C91 /* WPCardSearchTableViewCell.swift */,
+				519728E81AB37562006B4C91 /* WPCardInfoViewController.swift */,
 			);
 			name = Content;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				516B10071A95B67300EF6D47 /* APIKeys.swift in Sources */,
+				519728E91AB37562006B4C91 /* WPCardInfoViewController.swift in Sources */,
 				519728E71AAEB9A3006B4C91 /* WPCardSearchTableViewCell.swift in Sources */,
 				511B61C61A986D5500889A8A /* WPClassExtensions.swift in Sources */,
 				516B10241A95C6EB00EF6D47 /* WPHomeTableViewController.swift in Sources */,
