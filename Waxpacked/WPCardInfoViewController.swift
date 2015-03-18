@@ -10,6 +10,7 @@ import UIKit
 
 class WPCardInfoViewController: UIViewController {
 
+    var baseballCard = PFObject(className:"BaseballCard")
     var cardImageView = UIImageView()
     var cardSubjectNameLabel = UILabel()
     var setNameLabel = UILabel()
@@ -18,7 +19,7 @@ class WPCardInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Title TBD"
+        self.title = "TBD"
         
         view.backgroundColor = kBackgroundColor
         
@@ -27,6 +28,9 @@ class WPCardInfoViewController: UIViewController {
         navigationItem.leftBarButtonItem = returnIcon
         
         configureCardImageView()
+        configureCardSubjectLabel()
+        
+        //configureToolbar()
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,17 +39,62 @@ class WPCardInfoViewController: UIViewController {
     }
     
     func configureToolbar() {
+        //navigationController?.hidesBarsOnSwipe = false
+        //navigationController?.hidesBarsOnTap = true
+        //navigationController?.toolbarHidden = true
+    }
+    
+    override func viewWillLayoutSubviews() {
+        cardImageView.frame = CGRect(x: view.center.x, y: 20, width: view.bounds.width, height: view.bounds.height)
+        cardImageView.center.x = view.center.x
         
+        cardSubjectNameLabel.frame = CGRect(x: 0, y: 0, width: view.frame.width/1.5, height: view.frame.width/2)
+        cardSubjectNameLabel.center.x = view.center.x
+        cardSubjectNameLabel.center.y = view.frame.width/2.8
+        
+//        setNameLabel.frame = CGRect(x: 0, y: 0, width: view.frame.width/1.25, height: view.frame.width/1.5)
+//        setNameLabel.center.x = view.center.x
+//        setNameLabel.center.y = view.frame.width/2.2
+//        
+//        subSetNameLabel.frame = CGRect(x: 0, y: 70, width: view.frame.width/1.25, height: view.frame.width/1.5)
+//        subSetNameLabel.center.x = view.center.x - 100
+//        subSetNameLabel.center.y = view.frame.width/1.8
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        cardImageView.frame = CGRectMake(0, 0, view.bounds.width, view.bounds.height)
+        cardSubjectNameLabel.center.x = view.center.x
+        setNameLabel.center.x = view.center.x
+        subSetNameLabel.center.x = view.center.x
     }
     
     func configureCardImageView() {
         let defaultCardImageView = kProfileDefaultProfileImage
-        cardImageView.frame = CGRectMake(0, 0, view.frame.width, view.frame.height)
+        cardImageView.frame = CGRectMake(0, 0, view.bounds.width, view.bounds.height)
         cardImageView.center.x = view.center.x
         cardImageView.image = defaultCardImageView
         cardImageView.contentMode = .ScaleAspectFit
+        
+        self.view.addSubview(cardImageView)
     }
     
+    func configureCardSubjectLabel() {
+        cardSubjectNameLabel.text = baseballCard["firstName"] as String?
+        cardSubjectNameLabel.textAlignment = .Center
+        cardSubjectNameLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
+        cardSubjectNameLabel.textColor = UIColor.darkGrayColor()
+        
+        self.view.addSubview(cardSubjectNameLabel)
+    }
+    
+    func configureSetNameLabel() {
+        
+    }
+    
+    func configureSubSetNameLabel() {
+        
+    }
 
     /*
     // MARK: - Navigation

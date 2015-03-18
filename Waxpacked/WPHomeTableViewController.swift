@@ -28,7 +28,6 @@ class WPHomeTableViewController: UITableViewController {
         self.title = "Baseball Cards"
         
         configureTableView()
-        
         configureNavigationToolBar()
         
         let logOutIcon = UIBarButtonItem(title: kToolbarLogoutIcon, style: .Plain, target: self, action: "logOut")
@@ -44,7 +43,6 @@ class WPHomeTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     // MARK: - Table view data source
     

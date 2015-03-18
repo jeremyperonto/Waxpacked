@@ -140,6 +140,8 @@ class WPSearchTableViewController: PFQueryTableViewController, UISearchBarDelega
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let selectedIndexPath = tableView.indexPathForSelectedRow()
         let cardInfoViewController = WPCardInfoViewController()
+        cardInfoViewController.baseballCard = objectAtIndexPath(selectedIndexPath) as PFObject
+        println("\(cardInfoViewController.baseballCard)")
         navigationController?.pushViewController(cardInfoViewController, animated: true)
     }
     

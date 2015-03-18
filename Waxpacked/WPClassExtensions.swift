@@ -16,6 +16,8 @@ extension UIViewController {
         navigationController?.toolbarHidden = true
     }
     
+    //MARK: Toolbars
+    
     func configureNavigationToolBar() {
         let homeIcon = UIBarButtonItem(image: kToolbarHomeIcon, style:.Plain, target: self, action: "pushToHomeViewController")
         homeIcon.tintColor = kToolbarIconColor
@@ -38,7 +40,6 @@ extension UIViewController {
         navigationController?.toolbar.barTintColor = UIColor.lightGrayColor()
         navigationController!.toolbarHidden = false
 }
-    
  
     // MARK: - Navigation
     
@@ -75,7 +76,6 @@ extension UIViewController {
         let pushToCardInfoViewController = WPCardInfoViewController()
         navigationController?.pushViewController(pushToCardInfoViewController, animated: false)
     }
-    
     
     //MARK: - Motion Events
 
