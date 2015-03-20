@@ -13,8 +13,9 @@ class WPCardInfoViewController: UIViewController {
     var baseballCard = PFObject(className:"BaseballCard")
     var cardImageView = UIImageView()
     var cardSubjectNameLabel = UILabel()
-    var setNameLabel = UILabel()
-    var subSetNameLabel = UILabel()
+    var cardSetNameLabel = UILabel()
+    var cardSubSetNameLabel = UILabel()
+    var addCardToWishlistOrCollectionButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,9 @@ class WPCardInfoViewController: UIViewController {
         
         configureCardImageView()
         configureCardSubjectLabel()
+        configureSetNameLabel()
+        configureSubSetNameLabel()
+        configureAddCardToWishlistOrCollectionButton()
         
         //configureToolbar()
     }
@@ -52,21 +56,30 @@ class WPCardInfoViewController: UIViewController {
         cardSubjectNameLabel.center.x = view.center.x
         cardSubjectNameLabel.center.y = view.frame.width/2.8
         
-//        setNameLabel.frame = CGRect(x: 0, y: 0, width: view.frame.width/1.25, height: view.frame.width/1.5)
-//        setNameLabel.center.x = view.center.x
-//        setNameLabel.center.y = view.frame.width/2.2
-//        
-//        subSetNameLabel.frame = CGRect(x: 0, y: 70, width: view.frame.width/1.25, height: view.frame.width/1.5)
-//        subSetNameLabel.center.x = view.center.x - 100
-//        subSetNameLabel.center.y = view.frame.width/1.8
+        cardSetNameLabel.frame = CGRect(x: 0, y: 0, width: view.frame.width/1.25, height: view.frame.width/1.5)
+        cardSetNameLabel.center.x = view.center.x
+        cardSetNameLabel.center.y = view.frame.width/2.2
         
+        cardSubSetNameLabel.frame = CGRect(x: 0, y: 700, width: view.frame.width/1.25, height: view.frame.width/1.5)
+        cardSubSetNameLabel.center.x = view.center.x
+        cardSubSetNameLabel.center.y = view.frame.width/1.8
+        
+        addCardToWishlistOrCollectionButton.center.x = view.center.x
+        addCardToWishlistOrCollectionButton.center.y = view.frame.height/1.2
     }
     
     override func viewDidLayoutSubviews() {
         cardImageView.frame = CGRectMake(0, 0, view.bounds.width, view.bounds.height)
         cardSubjectNameLabel.center.x = view.center.x
-        setNameLabel.center.x = view.center.x
-        subSetNameLabel.center.x = view.center.x
+        
+        cardSetNameLabel.center.x = view.center.x
+        cardSetNameLabel.center.x = view.center.x
+        
+        cardSubSetNameLabel.center.x = view.center.x
+        cardSubSetNameLabel.center.x = view.center.x
+        
+        addCardToWishlistOrCollectionButton.center.x = view.center.x
+        addCardToWishlistOrCollectionButton.center.y = view.frame.height/1.2
     }
     
     func configureCardImageView() {
@@ -80,7 +93,15 @@ class WPCardInfoViewController: UIViewController {
     }
     
     func configureCardSubjectLabel() {
-        cardSubjectNameLabel.text = baseballCard["firstName"] as String?
+        if (baseballCard["nonPlayerName"] as NSString == "N/A") {
+            var cardSubjectFirstName = baseballCard["firstName"] as String
+            var cardSubjectLastName = baseballCard["lastName"] as String
+            cardSubjectNameLabel.text = "\(cardSubjectFirstName)" + " " + "\(cardSubjectLastName)" as String?
+        }
+        else {
+            cardSubjectNameLabel.text = baseballCard["nonPlayerName"] as String?
+        }
+        
         cardSubjectNameLabel.textAlignment = .Center
         cardSubjectNameLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
         cardSubjectNameLabel.textColor = UIColor.darkGrayColor()
@@ -89,11 +110,41 @@ class WPCardInfoViewController: UIViewController {
     }
     
     func configureSetNameLabel() {
+        var year = baseballCard["year"] as Int
+        var set = baseballCard["set"] as String
+        cardSetNameLabel.text = "\(year)" + " " + "\(set)" as String?
+        cardSetNameLabel.textAlignment = .Center
+        cardSetNameLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
+        cardSetNameLabel.textColor = UIColor.darkGrayColor()
         
+        self.view.addSubview(cardSetNameLabel)
     }
     
     func configureSubSetNameLabel() {
+        var cardId = baseballCard["cardId"] as String
+        var subSet = baseballCard["subSet"] as String
+        cardSubSetNameLabel.text = "\(cardId)" + " - " + "\(subSet)" as String?
+        cardSubSetNameLabel.textAlignment = .Center
+        cardSubSetNameLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
+        cardSubSetNameLabel.textColor = UIColor.darkGrayColor()
         
+        self.view.addSubview(cardSubSetNameLabel)
+    }
+    
+    func configureAddCardToWishlistOrCollectionButton() {
+        addCardToWishlistOrCollectionButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        addCardToWishlistOrCollectionButton.frame = CGRectMake(0, 0, 50, 50)
+        addCardToWishlistOrCollectionButton.backgroundColor = UIColor.greenColor()
+        //addCardToWishlistOrCollectionButton.imageForState(<#state: UIControlState#>)
+        addCardToWishlistOrCollectionButton.setTitle("+", forState: UIControlState.Normal)
+        addCardToWishlistOrCollectionButton.addTarget(self, action: "didPushAddCardToWishlistOrCollectionButton", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        self.view.addSubview(addCardToWishlistOrCollectionButton)
+        
+    }
+    
+    func didPushAddCardToWishlistOrCollectionButton() {
+        println("Button Tapped")
     }
 
     /*

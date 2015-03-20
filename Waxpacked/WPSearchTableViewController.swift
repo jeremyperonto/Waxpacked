@@ -16,7 +16,7 @@ class WPSearchTableViewController: PFQueryTableViewController, UISearchBarDelega
     override init!(style: UITableViewStyle, className: String!) {
         super.init(style: style, className: className)
         pullToRefreshEnabled = true
-        paginationEnabled = false
+        paginationEnabled = true
         objectsPerPage = 100
     }
     

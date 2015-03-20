@@ -24,7 +24,7 @@ class WPAppDelegate: UIResponder, UIApplicationDelegate {
             window.makeKeyAndVisible()
         }
         
-        //UINavigationBar.appearance().barStyle = UIColor.blueColor()
+//        UINavigationBar.appearance().barStyle = UIColor.blueColor()
         UINavigationBar.appearance().barTintColor = kBackgroundColor
         UINavigationBar.appearance().tintColor = kBackgroundColor
         UINavigationBar.appearance().backgroundColor = kBackgroundColor

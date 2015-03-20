@@ -270,9 +270,9 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
         numberOfFollowersLabel.textColor = UIColor.darkGrayColor()
         numberOfFollowersLabel.userInteractionEnabled = true
         
-        let followersLabelTouch = UITapGestureRecognizer(target: self, action: "pushToFollowersTable")
-        followersLabelTouch.numberOfTapsRequired = 1
-        numberOfFollowersLabel.addGestureRecognizer(followersLabelTouch)
+//        let followersLabelTouch = UITapGestureRecognizer(target: self, action: "pushToFollowersTable")
+//        followersLabelTouch.numberOfTapsRequired = 1
+//        numberOfFollowersLabel.addGestureRecognizer(followersLabelTouch)
         
         self.view.addSubview(numberOfFollowersLabel)
     }
@@ -284,9 +284,9 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
         numberFollowingLabel.textColor = UIColor.darkGrayColor()
         numberFollowingLabel.userInteractionEnabled = true
         
-        let followingLabelTouch = UITapGestureRecognizer(target: self, action: "pushToFollowingTable")
-        followingLabelTouch.numberOfTapsRequired = 1
-        numberFollowingLabel.addGestureRecognizer(followingLabelTouch)
+//        let followingLabelTouch = UITapGestureRecognizer(target: self, action: "pushToFollowingTable")
+//        followingLabelTouch.numberOfTapsRequired = 1
+//        numberFollowingLabel.addGestureRecognizer(followingLabelTouch)
         
         self.view.addSubview(numberFollowingLabel)
     }
