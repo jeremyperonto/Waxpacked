@@ -79,15 +79,15 @@ extension UIViewController {
     
     //MARK: - Motion Events
 
-    public override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
-        if (event.subtype == UIEventSubtype.MotionShake) {
-            let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController];
-            if (viewControllers.count > 2) {
-                navigationController?.popToViewController(viewControllers[viewControllers.count - 2],
-                    animated: true)
-            }
-        }
-    }
+//    public override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
+//        if (event.subtype == UIEventSubtype.MotionShake) {
+//            let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController];
+//            if (viewControllers.count > 2) {
+//                navigationController?.popToViewController(viewControllers[viewControllers.count - 2],
+//                    animated: true)
+//            }
+//        }
+//    }
     
     func notImplemented(){
         println("Not Implemented")
