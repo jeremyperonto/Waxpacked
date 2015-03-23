@@ -11,6 +11,7 @@
 		511B61C81A98706E00889A8A /* WPProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511B61C71A98706E00889A8A /* WPProfileViewController.swift */; };
 		511B61CA1A993F0500889A8A /* WPUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511B61C91A993F0500889A8A /* WPUsersTableViewController.swift */; };
 		5146264B1A9C5E6600AE921A /* WPUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5146264A1A9C5E6600AE921A /* WPUserTableViewCell.swift */; };
+		514A1C271ABFF66900BC9F84 /* WPCardAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514A1C261ABFF66900BC9F84 /* WPCardAddViewController.swift */; };
 		515AD8991AA83D8F0056E7FD /* WPSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515AD8981AA83D8F0056E7FD /* WPSearchTableViewController.swift */; };
 		516B0FC21A95AFC800EF6D47 /* WPAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516B0FC11A95AFC800EF6D47 /* WPAppDelegate.swift */; };
 		516B0FC91A95AFC800EF6D47 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 516B0FC81A95AFC800EF6D47 /* Images.xcassets */; };
@@ -60,6 +61,7 @@
 		511B61C71A98706E00889A8A /* WPProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WPProfileViewController.swift; sourceTree = "<group>"; };
 		511B61C91A993F0500889A8A /* WPUsersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WPUsersTableViewController.swift; sourceTree = "<group>"; };
 		5146264A1A9C5E6600AE921A /* WPUserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WPUserTableViewCell.swift; sourceTree = "<group>"; };
+		514A1C261ABFF66900BC9F84 /* WPCardAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WPCardAddViewController.swift; sourceTree = "<group>"; };
 		515AD8981AA83D8F0056E7FD /* WPSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WPSearchTableViewController.swift; sourceTree = "<group>"; };
 		516B0FBC1A95AFC800EF6D47 /* Waxpacked.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Waxpacked.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		516B0FC01A95AFC800EF6D47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				515AD8981AA83D8F0056E7FD /* WPSearchTableViewController.swift */,
 				519728E61AAEB9A3006B4C91 /* WPCardSearchTableViewCell.swift */,
 				519728E81AB37562006B4C91 /* WPCardInfoViewController.swift */,
+				514A1C261ABFF66900BC9F84 /* WPCardAddViewController.swift */,
 			);
 			name = Content;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				516B10241A95C6EB00EF6D47 /* WPHomeTableViewController.swift in Sources */,
 				511B61C81A98706E00889A8A /* WPProfileViewController.swift in Sources */,
 				515AD8991AA83D8F0056E7FD /* WPSearchTableViewController.swift in Sources */,
+				514A1C271ABFF66900BC9F84 /* WPCardAddViewController.swift in Sources */,
 				516B10261A95C70700EF6D47 /* WPLoginSignupViewController.swift in Sources */,
 				516B0FC21A95AFC800EF6D47 /* WPAppDelegate.swift in Sources */,
 				5146264B1A9C5E6600AE921A /* WPUserTableViewCell.swift in Sources */,

@@ -77,6 +77,11 @@ extension UIViewController {
         navigationController?.pushViewController(pushToCardInfoViewController, animated: false)
     }
     
+    func pushToCardAddViewController() {
+        let pushToCardAddViewController = WPCardAddViewController()
+        navigationController?.pushViewController(pushToCardAddViewController, animated: true)
+    }
+    
     //MARK: - Motion Events
 
 //    public override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {

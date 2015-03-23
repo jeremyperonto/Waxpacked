@@ -15,7 +15,9 @@ class WPCardInfoViewController: UIViewController {
     var cardSubjectNameLabel = UILabel()
     var cardSetNameLabel = UILabel()
     var cardSubSetNameLabel = UILabel()
-    var addCardToWishlistOrCollectionButton = UIButton()
+    var addCardToCollectionButton = UIButton()
+    var addCardToWishlistButton = UIButton()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +34,8 @@ class WPCardInfoViewController: UIViewController {
         configureCardSubjectLabel()
         configureSetNameLabel()
         configureSubSetNameLabel()
-        configureAddCardToWishlistOrCollectionButton()
+        configureAddCardToCollectionButton()
+        configureAddCardToWishlistButton()
         
         //configureToolbar()
     }
@@ -64,8 +67,11 @@ class WPCardInfoViewController: UIViewController {
         cardSubSetNameLabel.center.x = view.center.x
         cardSubSetNameLabel.center.y = view.frame.width/1.8
         
-        addCardToWishlistOrCollectionButton.center.x = view.center.x
-        addCardToWishlistOrCollectionButton.center.y = view.frame.height/1.2
+        addCardToCollectionButton.center.x = view.center.x + (view.frame.width / 3)
+        addCardToCollectionButton.center.y = view.frame.height/1.2
+        
+        addCardToWishlistButton.center.x = view.center.x - (view.frame.width / 3)
+        addCardToWishlistButton.center.y = view.frame.height/1.2
     }
     
     override func viewDidLayoutSubviews() {
@@ -78,8 +84,11 @@ class WPCardInfoViewController: UIViewController {
         cardSubSetNameLabel.center.x = view.center.x
         cardSubSetNameLabel.center.x = view.center.x
         
-        addCardToWishlistOrCollectionButton.center.x = view.center.x
-        addCardToWishlistOrCollectionButton.center.y = view.frame.height/1.2
+        addCardToCollectionButton.center.x = view.center.x + (view.frame.width / 3)
+        addCardToCollectionButton.center.y = view.frame.height/1.2
+        
+        addCardToWishlistButton.center.x = view.center.x - (view.frame.width / 3)
+        addCardToWishlistButton.center.y = view.frame.height/1.2
     }
     
     func configureCardImageView() {
@@ -131,22 +140,41 @@ class WPCardInfoViewController: UIViewController {
         self.view.addSubview(cardSubSetNameLabel)
     }
     
-    func configureAddCardToWishlistOrCollectionButton() {
-        addCardToWishlistOrCollectionButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
-        addCardToWishlistOrCollectionButton.frame = CGRectMake(0, 0, 50, 50)
-        addCardToWishlistOrCollectionButton.backgroundColor = UIColor.greenColor()
-        //addCardToWishlistOrCollectionButton.imageForState(<#state: UIControlState#>)
-        addCardToWishlistOrCollectionButton.setTitle("+", forState: UIControlState.Normal)
-        addCardToWishlistOrCollectionButton.addTarget(self, action: "didPushAddCardToWishlistOrCollectionButton", forControlEvents: UIControlEvents.TouchUpInside)
+    func configureAddCardToCollectionButton() {
+        addCardToCollectionButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        addCardToCollectionButton.frame = CGRectMake(0, 0, 100, 50)
+        addCardToCollectionButton.backgroundColor = UIColor.greenColor()
+        //addCardToCollectionButton.imageForState(<#state: UIControlState#>)
+        addCardToCollectionButton.setTitle("+ Collection", forState: UIControlState.Normal)
+        addCardToCollectionButton.addTarget(self, action: "didPushAddCardToCollectionButton", forControlEvents: UIControlEvents.TouchUpInside)
         
-        self.view.addSubview(addCardToWishlistOrCollectionButton)
+        self.view.addSubview(addCardToCollectionButton)
         
     }
     
-    func didPushAddCardToWishlistOrCollectionButton() {
+    func configureAddCardToWishlistButton() {
+        addCardToWishlistButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        addCardToWishlistButton.frame = CGRectMake(0, 0, 100, 50)
+        addCardToWishlistButton.backgroundColor = UIColor.redColor()
+        //addCardToWishlistButton.imageForState(<#state: UIControlState#>)
+        addCardToWishlistButton.setTitle("+ Wish List", forState: UIControlState.Normal)
+        addCardToWishlistButton.addTarget(self, action: "didPushAddCardToWishlistButton", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        self.view.addSubview(addCardToWishlistButton)
+        
+    }
+    
+    func didPushAddCardToCollectionButton() {
+        pushToCardAddViewController()
+    }
+    
+    func didPushAddCardToWishlistButton() {
         println("Button Tapped")
     }
 
+    
+
+    
     /*
     // MARK: - Navigation
 
