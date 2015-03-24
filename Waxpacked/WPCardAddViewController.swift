@@ -10,6 +10,7 @@ import UIKit
 
 class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    var baseballCard = PFObject(className:"BaseballCard")
     var cardFrontImageView = UIImageView()
     var cardBackImageView = UIImageView()
     

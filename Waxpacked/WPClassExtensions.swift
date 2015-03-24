@@ -44,13 +44,13 @@ extension UIViewController {
     // MARK: - Navigation
     
     func pushToHomeViewController() {
-        let pushToHomeViewController = WPHomeTableViewController(style: .Plain)
-        navigationController?.pushViewController(pushToHomeViewController, animated: false)
+        let homeViewController = WPHomeTableViewController(style: .Plain)
+        navigationController?.pushViewController(homeViewController, animated: false)
     }
     
     func pushToSearchTableViewController() {
-        let pushToSearchTableViewController = WPSearchTableViewController(style: .Plain, className: "cards")
-        navigationController?.pushViewController(pushToSearchTableViewController, animated: false)
+        let searchTableViewController = WPSearchTableViewController(style: .Plain, className: "cards")
+        navigationController?.pushViewController(searchTableViewController, animated: false)
     }
     
     func pushToMyProfileViewController() {
@@ -73,14 +73,10 @@ extension UIViewController {
     }
     
     func pushToCardInfoViewController() {
-        let pushToCardInfoViewController = WPCardInfoViewController()
-        navigationController?.pushViewController(pushToCardInfoViewController, animated: false)
+        let cardInfoViewController = WPCardInfoViewController()
+        navigationController?.pushViewController(cardInfoViewController, animated: false)
     }
     
-    func pushToCardAddViewController() {
-        let pushToCardAddViewController = WPCardAddViewController()
-        navigationController?.pushViewController(pushToCardAddViewController, animated: true)
-    }
     
     //MARK: - Motion Events
 

@@ -165,7 +165,11 @@ class WPCardInfoViewController: UIViewController {
     }
     
     func didPushAddCardToCollectionButton() {
-        pushToCardAddViewController()
+        let cardAddViewController = WPCardAddViewController()
+        var objectId = baseballCard["objectId"] as String
+        cardAddViewController.baseballCard = PFObject.setValue(value: "objectId", forKey: objectId)
+        println("\(cardAddViewController.baseballCard)")
+        navigationController?.pushViewController(cardAddViewController, animated: true)
     }
     
     func didPushAddCardToWishlistButton() {
