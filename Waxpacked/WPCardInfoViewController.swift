@@ -51,6 +51,23 @@ class WPCardInfoViewController: UIViewController {
         //navigationController?.toolbarHidden = true
     }
     
+    override func viewDidLayoutSubviews() {
+        cardImageView.frame = CGRectMake(0, 0, view.bounds.width, view.bounds.height)
+        cardSubjectNameLabel.center.x = view.center.x
+        
+        cardSetNameLabel.center.x = view.center.x
+        cardSetNameLabel.center.x = view.center.x
+        
+        cardSubSetNameLabel.center.x = view.center.x
+        cardSubSetNameLabel.center.x = view.center.x
+        
+        addCardToCollectionButton.center.x = view.center.x + (view.frame.width / 3)
+        addCardToCollectionButton.center.y = view.frame.height/1.2
+        
+        addCardToWishlistButton.center.x = view.center.x - (view.frame.width / 3)
+        addCardToWishlistButton.center.y = view.frame.height/1.2
+    }
+    
     override func viewWillLayoutSubviews() {
         cardImageView.frame = CGRect(x: view.center.x, y: 20, width: view.bounds.width, height: view.bounds.height)
         cardImageView.center.x = view.center.x
@@ -66,23 +83,6 @@ class WPCardInfoViewController: UIViewController {
         cardSubSetNameLabel.frame = CGRect(x: 0, y: 700, width: view.frame.width/1.25, height: view.frame.width/1.5)
         cardSubSetNameLabel.center.x = view.center.x
         cardSubSetNameLabel.center.y = view.frame.width/1.8
-        
-        addCardToCollectionButton.center.x = view.center.x + (view.frame.width / 3)
-        addCardToCollectionButton.center.y = view.frame.height/1.2
-        
-        addCardToWishlistButton.center.x = view.center.x - (view.frame.width / 3)
-        addCardToWishlistButton.center.y = view.frame.height/1.2
-    }
-    
-    override func viewDidLayoutSubviews() {
-        cardImageView.frame = CGRectMake(0, 0, view.bounds.width, view.bounds.height)
-        cardSubjectNameLabel.center.x = view.center.x
-        
-        cardSetNameLabel.center.x = view.center.x
-        cardSetNameLabel.center.x = view.center.x
-        
-        cardSubSetNameLabel.center.x = view.center.x
-        cardSubSetNameLabel.center.x = view.center.x
         
         addCardToCollectionButton.center.x = view.center.x + (view.frame.width / 3)
         addCardToCollectionButton.center.y = view.frame.height/1.2
@@ -166,8 +166,7 @@ class WPCardInfoViewController: UIViewController {
     
     func didPushAddCardToCollectionButton() {
         let cardAddViewController = WPCardAddViewController()
-        var objectId = baseballCard["objectId"] as String
-        cardAddViewController.baseballCard = PFObject.setValue(value: "objectId", forKey: objectId)
+        cardAddViewController.baseballCard = self.baseballCard as PFObject
         println("\(cardAddViewController.baseballCard)")
         navigationController?.pushViewController(cardAddViewController, animated: true)
     }
@@ -175,8 +174,6 @@ class WPCardInfoViewController: UIViewController {
     func didPushAddCardToWishlistButton() {
         println("Button Tapped")
     }
-
-    
 
     
     /*
