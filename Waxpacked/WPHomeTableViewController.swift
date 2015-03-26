@@ -8,14 +8,16 @@
 
 import UIKit
 
-class WPHomeTableViewController: UITableViewController {
+class WPHomeTableViewController: PFQueryTableViewController {
 
-    override init(style: UITableViewStyle) {
-        super.init(style: style)
-    }
-
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    var segmentedControl: UISegmentedControl = UISegmentedControl(items: ["Following", "All Users"])
+    var friendsFilter = Bool()
+    
+    override init!(style: UITableViewStyle, className: String!) {
+        super.init(style: style, className: className)
+        pullToRefreshEnabled = true
+        paginationEnabled = true
+        objectsPerPage = 25
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -44,11 +46,35 @@ class WPHomeTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK - UI
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            segmentedControl.frame = CGRectZero
+            segmentedControl.selectedSegmentIndex = 0
+            segmentedControl.tintColor = UIColor.darkGrayColor()
+            segmentedControl.addTarget(self, action: "notImplemented", forControlEvents: .ValueChanged)
+            view.addSubview(segmentedControl)
+        }
+        return nil
+    }
+    
     // MARK: - Table view data source
+    
+    override func queryForTable() -> PFQuery! {
+        let query = PFQuery(className:"CollectionBaseballCard")
+        query.orderByAscending("createdAt")
+        if (self.objects.count == 0) {
+            query.cachePolicy = kPFCachePolicyCacheThenNetwork
+        }
+        return query
+    }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
+    
+    // MARK - Table View Controller
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(kTableViewCellIdentifier, forIndexPath: indexPath) as UITableViewCell
