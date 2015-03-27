@@ -107,7 +107,7 @@ class WPSearchTableViewController: PFQueryTableViewController, UISearchBarDelega
     // MARK - Table View Controller
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath!, object: PFObject!) -> WPCardSearchTableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as WPCardSearchTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(kTableViewCellIdentifier, forIndexPath: indexPath) as WPCardSearchTableViewCell
         cell.imageView.hidden = true
         
         cell.textLabel?.text

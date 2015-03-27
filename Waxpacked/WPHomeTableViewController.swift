@@ -11,7 +11,6 @@ import UIKit
 class WPHomeTableViewController: PFQueryTableViewController {
 
     var segmentedControl: UISegmentedControl = UISegmentedControl(items: ["Following", "All Users"])
-    var friendsFilter = Bool()
     
     override init!(style: UITableViewStyle, className: String!) {
         super.init(style: style, className: className)
@@ -39,11 +38,29 @@ class WPHomeTableViewController: PFQueryTableViewController {
         let addIcon = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "notImplemented")
         addIcon.tintColor = kToolbarIconColor
         navigationItem.rightBarButtonItem = addIcon
+        
+        tableView.registerClass(WPCardSearchTableViewCell.self, forCellReuseIdentifier: kTableViewCellIdentifier)
+        tableView.separatorInset.right = tableView.separatorInset.left
+        tableView.tableFooterView = UIView(frame: CGRectZero)
+        view.backgroundColor = kBackgroundColor
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - Table view data source
+    
+    override func queryForTable() -> PFQuery! {
+        let query = PFQuery(className:"BaseballCard")
+        
+        query.orderByAscending("createdAt")
+        
+        if (self.objects.count == 0) {
+            query.cachePolicy = kPFCachePolicyCacheThenNetwork
+        }
+        return query
     }
     
     //MARK - UI
@@ -59,37 +76,59 @@ class WPHomeTableViewController: PFQueryTableViewController {
         return nil
     }
     
-    // MARK: - Table view data source
-    
-    override func queryForTable() -> PFQuery! {
-        let query = PFQuery(className:"CollectionBaseballCard")
-        query.orderByAscending("createdAt")
-        if (self.objects.count == 0) {
-            query.cachePolicy = kPFCachePolicyCacheThenNetwork
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 32
         }
-        return query
-    }
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 0.1
     }
     
     // MARK - Table View Controller
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(kTableViewCellIdentifier, forIndexPath: indexPath) as UITableViewCell
-        if (indexPath.row == 1){
-            cell.imageView?.image = UIImage(named: "derekjeter_sample")
-            cell.textLabel?.text = "Derek Jeter 2014"
-        }
-        else {
-            cell.imageView?.image = UIImage(named: "jackierobinson_sample")
-            cell.textLabel?.text = "Jackie Robinson 1958"
-        }
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath!, object: PFObject!) -> WPCardSearchTableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(kTableViewCellIdentifier, forIndexPath: indexPath) as WPCardSearchTableViewCell
+        
+        cell.imageView.hidden = true
         cell.textLabel?.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
         cell.textLabel?.textColor = UIColor.darkGrayColor()
         cell.backgroundColor = kBackgroundColor
+        
+        cell.textLabel?.text
+        if (object["nonPlayerName"] as NSString == "N/A") {
+            var cardSubjectFirstName = object["firstName"] as String
+            var cardSubjectLastName = object["lastName"] as String
+            (cell.viewWithTag(2) as UILabel).text = "\(cardSubjectFirstName)" + " " + "\(cardSubjectLastName)"
+            (cell.viewWithTag(2) as UILabel).sizeToFit()
+        }
+        else {
+            (cell.viewWithTag(2) as UILabel).text = object["nonPlayerName"] as? String
+            (cell.viewWithTag(2) as UILabel).sizeToFit()
+        }
+        
+        cell.textLabel?.text
+        var year = object["year"] as Int
+        var set = object["set"] as String
+        (cell.viewWithTag(3) as UILabel).text = "\(year)" + " " + "\(set)"
+        (cell.viewWithTag(3) as UILabel).sizeToFit()
+        
+        cell.textLabel?.text
+        var cardId = object["cardId"] as String
+        var subSet = object["subSet"] as String
+        (cell.viewWithTag(4) as UILabel).text = "\(cardId)" + " - " + "\(subSet)"
+        (cell.viewWithTag(4) as UILabel).sizeToFit()
+        
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let selectedIndexPath = tableView.indexPathForSelectedRow()
+        let cardInfoViewController = WPCardInfoViewController()
+        cardInfoViewController.baseballCard = objectAtIndexPath(selectedIndexPath) as PFObject
+        navigationController?.pushViewController(cardInfoViewController, animated: true)
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 80
     }
 
 }
