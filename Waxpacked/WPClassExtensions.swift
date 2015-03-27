@@ -38,7 +38,8 @@ extension UIViewController {
         toolbarItems = [homeIcon, spacer, searchIcon, spacer, profileIcon, spacer, friendsIcon, spacer, usersIcon]
         
         navigationController?.toolbar.barTintColor = UIColor.lightGrayColor()
-        navigationController!.toolbarHidden = false
+        navigationController?.toolbarHidden = false
+        navigationController?.interactivePopGestureRecognizer.enabled = false
 }
  
     // MARK: - Navigation
