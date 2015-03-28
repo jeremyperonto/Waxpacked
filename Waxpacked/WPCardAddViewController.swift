@@ -58,13 +58,13 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     override func viewDidLayoutSubviews() {
-        cardFrontImageView.frame = CGRectMake(0, 0, view.bounds.width, view.bounds.height)
-        cardFrontImageView.center.x = view.center.x - (view.frame.width / 3)
-        cardFrontImageView.center.y = view.frame.height/3
+        //cardFrontImageView.frame = CGRectMake(0, 0, view.bounds.width, view.bounds.height)
+        cardFrontImageView.center.x = view.center.x - (view.frame.width / 4)
+        cardFrontImageView.center.y = view.frame.height/5
         
-        cardBackImageView.frame = CGRectMake(0, 0, view.bounds.width, view.bounds.height)
-        cardBackImageView.center.x = view.center.x + (view.frame.width / 3)
-        cardBackImageView.center.y = view.frame.height/3
+        //cardBackImageView.frame = CGRectMake(0, 0, view.bounds.width, view.bounds.height)
+        cardBackImageView.center.x = view.center.x + (view.frame.width / 4)
+        cardBackImageView.center.y = view.frame.height/5
         
         playerFirstNameTextField.center.x = view.center.x - (view.frame.width / 5)
         playerFirstNameTextField.center.y = view.frame.height/2
@@ -88,8 +88,8 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func configureCardFrontImageView() {
-        let defaultCardImageView = kProfileDefaultProfileImage
-        cardFrontImageView.frame = CGRectMake(0, 0, view.bounds.width / 8, view.bounds.height / 8)
+        let defaultCardImageView = UIImage(named: "AddCardFront")
+        cardFrontImageView.frame = CGRectMake(0, 0, view.frame.width / 3, view.frame.height / 3)
         cardFrontImageView.center.x = view.center.x
         cardFrontImageView.image = defaultCardImageView
         cardFrontImageView.contentMode = .ScaleAspectFit
@@ -98,8 +98,8 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func configureCardBackImageView() {
-        let defaultCardImageView = kProfileDefaultProfileImage
-        cardBackImageView.frame = CGRectMake(0, 0, view.bounds.width / 8, view.bounds.height / 8)
+        let defaultCardImageView = UIImage(named: "AddCardBack")
+        cardBackImageView.frame = CGRectMake(0, 0, view.frame.width / 3, view.frame.height / 3)
         cardBackImageView.center.x = view.center.x
         cardBackImageView.image = defaultCardImageView
         cardBackImageView.contentMode = .ScaleAspectFit
