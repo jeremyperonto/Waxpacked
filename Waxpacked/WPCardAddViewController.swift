@@ -11,7 +11,7 @@ import UIKit
 class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var baseballCard = PFObject(className:"BaseballCard")
-    let cardSubjectType = UISegmentedControl(items:["Player"," Non-Player"])
+    let cardSubjectTypeSegmentedControl = UISegmentedControl(items:["Player"," Non-Player"])
     var cardFrontImageView = UIImageView()
     var cardBackImageView = UIImageView()
     var userCaptionTextField = UITextField()
@@ -32,9 +32,10 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         super.viewDidLoad()
 
         self.title = "Add Card"
+        navigationController?.toolbarHidden = true
         
         view.backgroundColor = kBackgroundColor
-        cardSubjectType.selectedSegmentIndex = 0
+        cardSubjectTypeSegmentedControl.selectedSegmentIndex = 0
         
         viewDidLayoutSubviews()
         configureCardFrontImageView()
@@ -47,7 +48,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         configureAutoPopulatedCardInfo()
         configurePlayerFirstNameTextField()
         configurePlayerLastNameTextField()
-        configureNonPlayerNameTextField()
+//        configureNonPlayerNameTextField()
         configureCardIdTextField()
         configureNotesTextField()
         configureRcSwitch()
@@ -58,22 +59,50 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     override func viewDidLayoutSubviews() {
-        //cardFrontImageView.frame = CGRectMake(0, 0, view.bounds.width, view.bounds.height)
         cardFrontImageView.center.x = view.center.x - (view.frame.width / 4)
         cardFrontImageView.center.y = view.frame.height/5
         
-        //cardBackImageView.frame = CGRectMake(0, 0, view.bounds.width, view.bounds.height)
         cardBackImageView.center.x = view.center.x + (view.frame.width / 4)
         cardBackImageView.center.y = view.frame.height/5
         
+        userCaptionTextField.center.x = view.center.x
+        userCaptionTextField.center.y = view.frame.height / 2.5
+        
+        cardSubjectTypeSegmentedControl.center.x = view.center.x
+        cardSubjectTypeSegmentedControl.center.y = view.frame.height/2.2
+        
         playerFirstNameTextField.center.x = view.center.x - (view.frame.width / 5)
-        playerFirstNameTextField.center.y = view.frame.height/2
+        playerFirstNameTextField.center.y = view.frame.height/1.8
         
         playerLastNameTextField.center.x = view.center.x + (view.frame.width / 5)
-        playerLastNameTextField.center.y = view.frame.height/2
+        playerLastNameTextField.center.y = view.frame.height/1.8
+        
+//        nonPlayerNameTextField.center.x = view.center.x
+//        nonPlayerNameTextField.center.y = view.frame.height/1.8
+        
+        cardIdTextField.center.x = view.center.x
+        cardIdTextField.center.y = view.frame.height/1.65
+        
+        setTextField.center.x = view.center.x
+        setTextField.center.y = view.frame.height/1.5
+        
+        subSetTextField.center.x = view.center.x
+        subSetTextField.center.y = view.frame.height/1.35
+        
+        yearTextField.center.x = view.center.x
+        yearTextField.center.y = view.frame.height/1.3
+        
+        rcSwitch.center.x = view.center.x - (view.frame.width / 5)
+        rcSwitch.center.y = view.frame.height/1.2
+        
+        spSwitch.center.x = view.center.x + (view.frame.width / 5)
+        spSwitch.center.y = view.frame.height/1.2
+        
+        notesTextField.center.x = view.center.x
+        notesTextField.center.y = view.frame.height/1.1
         
         addCardToCollectionButton.center.x = view.center.x
-        addCardToCollectionButton.center.y = view.frame.height/1.2
+        addCardToCollectionButton.center.y = view.frame.height / 1.05
     }
     
     func didSelectCardSubjectTypeSegmentedControl(sender: UISegmentedControl){
@@ -119,7 +148,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         userCaptionTextField.textAlignment = .Left
         userCaptionTextField.sizeToFit()
         
-        self.view.addSubview(playerFirstNameTextField)
+        self.view.addSubview(userCaptionTextField)
     }
     
     func configurePlayerFirstNameTextField() {
