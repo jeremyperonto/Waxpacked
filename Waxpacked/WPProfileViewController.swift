@@ -100,6 +100,7 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
         super.viewDidLoad()
         
         configureNavigationToolBar()
+        navigationController?.toolbarHidden = false
 
         if PFUser.currentUser() == profileUser {
             title = "My Profile"

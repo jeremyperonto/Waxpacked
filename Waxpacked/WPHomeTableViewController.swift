@@ -30,6 +30,7 @@ class WPHomeTableViewController: PFQueryTableViewController {
         
         configureTableView()
         configureNavigationToolBar()
+        navigationController?.toolbarHidden = false
         
         let logOutIcon = UIBarButtonItem(title: kToolbarLogoutIcon, style: .Plain, target: self, action: "logOut")
         logOutIcon.tintColor = kToolbarIconColor

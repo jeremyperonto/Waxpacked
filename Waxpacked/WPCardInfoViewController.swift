@@ -25,6 +25,7 @@ class WPCardInfoViewController: UIViewController {
         self.title = "TBD"
         
         view.backgroundColor = kBackgroundColor
+        navigationController?.toolbarHidden = true
         
         let returnIcon = UIBarButtonItem(image: kNavBarReturnIcon, style: .Plain, target: navigationController, action: "popViewControllerAnimated:")
         returnIcon.tintColor = kToolbarIconColor

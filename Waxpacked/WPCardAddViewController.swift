@@ -8,8 +8,10 @@
 
 import UIKit
 
-class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate {
 
+    var scrollView: UIScrollView!
+    var containerView = UIView()
     var baseballCard = PFObject(className:"BaseballCard")
     let cardSubjectTypeSegmentedControl = UISegmentedControl(items:["Player"," Non-Player"])
     var cardFrontImageView = UIImageView()
@@ -37,6 +39,14 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         view.backgroundColor = kBackgroundColor
         cardSubjectTypeSegmentedControl.selectedSegmentIndex = 0
         
+        self.scrollView = UIScrollView()
+        self.scrollView.delegate = self
+        self.scrollView.contentSize = CGSizeMake(view.frame.width, view.frame.height * 1.5)
+        
+        containerView = UIView()
+        scrollView.addSubview(containerView)
+        view.addSubview(scrollView)
+        
         viewDidLayoutSubviews()
         configureCardFrontImageView()
         configureCardBackImageView()
@@ -59,6 +69,11 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        scrollView.frame = view.bounds
+        containerView.frame = CGRectMake(0, 0, scrollView.contentSize.width, scrollView.contentSize.height)
+        
         cardFrontImageView.center.x = view.center.x - (view.frame.width / 4)
         cardFrontImageView.center.y = view.frame.height/5
         
@@ -81,13 +96,13 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
 //        nonPlayerNameTextField.center.y = view.frame.height/1.8
         
         cardIdTextField.center.x = view.center.x
-        cardIdTextField.center.y = view.frame.height/1.65
+        cardIdTextField.center.y = view.frame.height/1.6
         
         setTextField.center.x = view.center.x
         setTextField.center.y = view.frame.height/1.5
         
         subSetTextField.center.x = view.center.x
-        subSetTextField.center.y = view.frame.height/1.35
+        subSetTextField.center.y = view.frame.height/1.4
         
         yearTextField.center.x = view.center.x
         yearTextField.center.y = view.frame.height/1.3
@@ -123,7 +138,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         cardFrontImageView.image = defaultCardImageView
         cardFrontImageView.contentMode = .ScaleAspectFit
         
-        self.view.addSubview(cardFrontImageView)
+        containerView.addSubview(cardFrontImageView)
     }
     
     func configureCardBackImageView() {
@@ -133,7 +148,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         cardBackImageView.image = defaultCardImageView
         cardBackImageView.contentMode = .ScaleAspectFit
         
-        self.view.addSubview(cardBackImageView)
+        containerView.addSubview(cardBackImageView)
     }
     
     func configureUserCaptionTextField() {
@@ -148,7 +163,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         userCaptionTextField.textAlignment = .Left
         userCaptionTextField.sizeToFit()
         
-        self.view.addSubview(userCaptionTextField)
+        containerView.addSubview(userCaptionTextField)
     }
     
     func configurePlayerFirstNameTextField() {
@@ -163,7 +178,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         playerFirstNameTextField.textAlignment = .Left
         playerFirstNameTextField.sizeToFit()
         
-        self.view.addSubview(playerFirstNameTextField)
+        containerView.addSubview(playerFirstNameTextField)
     }
     
     func configurePlayerLastNameTextField() {
@@ -179,7 +194,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         playerLastNameTextField.textAlignment = .Left
         playerLastNameTextField.sizeToFit()
         
-        self.view.addSubview(playerLastNameTextField)
+        containerView.addSubview(playerLastNameTextField)
     }
     
     func configureNonPlayerNameTextField() {
@@ -195,7 +210,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         nonPlayerNameTextField.textAlignment = .Left
         nonPlayerNameTextField.sizeToFit()
         
-        self.view.addSubview(nonPlayerNameTextField)
+        containerView.addSubview(nonPlayerNameTextField)
     }
     
     func configureCardIdTextField() {
@@ -211,7 +226,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         cardIdTextField.textAlignment = .Left
         cardIdTextField.sizeToFit()
         
-        self.view.addSubview(cardIdTextField)
+        containerView.addSubview(cardIdTextField)
     }
     
     func configureSetTextField() {
@@ -226,7 +241,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         setTextField.textAlignment = .Left
         setTextField.sizeToFit()
         
-        self.view.addSubview(setTextField)
+        containerView.addSubview(setTextField)
     }
     
     func configureSubSetTextField() {
@@ -241,7 +256,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         subSetTextField.textAlignment = .Left
         subSetTextField.sizeToFit()
         
-        self.view.addSubview(subSetTextField)
+        containerView.addSubview(subSetTextField)
     }
     
     func configureYearTextField() {
@@ -256,19 +271,19 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         yearTextField.textAlignment = .Left
         yearTextField.sizeToFit()
         
-        self.view.addSubview(yearTextField)
+        containerView.addSubview(yearTextField)
     }
     
     func configureSpSwitch() {
         spSwitch.frame = CGRectZero
         
-        self.view.addSubview(spSwitch)
+        containerView.addSubview(spSwitch)
     }
     
     func configureRcSwitch() {
         rcSwitch.frame = CGRectZero
         
-        self.view.addSubview(rcSwitch)
+        containerView.addSubview(rcSwitch)
     }
     
     func configureNotesTextField() {
@@ -283,13 +298,32 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         notesTextField.textAlignment = .Left
         notesTextField.sizeToFit()
         
-        self.view.addSubview(notesTextField)
+        containerView.addSubview(notesTextField)
     }
     
     func configureAutoPopulatedCardInfo() {
     if (baseballCard != nil) {
         playerFirstNameTextField.text = baseballCard["firstName"] as String
         playerLastNameTextField.text = baseballCard["lastName"] as String
+        cardIdTextField.text = baseballCard["cardId"] as String
+        setTextField.text = baseballCard["set"] as String
+        subSetTextField.text = baseballCard["subSet"] as String
+//        yearTextField.text = baseballCard["year"] as String
+//        if (baseballCard["notes"] as NSString != "N/A") {
+//            notesTextField.text = baseballCard["notes"] as String
+//        } else {
+//            notesTextField.text = nil
+//        }
+//        if (baseballCard["rc"] as NSString != "N/A") {
+//            rcSwitch.setOn(false, animated: false)
+//        } else {
+//            rcSwitch.setOn(true, animated: false)
+//        }
+//        if (baseballCard["sp"] as NSString != "N/A") {
+//            spSwitch.setOn(false, animated: false)
+//        } else {
+//            spSwitch.setOn(true, animated: false)
+//        }
     } else {
         println("No card associated")
     }
@@ -303,7 +337,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         addCardToCollectionButton.setTitle("Share →", forState: UIControlState.Normal)
         addCardToCollectionButton.addTarget(self, action: "didPushAddCardToCollectionButton", forControlEvents: UIControlEvents.TouchUpInside)
         
-        self.view.addSubview(addCardToCollectionButton)
+        containerView.addSubview(addCardToCollectionButton)
         
     }
     

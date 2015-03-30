@@ -28,6 +28,7 @@ class WPSearchTableViewController: PFQueryTableViewController, UISearchBarDelega
         super.viewDidLoad()
         
         configureNavigationToolBar()
+        navigationController?.toolbarHidden = false
 
         tableView.registerClass(WPCardSearchTableViewCell.self, forCellReuseIdentifier: kTableViewCellIdentifier)
         tableView.separatorInset.right = tableView.separatorInset.left
