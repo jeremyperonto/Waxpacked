@@ -120,6 +120,8 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         addCardToCollectionButton.center.y = view.frame.height / 1.05
     }
     
+   //MARK -- Setup UI Elements
+    
     func didSelectCardSubjectTypeSegmentedControl(sender: UISegmentedControl){
         switch sender.selectedSegmentIndex
         {
@@ -137,6 +139,11 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         cardFrontImageView.center.x = view.center.x
         cardFrontImageView.image = defaultCardImageView
         cardFrontImageView.contentMode = .ScaleAspectFit
+        cardFrontImageView.userInteractionEnabled = true
+        
+        let imageTouch = UITapGestureRecognizer(target: self, action: "cardFrontImagePicker")
+        imageTouch.numberOfTapsRequired = 1
+        cardFrontImageView.addGestureRecognizer(imageTouch)
         
         containerView.addSubview(cardFrontImageView)
     }
@@ -147,6 +154,11 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         cardBackImageView.center.x = view.center.x
         cardBackImageView.image = defaultCardImageView
         cardBackImageView.contentMode = .ScaleAspectFit
+        cardBackImageView.userInteractionEnabled = true
+        
+        let imageTouch = UITapGestureRecognizer(target: self, action: "cardBackImagePicker")
+        imageTouch.numberOfTapsRequired = 1
+        cardBackImageView.addGestureRecognizer(imageTouch)
         
         containerView.addSubview(cardBackImageView)
     }
@@ -300,6 +312,90 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         
         containerView.addSubview(notesTextField)
     }
+    
+    //MARK -- Image Picker
+    
+    func cardFrontImagePicker() {
+        var frontImagePicker: UIImagePickerController = UIImagePickerController()
+        frontImagePicker.sourceType = .Camera
+        frontImagePicker.delegate = self
+        frontImagePicker.navigationBar.tintColor = UIColor.darkGrayColor()
+        
+        let returnIcon = UIBarButtonItem(image: kNavBarReturnIcon, style: .Plain, target: navigationController, action: "popViewControllerAnimated:")
+        returnIcon.tintColor = kToolbarIconColor
+        
+        presentViewController(frontImagePicker, animated: true, completion: nil)
+    }
+    
+    func cardBackImagePicker() {
+        var backImagePicker: UIImagePickerController = UIImagePickerController()
+        backImagePicker.sourceType = .Camera
+        backImagePicker.delegate = self
+        backImagePicker.navigationBar.tintColor = UIColor.darkGrayColor()
+        
+        let returnIcon = UIBarButtonItem(image: kNavBarReturnIcon, style: .Plain, target: navigationController, action: "popViewControllerAnimated:")
+        returnIcon.tintColor = kToolbarIconColor
+        
+        presentViewController(backImagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        picker.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func cardFrontImagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        let pickedImage:UIImage = info[UIImagePickerControllerOriginalImage] as UIImage
+        let scaledImage = scaleImageWith(pickedImage)
+        let imageData = UIImagePNGRepresentation(scaledImage)
+        let imageFile:PFFile = PFFile(data: imageData)
+        PFUser.currentUser().setObject(imageFile, forKey: kParseClassNameProfileImage)
+        PFUser.currentUser().saveInBackgroundWithBlock {
+            (success: Bool, error: NSError!) -> Void in
+            if (success) {
+                self.cardFrontImageView.image = scaledImage
+            } else {
+                var errorAlert = UIAlertController(title: "Oops. Something went wrong.", message: "\(error)", preferredStyle: UIAlertControllerStyle.Alert)
+                errorAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
+                    
+                }))
+                self.presentViewController(errorAlert, animated: true, completion: nil)
+            }
+        }
+        
+        picker.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func cardBackImagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        let pickedImage:UIImage = info[UIImagePickerControllerOriginalImage] as UIImage
+        let scaledImage = scaleImageWith(pickedImage)
+        let imageData = UIImagePNGRepresentation(scaledImage)
+        let imageFile:PFFile = PFFile(data: imageData)
+        PFUser.currentUser().setObject(imageFile, forKey: kParseClassNameProfileImage)
+        PFUser.currentUser().saveInBackgroundWithBlock {
+            (success: Bool, error: NSError!) -> Void in
+            if (success) {
+                self.cardBackImageView.image = scaledImage
+            } else {
+                var errorAlert = UIAlertController(title: "Oops. Something went wrong.", message: "\(error)", preferredStyle: UIAlertControllerStyle.Alert)
+                errorAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
+                    
+                }))
+                self.presentViewController(errorAlert, animated: true, completion: nil)
+            }
+        }
+        
+        picker.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func scaleImageWith(image:UIImage) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(kBaseballCardPhotoDimensions, false, 0.0)
+        image.drawInRect(CGRectMake(0, 0, kBaseballCardPhotoDimensions.width, kBaseballCardPhotoDimensions.height))
+        var newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsGetCurrentContext()
+        return newImage
+    }
+    
+    //MARK -- Populate Card Data
     
     func configureAutoPopulatedCardInfo() {
     if (baseballCard != nil) {

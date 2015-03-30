@@ -38,6 +38,9 @@ let kTableViewCellIdentifier = "Cell"
 let kProfileDefaultProfileImage = UIImage(named: "defaultProfileImage")
 let kProfilePhotoDimensions = CGSizeMake(300,300)
 
+//Card
+let kBaseballCardPhotoDimensions = CGSizeMake(250,350)
+
 enum kProfileMetros: String {
     case
     NewYork = "New York, New York",
