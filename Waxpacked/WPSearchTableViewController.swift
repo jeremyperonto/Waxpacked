@@ -36,6 +36,10 @@ class WPSearchTableViewController: PFQueryTableViewController, UISearchBarDelega
         view.backgroundColor = kBackgroundColor
         
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        navigationController?.toolbarHidden = false
+    }
 
     // MARK: - Table view data source
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate {
+class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate, UITextFieldDelegate {
 
     var scrollView: UIScrollView!
     var containerView = UIView()
@@ -41,7 +41,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         
         self.scrollView = UIScrollView()
         self.scrollView.delegate = self
-        self.scrollView.contentSize = CGSizeMake(view.frame.width, view.frame.height * 1.5)
+        self.scrollView.contentSize = CGSizeMake(view.frame.width, view.frame.height * 1.15)
         
         containerView = UIView()
         scrollView.addSubview(containerView)
@@ -66,6 +66,10 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         configureSpSwitch()
         configureSubSetTextField()
         configureYearTextField()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        navigationController?.toolbarHidden = true
     }
     
     override func viewDidLayoutSubviews() {
@@ -118,6 +122,15 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         
         addCardToCollectionButton.center.x = view.center.x
         addCardToCollectionButton.center.y = view.frame.height / 1.05
+    }
+    
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+        if (textField === userCaptionTextField) {
+            playerFirstNameTextField.becomeFirstResponder()
+        } else if (textField === playerFirstNameTextField) {
+            playerLastNameTextField.resignFirstResponder()
+        }
+        return true
     }
     
    //MARK -- Setup UI Elements
@@ -234,7 +247,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         cardIdTextField.layer.borderColor = UIColor.darkGrayColor().CGColor
         cardIdTextField.layer.cornerRadius = 5.0
         cardIdTextField.textColor = UIColor.darkGrayColor()
-        cardIdTextField.keyboardType = UIKeyboardType.Default
+        cardIdTextField.keyboardType = UIKeyboardType.NumbersAndPunctuation
         cardIdTextField.textAlignment = .Left
         cardIdTextField.sizeToFit()
         
@@ -279,7 +292,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         yearTextField.layer.borderColor = UIColor.darkGrayColor().CGColor
         yearTextField.layer.cornerRadius = 5.0
         yearTextField.textColor = UIColor.darkGrayColor()
-        yearTextField.keyboardType = UIKeyboardType.Default
+        yearTextField.keyboardType = UIKeyboardType.NumberPad
         yearTextField.textAlignment = .Left
         yearTextField.sizeToFit()
         
@@ -404,22 +417,24 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         cardIdTextField.text = baseballCard["cardId"] as String
         setTextField.text = baseballCard["set"] as String
         subSetTextField.text = baseballCard["subSet"] as String
-//        yearTextField.text = baseballCard["year"] as String
-//        if (baseballCard["notes"] as NSString != "N/A") {
-//            notesTextField.text = baseballCard["notes"] as String
-//        } else {
-//            notesTextField.text = nil
-//        }
-//        if (baseballCard["rc"] as NSString != "N/A") {
-//            rcSwitch.setOn(false, animated: false)
-//        } else {
-//            rcSwitch.setOn(true, animated: false)
-//        }
-//        if (baseballCard["sp"] as NSString != "N/A") {
-//            spSwitch.setOn(false, animated: false)
-//        } else {
-//            spSwitch.setOn(true, animated: false)
-//        }
+        var yearInt = baseballCard["year"] as Int
+        var yearString = "\(yearInt)" as String
+        yearTextField.text = yearString
+        if (baseballCard["notes"] as NSString != "N/A") {
+            notesTextField.text = baseballCard["notes"] as String
+        } else {
+            notesTextField.text = nil
+        }
+        if (baseballCard["rc"] as NSString != "N/A") {
+            rcSwitch.setOn(false, animated: false)
+        } else {
+            rcSwitch.setOn(true, animated: false)
+        }
+        if (baseballCard["sp"] as NSString != "N/A") {
+            spSwitch.setOn(false, animated: false)
+        } else {
+            spSwitch.setOn(true, animated: false)
+        }
     } else {
         println("No card associated")
     }
@@ -433,7 +448,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         addCardToCollectionButton.setTitle("Share →", forState: UIControlState.Normal)
         addCardToCollectionButton.addTarget(self, action: "didPushAddCardToCollectionButton", forControlEvents: UIControlEvents.TouchUpInside)
         
-        containerView.addSubview(addCardToCollectionButton)
+        view.addSubview(addCardToCollectionButton)
         
     }
     
@@ -452,26 +467,31 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
             collectionBaseballCard["set"] = setTextField.text
             collectionBaseballCard["sp"] = "notImplemented"
             collectionBaseballCard["subSet"] = subSetTextField.text
-            collectionBaseballCard["year"] = yearTextField.text
+            collectionBaseballCard["year"] = yearTextField.text.toInt()
             
             // Add a relation between the Collection Card and Read-only Card
             collectionBaseballCard["parent"] = PFObject(withoutDataWithClassName:"BaseballCard", objectId:"\(baseballCard.objectId)")
             
-            // Save both myPost and myComment
-            //baseballCard.saveInBackground()
-            
+            // Save both card post, data, and comments
             collectionBaseballCard.saveInBackgroundWithBlock {
                 (success: Bool, error: NSError!) -> Void in
                 if (success) {
                     // The object has been saved.
+                    println("success")
+                    self.pushToHomeViewController()
                 } else {
                     // There was a problem, check error.description
+                    println("failed to save -- add error warning")
                 }
             }
         } else {
             println("Cancelled")
         }
     
+    }
+    
+    func clearAllFields() {
+        //Implement on exit from VC and when user presses the clear button -- give warning on the clear button
     }
 
     override func didReceiveMemoryWarning() {

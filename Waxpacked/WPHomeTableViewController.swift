@@ -45,6 +45,11 @@ class WPHomeTableViewController: PFQueryTableViewController {
         tableView.tableFooterView = UIView(frame: CGRectZero)
         view.backgroundColor = kBackgroundColor
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        navigationController?.toolbarHidden = false
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

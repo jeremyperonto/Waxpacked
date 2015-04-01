@@ -45,6 +45,10 @@ class WPUsersTableViewController: PFQueryTableViewController, UISearchBarDelegat
         
     }
     
+    override func viewDidAppear(animated: Bool) {
+        navigationController?.toolbarHidden = false
+    }
+    
     override func queryForTable() -> PFQuery! {
         var query = PFUser.query()
         

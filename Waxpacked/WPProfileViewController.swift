@@ -30,6 +30,44 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
     
     var friendStatus = 1
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        configureNavigationToolBar()
+        navigationController?.toolbarHidden = false
+        
+        if PFUser.currentUser() == profileUser {
+            title = "My Profile"
+        }
+        else {
+            title = "\(profileUser.username)"
+        }
+        
+        view.backgroundColor = kBackgroundColor
+        
+        let followButton = UIBarButtonItem(title: "Follow", style: .Plain, target: self, action: "followUser")
+        followButton.tintColor = kToolbarIconColor
+        navigationItem.rightBarButtonItem = followButton
+        
+        switch friendStatus {
+        case 1 : navigationItem.rightBarButtonItem?.title = "Follow"
+        case 2 : navigationItem.rightBarButtonItem?.title = "Unfollow"
+        default : navigationItem.rightBarButtonItem = nil
+        }
+        
+        configureImageView()
+        configureUsernameLabel()
+        configureUserBioLabel()
+        configureNumberFollowersLabel()
+        configureNumberFollowingLabel()
+        loadData()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        navigationController?.toolbarHidden = false
+    }
+
+    
     override init() {
         super.init()
     }
@@ -94,39 +132,6 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
             }
         }
         
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        configureNavigationToolBar()
-        navigationController?.toolbarHidden = false
-
-        if PFUser.currentUser() == profileUser {
-            title = "My Profile"
-        }
-        else {
-            title = "\(profileUser.username)"
-        }
-        
-        view.backgroundColor = kBackgroundColor
-        
-        let followButton = UIBarButtonItem(title: "Follow", style: .Plain, target: self, action: "followUser")
-        followButton.tintColor = kToolbarIconColor
-        navigationItem.rightBarButtonItem = followButton
-        
-        switch friendStatus {
-        case 1 : navigationItem.rightBarButtonItem?.title = "Follow"
-        case 2 : navigationItem.rightBarButtonItem?.title = "Unfollow"
-        default : navigationItem.rightBarButtonItem = nil
-        }
-        
-        configureImageView()
-        configureUsernameLabel()
-        configureUserBioLabel()
-        configureNumberFollowersLabel()
-        configureNumberFollowingLabel()
-        loadData()
     }
     
     func presentErrorMessage(error: NSError) {
