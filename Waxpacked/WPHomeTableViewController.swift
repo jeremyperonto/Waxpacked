@@ -9,8 +9,8 @@
 import UIKit
 
 class WPHomeTableViewController: PFQueryTableViewController {
-
-    var segmentedControl: UISegmentedControl = UISegmentedControl(items: ["Following", "All Users"])
+    
+    var homeTableViewSegmentedControl: UISegmentedControl = UISegmentedControl(items: ["Following", "All Users"])
     
     override init!(style: UITableViewStyle, className: String!) {
         super.init(style: style, className: className)
@@ -73,11 +73,11 @@ class WPHomeTableViewController: PFQueryTableViewController {
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
-            segmentedControl.frame = CGRectZero
-            segmentedControl.selectedSegmentIndex = 0
-            segmentedControl.tintColor = UIColor.darkGrayColor()
-            segmentedControl.addTarget(self, action: "notImplemented", forControlEvents: .ValueChanged)
-            view.addSubview(segmentedControl)
+            homeTableViewSegmentedControl.frame = CGRectZero
+            homeTableViewSegmentedControl.selectedSegmentIndex = 0
+            homeTableViewSegmentedControl.tintColor = UIColor.darkGrayColor()
+            homeTableViewSegmentedControl.addTarget(self, action: "notImplemented", forControlEvents: .ValueChanged)
+            view.addSubview(homeTableViewSegmentedControl)
         }
         return nil
     }

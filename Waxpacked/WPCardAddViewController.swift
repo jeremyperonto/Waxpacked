@@ -13,7 +13,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
     var scrollView: UIScrollView!
     var containerView = UIView()
     var baseballCard = PFObject(className:"BaseballCard")
-    let cardSubjectTypeSegmentedControl = UISegmentedControl(items:["Player"," Non-Player"])
+    let cardSubjectSegmentedControl = UISegmentedControl(items:["Player"," Non-Player"])
     var cardFrontImageView = UIImageView()
     var cardBackImageView = UIImageView()
     var userCaptionTextField = UITextField()
@@ -27,6 +27,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
     var yearTextField = UITextField()
     var rcSwitch = UISwitch()
     var spSwitch = UISwitch()
+    var clearFieldsLabel = UILabel()
     
     var addCardToCollectionButton = UIButton()
     
@@ -37,7 +38,6 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         navigationController?.toolbarHidden = true
         
         view.backgroundColor = kBackgroundColor
-        cardSubjectTypeSegmentedControl.selectedSegmentIndex = 0
         
         self.scrollView = UIScrollView()
         self.scrollView.delegate = self
@@ -51,21 +51,13 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         configureCardFrontImageView()
         configureCardBackImageView()
         configureUserCaptionTextField()
-        configurePlayerFirstNameTextField()
-        configurePlayerLastNameTextField()
-        configureCardIdTextField()
+        configureCardSubjectSegmentedControl()
+        configurePlayerFirstAndLastNameTextField()
+//        configureNonPlayerNameTextField()
         configureAddCardToCollectionButton()
         configureAutoPopulatedCardInfo()
-        configurePlayerFirstNameTextField()
-        configurePlayerLastNameTextField()
-//        configureNonPlayerNameTextField()
-        configureCardIdTextField()
-        configureNotesTextField()
-        configureRcSwitch()
-        configureSetTextField()
-        configureSpSwitch()
-        configureSubSetTextField()
-        configureYearTextField()
+
+        configureUI()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -87,8 +79,9 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         userCaptionTextField.center.x = view.center.x
         userCaptionTextField.center.y = view.frame.height / 2.5
         
-        cardSubjectTypeSegmentedControl.center.x = view.center.x
-        cardSubjectTypeSegmentedControl.center.y = view.frame.height/2.2
+        cardSubjectSegmentedControl.frame = CGRectMake(0, 0, view.frame.width * 0.8, view.frame.height / 15)
+        cardSubjectSegmentedControl.center.x = view.center.x
+        cardSubjectSegmentedControl.center.y =  view.frame.height/2.2
         
         playerFirstNameTextField.center.x = view.center.x - (view.frame.width / 5)
         playerFirstNameTextField.center.y = view.frame.height/1.8
@@ -120,6 +113,10 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         notesTextField.center.x = view.center.x
         notesTextField.center.y = view.frame.height/1.1
         
+        clearFieldsLabel.frame = CGRect(x: 0, y: 0, width: view.frame.width/1.5, height: view.frame.width/2)
+        clearFieldsLabel.center.x = containerView.center.x
+        clearFieldsLabel.center.y = containerView.frame.height * 0.9
+        
         addCardToCollectionButton.center.x = view.center.x
         addCardToCollectionButton.center.y = view.frame.height / 1.05
     }
@@ -135,7 +132,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
     
    //MARK -- Setup UI Elements
     
-    func didSelectCardSubjectTypeSegmentedControl(sender: UISegmentedControl){
+    func changeCardSubjectSegmentedControl(sender: UISegmentedControl){
         switch sender.selectedSegmentIndex
         {
         case 0:
@@ -191,7 +188,17 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         containerView.addSubview(userCaptionTextField)
     }
     
-    func configurePlayerFirstNameTextField() {
+    func configureCardSubjectSegmentedControl() {
+        cardSubjectSegmentedControl.frame = CGRectZero
+        cardSubjectSegmentedControl.selectedSegmentIndex = 0
+        cardSubjectSegmentedControl.tintColor = UIColor.darkGrayColor()
+        cardSubjectSegmentedControl.addTarget(self, action: "changeCardSubjectSegmentedControl:", forControlEvents: .ValueChanged)
+
+        
+        containerView.addSubview(cardSubjectSegmentedControl)
+    }
+    
+    func configurePlayerFirstAndLastNameTextField() {
         playerFirstNameTextField.frame = CGRectZero
         playerFirstNameTextField.layer.borderWidth = 1.0
         playerFirstNameTextField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
@@ -202,11 +209,6 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         playerFirstNameTextField.keyboardType = UIKeyboardType.Default
         playerFirstNameTextField.textAlignment = .Left
         playerFirstNameTextField.sizeToFit()
-        
-        containerView.addSubview(playerFirstNameTextField)
-    }
-    
-    func configurePlayerLastNameTextField() {
         
         playerLastNameTextField.frame = CGRectZero
         playerLastNameTextField.layer.borderWidth = 1.0
@@ -219,6 +221,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         playerLastNameTextField.textAlignment = .Left
         playerLastNameTextField.sizeToFit()
         
+        containerView.addSubview(playerFirstNameTextField)
         containerView.addSubview(playerLastNameTextField)
     }
     
@@ -238,7 +241,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         containerView.addSubview(nonPlayerNameTextField)
     }
     
-    func configureCardIdTextField() {
+    func configureUI() {
         
         cardIdTextField.frame = CGRectZero
         cardIdTextField.layer.borderWidth = 1.0
@@ -251,10 +254,6 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         cardIdTextField.textAlignment = .Left
         cardIdTextField.sizeToFit()
         
-        containerView.addSubview(cardIdTextField)
-    }
-    
-    func configureSetTextField() {
         setTextField.frame = CGRectZero
         setTextField.layer.borderWidth = 1.0
         setTextField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
@@ -266,10 +265,6 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         setTextField.textAlignment = .Left
         setTextField.sizeToFit()
         
-        containerView.addSubview(setTextField)
-    }
-    
-    func configureSubSetTextField() {
         subSetTextField.frame = CGRectZero
         subSetTextField.layer.borderWidth = 1.0
         subSetTextField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
@@ -281,10 +276,6 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         subSetTextField.textAlignment = .Left
         subSetTextField.sizeToFit()
         
-        containerView.addSubview(subSetTextField)
-    }
-    
-    func configureYearTextField() {
         yearTextField.frame = CGRectZero
         yearTextField.layer.borderWidth = 1.0
         yearTextField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
@@ -296,22 +287,10 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         yearTextField.textAlignment = .Left
         yearTextField.sizeToFit()
         
-        containerView.addSubview(yearTextField)
-    }
-    
-    func configureSpSwitch() {
         spSwitch.frame = CGRectZero
         
-        containerView.addSubview(spSwitch)
-    }
-    
-    func configureRcSwitch() {
         rcSwitch.frame = CGRectZero
         
-        containerView.addSubview(rcSwitch)
-    }
-    
-    func configureNotesTextField() {
         notesTextField.frame = CGRectZero
         notesTextField.layer.borderWidth = 1.0
         notesTextField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
@@ -323,7 +302,25 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         notesTextField.textAlignment = .Left
         notesTextField.sizeToFit()
         
+        clearFieldsLabel.text = "Clear All Fields"
+        clearFieldsLabel.textAlignment = .Center
+        clearFieldsLabel.font = UIFont(name: kTitleFontName, size: kTitleFontSize)
+        clearFieldsLabel.textColor = UIColor.redColor()
+        clearFieldsLabel.userInteractionEnabled = true
+        
+        let labelTouch = UITapGestureRecognizer(target: self, action: "clearAllFieldsButtonPressed")
+        labelTouch.numberOfTapsRequired = 1
+        clearFieldsLabel.addGestureRecognizer(labelTouch)
+        
+        
+        containerView.addSubview(cardIdTextField)
+        containerView.addSubview(setTextField)
+        containerView.addSubview(subSetTextField)
+        containerView.addSubview(yearTextField)
+        containerView.addSubview(spSwitch)
+        containerView.addSubview(rcSwitch)
         containerView.addSubview(notesTextField)
+        containerView.addSubview(clearFieldsLabel)
     }
     
     //MARK -- Image Picker
@@ -478,6 +475,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
                 if (success) {
                     // The object has been saved.
                     println("success")
+                    self.clearAllFields()
                     self.pushToHomeViewController()
                 } else {
                     // There was a problem, check error.description
@@ -490,8 +488,36 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
     
     }
     
+    func clearAllFieldsButtonPressed() {
+        let alertController = UIAlertController(title: "Clear All Fields", message: "Clearing fields will delete entered data an eliminate connection to card data.", preferredStyle: .Alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+            
+        }
+        alertController.addAction(cancelAction)
+        
+        let destroyAction = UIAlertAction(title: "Clear Fields", style: .Destructive) { (action) in
+            self.clearAllFields()
+        }
+        alertController.addAction(destroyAction)
+        
+        self.presentViewController(alertController, animated: true) {
+            // ...
+        }
+    }
+    
     func clearAllFields() {
         //Implement on exit from VC and when user presses the clear button -- give warning on the clear button
+        playerFirstNameTextField.text = nil
+        playerLastNameTextField.text = nil
+        nonPlayerNameTextField.text = nil
+        cardIdTextField.text = nil
+        setTextField.text = nil
+        subSetTextField.text = nil
+        yearTextField.text = nil
+        notesTextField.text = nil
+        rcSwitch.setOn(false, animated: false)
+        spSwitch.setOn(false, animated: false)
     }
 
     override func didReceiveMemoryWarning() {
