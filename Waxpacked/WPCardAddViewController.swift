@@ -121,7 +121,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         addCardToCollectionButton.center.y = view.frame.height / 1.05
     }
     
-    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
         if (textField === userCaptionTextField) {
             playerFirstNameTextField.becomeFirstResponder()
         } else if (textField === playerFirstNameTextField) {
@@ -354,7 +354,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func cardFrontImagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        let pickedImage:UIImage = info[UIImagePickerControllerOriginalImage] as UIImage
+        let pickedImage:UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         let scaledImage = scaleImageWith(pickedImage)
         let imageData = UIImagePNGRepresentation(scaledImage)
         let imageFile:PFFile = PFFile(data: imageData)
@@ -376,7 +376,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func cardBackImagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        let pickedImage:UIImage = info[UIImagePickerControllerOriginalImage] as UIImage
+        let pickedImage:UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         let scaledImage = scaleImageWith(pickedImage)
         let imageData = UIImagePNGRepresentation(scaledImage)
         let imageFile:PFFile = PFFile(data: imageData)
@@ -409,25 +409,25 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
     
     func configureAutoPopulatedCardInfo() {
     if (baseballCard != nil) {
-        playerFirstNameTextField.text = baseballCard["firstName"] as String
-        playerLastNameTextField.text = baseballCard["lastName"] as String
-        cardIdTextField.text = baseballCard["cardId"] as String
-        setTextField.text = baseballCard["set"] as String
-        subSetTextField.text = baseballCard["subSet"] as String
-        var yearInt = baseballCard["year"] as Int
+        playerFirstNameTextField.text = baseballCard["firstName"] as! String
+        playerLastNameTextField.text = baseballCard["lastName"] as! String
+        cardIdTextField.text = baseballCard["cardId"] as! String
+        setTextField.text = baseballCard["set"] as! String
+        subSetTextField.text = baseballCard["subSet"] as! String
+        var yearInt = baseballCard["year"] as! Int
         var yearString = "\(yearInt)" as String
         yearTextField.text = yearString
-        if (baseballCard["notes"] as NSString != "N/A") {
-            notesTextField.text = baseballCard["notes"] as String
+        if (baseballCard["notes"] as! NSString != "N/A") {
+            notesTextField.text = baseballCard["notes"] as! String
         } else {
             notesTextField.text = nil
         }
-        if (baseballCard["rc"] as NSString != "N/A") {
+        if (baseballCard["rc"] as! NSString != "N/A") {
             rcSwitch.setOn(false, animated: false)
         } else {
             rcSwitch.setOn(true, animated: false)
         }
-        if (baseballCard["sp"] as NSString != "N/A") {
+        if (baseballCard["sp"] as! NSString != "N/A") {
             spSwitch.setOn(false, animated: false)
         } else {
             spSwitch.setOn(true, animated: false)
@@ -438,7 +438,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func configureAddCardToCollectionButton() {
-        addCardToCollectionButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        addCardToCollectionButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
         addCardToCollectionButton.frame = CGRectMake(0, 0, 100, 50)
         addCardToCollectionButton.backgroundColor = UIColor.redColor()
         //addCardToCollectionButton.imageForState(<#state: UIControlState#>)

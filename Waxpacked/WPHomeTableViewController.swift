@@ -92,7 +92,7 @@ class WPHomeTableViewController: PFQueryTableViewController {
     // MARK - Table View Controller
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath!, object: PFObject!) -> WPCardSearchTableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(kTableViewCellIdentifier, forIndexPath: indexPath) as WPCardSearchTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(kTableViewCellIdentifier, forIndexPath: indexPath) as! WPCardSearchTableViewCell
         
         cell.imageView.hidden = true
         cell.textLabel?.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
@@ -100,28 +100,28 @@ class WPHomeTableViewController: PFQueryTableViewController {
         cell.backgroundColor = kBackgroundColor
         
         cell.textLabel?.text
-        if (object["nonPlayerName"] as NSString == "N/A") {
-            var cardSubjectFirstName = object["firstName"] as String
-            var cardSubjectLastName = object["lastName"] as String
-            (cell.viewWithTag(2) as UILabel).text = "\(cardSubjectFirstName)" + " " + "\(cardSubjectLastName)"
-            (cell.viewWithTag(2) as UILabel).sizeToFit()
+        if (object["nonPlayerName"] as! NSString == "N/A") {
+            var cardSubjectFirstName = object["firstName"] as! String
+            var cardSubjectLastName = object["lastName"] as! String
+            (cell.viewWithTag(2) as! UILabel).text = "\(cardSubjectFirstName)" + " " + "\(cardSubjectLastName)"
+            (cell.viewWithTag(2) as! UILabel).sizeToFit()
         }
         else {
-            (cell.viewWithTag(2) as UILabel).text = object["nonPlayerName"] as? String
-            (cell.viewWithTag(2) as UILabel).sizeToFit()
+            (cell.viewWithTag(2) as! UILabel).text = object["nonPlayerName"] as? String
+            (cell.viewWithTag(2) as! UILabel).sizeToFit()
         }
         
         cell.textLabel?.text
-        var year = object["year"] as Int
-        var set = object["set"] as String
-        (cell.viewWithTag(3) as UILabel).text = "\(year)" + " " + "\(set)"
-        (cell.viewWithTag(3) as UILabel).sizeToFit()
+        var year = object["year"] as! Int
+        var set = object["set"] as! String
+        (cell.viewWithTag(3) as! UILabel).text = "\(year)" + " " + "\(set)"
+        (cell.viewWithTag(3) as! UILabel).sizeToFit()
         
         cell.textLabel?.text
-        var cardId = object["cardId"] as String
-        var subSet = object["subSet"] as String
-        (cell.viewWithTag(4) as UILabel).text = "\(cardId)" + " - " + "\(subSet)"
-        (cell.viewWithTag(4) as UILabel).sizeToFit()
+        var cardId = object["cardId"] as! String
+        var subSet = object["subSet"] as! String
+        (cell.viewWithTag(4) as! UILabel).text = "\(cardId)" + " - " + "\(subSet)"
+        (cell.viewWithTag(4) as! UILabel).sizeToFit()
         
         return cell
     }

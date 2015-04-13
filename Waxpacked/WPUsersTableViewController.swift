@@ -116,18 +116,18 @@ class WPUsersTableViewController: PFQueryTableViewController, UISearchBarDelegat
     // MARK - Table View Controller
     
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!, object: PFObject!) -> WPUserTableViewCell! {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as WPUserTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! WPUserTableViewCell
         cell.imageView.hidden = true
-        (cell.viewWithTag(1) as PFImageView).image = kProfileDefaultProfileImage
+        (cell.viewWithTag(1) as! PFImageView).image = kProfileDefaultProfileImage
         dispatch_async(dispatch_get_main_queue(),{
             
             if let profileImageData = object["profileImage"] as? PFFile {
                 cell.imageView.file = profileImageData
-                (cell.viewWithTag(1) as PFImageView).file = cell.imageView.file
+                (cell.viewWithTag(1) as! PFImageView).file = cell.imageView.file
             }
             cell.textLabel?.text
-            (cell.viewWithTag(2) as UILabel).text = object["username"] as? String
-            (cell.viewWithTag(2) as UILabel).sizeToFit()
+            (cell.viewWithTag(2) as! UILabel).text = object["username"] as? String
+            (cell.viewWithTag(2) as! UILabel).sizeToFit()
             
         });
         //cell.updateConstraints()
@@ -151,7 +151,7 @@ class WPUsersTableViewController: PFQueryTableViewController, UISearchBarDelegat
         else {
             profileViewController.friendStatus = 1
         }
-        profileViewController.profileUser = objectAtIndexPath(selectedIndexPath) as PFUser
+        profileViewController.profileUser = objectAtIndexPath(selectedIndexPath) as! PFUser
         navigationController?.pushViewController(profileViewController, animated: true)
     }
     

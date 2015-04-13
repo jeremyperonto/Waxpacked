@@ -11,10 +11,6 @@ import UIKit
 class WPLoginSignupViewController: PFLogInViewController, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate {
     
     //Required for custom programmatical instantiation
-
-    override init() {
-        super.init()
-    }
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

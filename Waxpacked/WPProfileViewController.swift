@@ -66,11 +66,6 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
     override func viewDidAppear(animated: Bool) {
         navigationController?.toolbarHidden = false
     }
-
-    
-    override init() {
-        super.init()
-    }
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -222,7 +217,7 @@ class WPProfileViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        let pickedImage:UIImage = info[UIImagePickerControllerOriginalImage] as UIImage
+        let pickedImage:UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         let scaledImage = scaleImageWith(pickedImage)
         let imageData = UIImagePNGRepresentation(scaledImage)
         let imageFile:PFFile = PFFile(data: imageData)

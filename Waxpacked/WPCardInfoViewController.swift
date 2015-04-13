@@ -101,13 +101,13 @@ class WPCardInfoViewController: UIViewController {
     }
     
     func configureCardSubjectLabel() {
-        if (baseballCard["nonPlayerName"] as NSString == "N/A") {
-            var cardSubjectFirstName = baseballCard["firstName"] as String
-            var cardSubjectLastName = baseballCard["lastName"] as String
+        if (baseballCard["nonPlayerName"] as! NSString == "N/A") {
+            var cardSubjectFirstName = baseballCard["firstName"] as! String
+            var cardSubjectLastName = baseballCard["lastName"] as! String
             cardSubjectNameLabel.text = "\(cardSubjectFirstName)" + " " + "\(cardSubjectLastName)" as String?
         }
         else {
-            cardSubjectNameLabel.text = baseballCard["nonPlayerName"] as String?
+            cardSubjectNameLabel.text = baseballCard["nonPlayerName"] as! String?
         }
         
         cardSubjectNameLabel.textAlignment = .Center
@@ -118,8 +118,8 @@ class WPCardInfoViewController: UIViewController {
     }
     
     func configureSetNameLabel() {
-        var year = baseballCard["year"] as Int
-        var set = baseballCard["set"] as String
+        var year = baseballCard["year"] as! Int
+        var set = baseballCard["set"] as! String
         cardSetNameLabel.text = "\(year)" + " " + "\(set)" as String?
         cardSetNameLabel.textAlignment = .Center
         cardSetNameLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
@@ -129,8 +129,8 @@ class WPCardInfoViewController: UIViewController {
     }
     
     func configureSubSetNameLabel() {
-        var cardId = baseballCard["cardId"] as String
-        var subSet = baseballCard["subSet"] as String
+        var cardId = baseballCard["cardId"] as! String
+        var subSet = baseballCard["subSet"] as! String
         cardSubSetNameLabel.text = "\(cardId)" + " - " + "\(subSet)" as String?
         cardSubSetNameLabel.textAlignment = .Center
         cardSubSetNameLabel.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
@@ -140,7 +140,7 @@ class WPCardInfoViewController: UIViewController {
     }
     
     func configureAddCardToCollectionButton() {
-        addCardToCollectionButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        addCardToCollectionButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
         addCardToCollectionButton.frame = CGRectMake(0, 0, 100, 50)
         addCardToCollectionButton.backgroundColor = UIColor.greenColor()
         //addCardToCollectionButton.imageForState(<#state: UIControlState#>)
@@ -152,7 +152,7 @@ class WPCardInfoViewController: UIViewController {
     }
     
     func configureAddCardToWishlistButton() {
-        addCardToWishlistButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        addCardToWishlistButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
         addCardToWishlistButton.frame = CGRectMake(0, 0, 100, 50)
         addCardToWishlistButton.backgroundColor = UIColor.redColor()
         //addCardToWishlistButton.imageForState(<#state: UIControlState#>)
