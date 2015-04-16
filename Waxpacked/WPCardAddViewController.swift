@@ -31,6 +31,8 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
     
     var addCardToCollectionButton = UIButton()
     
+    var isPlayerCard = Bool()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -132,15 +134,27 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
     
    //MARK -- Setup UI Elements
     
+    func playerOrNonPlayerBool(){
+        if (baseballCard["nonPlayerName"] as! String != "N/A"){
+           isPlayerCard = true
+        }
+        else {
+            isPlayerCard = false
+        }
+    }
+    
     func changeCardSubjectSegmentedControl(sender: UISegmentedControl){
         switch sender.selectedSegmentIndex
         {
         case 0:
-            notImplemented()
+            println("Player Card")
+            isPlayerCard = true
+            
         default:
-            notImplemented()
+            println("Non-Player Card")
+            isPlayerCard = false
+            println("\(isPlayerCard)")
         }
-        notImplemented()
     }
     
     func configureCardFrontImageView() {

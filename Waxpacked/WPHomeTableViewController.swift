@@ -98,30 +98,39 @@ class WPHomeTableViewController: PFQueryTableViewController {
         cell.textLabel?.font = UIFont(name: kStandardFontName, size: kStandardFontSize)
         cell.textLabel?.textColor = UIColor.darkGrayColor()
         cell.backgroundColor = kBackgroundColor
-        
         cell.textLabel?.text
-        if (object["nonPlayerName"] as! NSString == "N/A") {
-            var cardSubjectFirstName = object["firstName"] as! String
-            var cardSubjectLastName = object["lastName"] as! String
-            (cell.viewWithTag(2) as! UILabel).text = "\(cardSubjectFirstName)" + " " + "\(cardSubjectLastName)"
-            (cell.viewWithTag(2) as! UILabel).sizeToFit()
+        
+        
+        
+        if (object["nonPlayerName"] != nil && object["firstName"] != nil && object["lastName"] != nil){
+        
+            if (object["nonPlayerName"] as! NSString == "N/A") {
+                var cardSubjectFirstName = object["firstName"] as! String
+                var cardSubjectLastName = object["lastName"] as! String
+                (cell.viewWithTag(2) as! UILabel).text = "\(cardSubjectFirstName)" + " " + "\(cardSubjectLastName)"
+                (cell.viewWithTag(2) as! UILabel).sizeToFit()
+            }
+            else {
+                (cell.viewWithTag(2) as! UILabel).text = object["nonPlayerName"] as? String
+                (cell.viewWithTag(2) as! UILabel).sizeToFit()
+            }
+            
+            //cell.textLabel?.text
+            var year = object["year"] as! Int
+            var set = object["set"] as! String
+            (cell.viewWithTag(3) as! UILabel).text = "\(year)" + " " + "\(set)"
+            (cell.viewWithTag(3) as! UILabel).sizeToFit()
+            
+            //cell.textLabel?.text
+            var cardId = object["cardId"] as! String
+            var subSet = object["subSet"] as! String
+            (cell.viewWithTag(4) as! UILabel).text = "\(cardId)" + " - " + "\(subSet)"
+            (cell.viewWithTag(4) as! UILabel).sizeToFit()
         }
         else {
-            (cell.viewWithTag(2) as! UILabel).text = object["nonPlayerName"] as? String
-            (cell.viewWithTag(2) as! UILabel).sizeToFit()
+            println("No Name")
         }
         
-        cell.textLabel?.text
-        var year = object["year"] as! Int
-        var set = object["set"] as! String
-        (cell.viewWithTag(3) as! UILabel).text = "\(year)" + " " + "\(set)"
-        (cell.viewWithTag(3) as! UILabel).sizeToFit()
-        
-        cell.textLabel?.text
-        var cardId = object["cardId"] as! String
-        var subSet = object["subSet"] as! String
-        (cell.viewWithTag(4) as! UILabel).text = "\(cardId)" + " - " + "\(subSet)"
-        (cell.viewWithTag(4) as! UILabel).sizeToFit()
         
         return cell
     }

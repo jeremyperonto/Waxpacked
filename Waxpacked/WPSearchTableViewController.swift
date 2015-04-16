@@ -127,13 +127,13 @@ class WPSearchTableViewController: PFQueryTableViewController, UISearchBarDelega
             (cell.viewWithTag(2) as! UILabel).sizeToFit()
         }
         
-        cell.textLabel?.text
+        //cell.textLabel?.text
         var year = object["year"] as! Int
         var set = object["set"] as! String
         (cell.viewWithTag(3) as! UILabel).text = "\(year)" + " " + "\(set)"
         (cell.viewWithTag(3) as! UILabel).sizeToFit()
 
-        cell.textLabel?.text
+        //cell.textLabel?.text
         var cardId = object["cardId"] as! String
         var subSet = object["subSet"] as! String
         (cell.viewWithTag(4) as! UILabel).text = "\(cardId)" + " - " + "\(subSet)"
