@@ -13,7 +13,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
     var scrollView: UIScrollView!
     var containerView = UIView()
     var baseballCard = PFObject(className:"BaseballCard")
-    let cardSubjectSegmentedControl = UISegmentedControl(items:["Player"," Non-Player"])
+    var cardSubjectSegmentedControl = UISegmentedControl()
     var cardFrontImageView = UIImageView()
     var cardBackImageView = UIImageView()
     var userCaptionTextField = UITextField()
@@ -50,6 +50,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         view.addSubview(scrollView)
         
         viewDidLayoutSubviews()
+        playerOrNonPlayerBool()
         configureCardFrontImageView()
         configureCardBackImageView()
         configureUserCaptionTextField()
@@ -64,6 +65,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
     
     override func viewDidAppear(animated: Bool) {
         navigationController?.toolbarHidden = true
+        playerOrNonPlayerBool()
     }
     
     override func viewDidLayoutSubviews() {
@@ -123,6 +125,65 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         addCardToCollectionButton.center.y = view.frame.height / 1.05
     }
     
+    func playerOrNonPlayerBool(){
+        if (baseballCard["nonPlayerName"] as! String != "N/A"){
+            isPlayerCard = false
+            cardSubjectSegmentedControl.selectedSegmentIndex = 1
+        }
+        else {
+            isPlayerCard = true
+            cardSubjectSegmentedControl.selectedSegmentIndex = 0
+        }
+    }
+    
+    func changeCardSubjectSegmentedControl(sender: UISegmentedControl){
+        
+        switch sender.selectedSegmentIndex
+        {
+        case 0: //If text fields filled
+            let alertController = UIAlertController(title: "Clear All Fields", message: "Changing the subject of your card will delete entered data and remove connection to card data.", preferredStyle: .Alert)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+                self.cardSubjectSegmentedControl.selectedSegmentIndex = 1
+                self.isPlayerCard = false
+                println("Non-Player Card")
+            }
+            alertController.addAction(cancelAction)
+            
+            let destroyAction = UIAlertAction(title: "Change Subject", style: .Destructive) { (action) in
+                self.cardSubjectSegmentedControl.selectedSegmentIndex = 0
+                self.isPlayerCard = true
+                println("Player Card")
+            }
+            alertController.addAction(destroyAction)
+            
+            self.presentViewController(alertController, animated: true) {
+                // ...
+            }
+            
+        default:
+            let alertController = UIAlertController(title: "Clear All Fields", message: "Changing the subject of your card will delete entered data and remove connection to card data.", preferredStyle: .Alert)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+                self.cardSubjectSegmentedControl.selectedSegmentIndex = 0
+                self.isPlayerCard = true
+                println("Player Card")
+            }
+            alertController.addAction(cancelAction)
+            
+            let destroyAction = UIAlertAction(title: "Change Subject", style: .Destructive) { (action) in
+                self.cardSubjectSegmentedControl.selectedSegmentIndex = 1
+                self.isPlayerCard = false
+                println("Non-Player Card")
+            }
+            alertController.addAction(destroyAction)
+            
+            self.presentViewController(alertController, animated: true) {
+                // ...
+            }
+        }
+    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if (textField === userCaptionTextField) {
             playerFirstNameTextField.becomeFirstResponder()
@@ -133,29 +194,6 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
    //MARK -- Setup UI Elements
-    
-    func playerOrNonPlayerBool(){
-        if (baseballCard["nonPlayerName"] as! String != "N/A"){
-           isPlayerCard = true
-        }
-        else {
-            isPlayerCard = false
-        }
-    }
-    
-    func changeCardSubjectSegmentedControl(sender: UISegmentedControl){
-        switch sender.selectedSegmentIndex
-        {
-        case 0:
-            println("Player Card")
-            isPlayerCard = true
-            
-        default:
-            println("Non-Player Card")
-            isPlayerCard = false
-            println("\(isPlayerCard)")
-        }
-    }
     
     func configureCardFrontImageView() {
         let defaultCardImageView = UIImage(named: "AddCardFront")
@@ -203,11 +241,10 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func configureCardSubjectSegmentedControl() {
-        cardSubjectSegmentedControl.frame = CGRectZero
-        cardSubjectSegmentedControl.selectedSegmentIndex = 0
+        cardSubjectSegmentedControl = UISegmentedControl(items:["Single Player Subject","Alternate Subject"])
+        cardSubjectSegmentedControl.frame = CGRectMake(60, 250,200, 30)
         cardSubjectSegmentedControl.tintColor = UIColor.darkGrayColor()
         cardSubjectSegmentedControl.addTarget(self, action: "changeCardSubjectSegmentedControl:", forControlEvents: .ValueChanged)
-
         
         containerView.addSubview(cardSubjectSegmentedControl)
     }
@@ -503,7 +540,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func clearAllFieldsButtonPressed() {
-        let alertController = UIAlertController(title: "Clear All Fields", message: "Clearing fields will delete entered data an eliminate connection to card data.", preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Clear All Fields", message: "Clearing fields will delete entered data and eliminate connection to card data.", preferredStyle: .Alert)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
             
@@ -532,6 +569,10 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         notesTextField.text = nil
         rcSwitch.setOn(false, animated: false)
         spSwitch.setOn(false, animated: false)
+    }
+    
+    func areAllFieldsClear(playerFirstNameTextField.text != nil && playerLastNameTextField.text != nil) {
+
     }
 
     override func didReceiveMemoryWarning() {
