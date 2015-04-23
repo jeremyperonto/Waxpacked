@@ -571,9 +571,9 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         spSwitch.setOn(false, animated: false)
     }
     
-    func areAllFieldsClear(playerFirstNameTextField.text != nil && playerLastNameTextField.text != nil) {
-
-    }
+//    func areAllFieldsClear(playerFirstNameTextField.text != nil && playerLastNameTextField.text != nil) {
+//
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

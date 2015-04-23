@@ -7,7 +7,7 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>34B42B0B-8363-4FD9-AF6C-D3978D44E2E7</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>Waxpacked</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>0BE9AEB004B8A183296E3263B27D042EBE116C54</key>
@@ -16,11 +16,11 @@
 		<string>https://github.com/jeremyperonto/Waxpacked.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Waxpacked.xcodeproj/project.xcworkspace</string>
+	<string>Waxpacked.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>0BE9AEB004B8A183296E3263B27D042EBE116C54</key>
-		<string>../..Waxpacked</string>
+		<string>../..Waxpacked/</string>
 		<key>F1C59AFEE3210F6DD0360C09C5032FE719A4DF50</key>
 		<string>../..</string>
 	</dict>
@@ -46,7 +46,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>0BE9AEB004B8A183296E3263B27D042EBE116C54</string>
 			<key>IDESourceControlWCCName</key>
-			<string>WaxpackedWaxpacked</string>
+			<string>Waxpacked</string>
 		</dict>
 	</array>
 </dict>
