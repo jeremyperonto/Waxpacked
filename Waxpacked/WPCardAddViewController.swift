@@ -32,6 +32,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
     var addCardToCollectionButton = UIButton()
     
     var isPlayerCard = Bool()
+    var areAllFieldsClear = Bool()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -138,48 +139,72 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
     
     func changeCardSubjectSegmentedControl(sender: UISegmentedControl){
         
+        areFieldsClearCheck()
+        
         switch sender.selectedSegmentIndex
         {
         case 0: //If text fields filled
-            let alertController = UIAlertController(title: "Clear All Fields", message: "Changing the subject of your card will delete entered data and remove connection to card data.", preferredStyle: .Alert)
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
-                self.cardSubjectSegmentedControl.selectedSegmentIndex = 1
-                self.isPlayerCard = false
-                println("Non-Player Card")
+            if (areAllFieldsClear != true){
+                let alertController = UIAlertController(title: "Clear All Fields", message: "Changing the subject of your card will delete entered data and remove connection to card data.", preferredStyle: .Alert)
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+                    self.cardSubjectSegmentedControl.selectedSegmentIndex = 1
+                    self.isPlayerCard = false
+                    println("Non-Player Card")
+                }
+                alertController.addAction(cancelAction)
+                
+                let destroyAction = UIAlertAction(title: "Change Subject", style: .Destructive) { (action) in
+                    self.cardSubjectSegmentedControl.selectedSegmentIndex = 0
+                    self.isPlayerCard = true
+                    println("Player Card")
+                    self.clearAllFields()
+                    self.areAllFieldsClear = true
+                }
+                alertController.addAction(destroyAction)
+                
+                self.presentViewController(alertController, animated: true) {
+                    // ...
+                }
             }
-            alertController.addAction(cancelAction)
-            
-            let destroyAction = UIAlertAction(title: "Change Subject", style: .Destructive) { (action) in
+            else {
                 self.cardSubjectSegmentedControl.selectedSegmentIndex = 0
                 self.isPlayerCard = true
                 println("Player Card")
-            }
-            alertController.addAction(destroyAction)
-            
-            self.presentViewController(alertController, animated: true) {
-                // ...
+                self.clearAllFields()
+                self.areAllFieldsClear = true
             }
             
         default:
-            let alertController = UIAlertController(title: "Clear All Fields", message: "Changing the subject of your card will delete entered data and remove connection to card data.", preferredStyle: .Alert)
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
-                self.cardSubjectSegmentedControl.selectedSegmentIndex = 0
-                self.isPlayerCard = true
-                println("Player Card")
+            if (areAllFieldsClear != true){
+                let alertController = UIAlertController(title: "Clear All Fields", message: "Changing the subject of your card will delete entered data and remove connection to card data.", preferredStyle: .Alert)
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+                    self.cardSubjectSegmentedControl.selectedSegmentIndex = 0
+                    self.isPlayerCard = true
+                    println("Player Card")
+                }
+                alertController.addAction(cancelAction)
+                
+                let destroyAction = UIAlertAction(title: "Change Subject", style: .Destructive) { (action) in
+                    self.cardSubjectSegmentedControl.selectedSegmentIndex = 1
+                    self.isPlayerCard = false
+                    println("Non-Player Card")
+                    self.clearAllFields()
+                    self.areAllFieldsClear = true
+                }
+                alertController.addAction(destroyAction)
+                
+                self.presentViewController(alertController, animated: true) {
+                    // ...
+                }
             }
-            alertController.addAction(cancelAction)
-            
-            let destroyAction = UIAlertAction(title: "Change Subject", style: .Destructive) { (action) in
+            else {
                 self.cardSubjectSegmentedControl.selectedSegmentIndex = 1
                 self.isPlayerCard = false
                 println("Non-Player Card")
-            }
-            alertController.addAction(destroyAction)
-            
-            self.presentViewController(alertController, animated: true) {
-                // ...
+                self.clearAllFields()
+                self.areAllFieldsClear = true
             }
         }
     }
@@ -571,9 +596,16 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         spSwitch.setOn(false, animated: false)
     }
     
-//    func areAllFieldsClear(playerFirstNameTextField.text != nil && playerLastNameTextField.text != nil) {
-//
-//    }
+    func areFieldsClearCheck() {
+        if (playerFirstNameTextField.text != nil && playerLastNameTextField.text != nil && nonPlayerNameTextField.text != nil && cardIdTextField.text != nil && setTextField.text != nil && subSetTextField.text != nil && yearTextField.text != nil && notesTextField.text != nil) {
+            areAllFieldsClear = false
+            println("\(areAllFieldsClear)")
+        }
+        else {
+            areAllFieldsClear = true
+            println("\(areAllFieldsClear)")
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
