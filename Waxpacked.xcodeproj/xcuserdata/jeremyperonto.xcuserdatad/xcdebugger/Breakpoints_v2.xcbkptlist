@@ -2,4 +2,134 @@
 <Bucket
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Waxpacked/WPCardAddViewController.swift"
+            timestampString = "452065838.272198"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "437"
+            endingLineNumber = "437"
+            landmarkName = "cardFrontImagePickerController(_:didFinishPickingMediaWithInfo:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Waxpacked/WPCardAddViewController.swift"
+            timestampString = "452065839.622119"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "438"
+            endingLineNumber = "438"
+            landmarkName = "cardFrontImagePickerController(_:didFinishPickingMediaWithInfo:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Waxpacked.WPCardAddViewController.cardFrontImagePickerController (Waxpacked.WPCardAddViewController)(ObjectiveC.UIImagePickerController, didFinishPickingMediaWithInfo : Swift.Dictionary&lt;ObjectiveC.NSObject, Swift.AnyObject&gt;) -&gt; ()"
+                  moduleName = "Waxpacked"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jeremyperonto/Desktop/Waxpacked/Waxpacked/WPCardAddViewController.swift"
+                  timestampString = "452065839.633486"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "438"
+                  endingLineNumber = "438"
+                  offsetFromSymbolStart = "1076">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Waxpacked.WPCardAddViewController.(cardFrontImagePickerController (Waxpacked.WPCardAddViewController) -&gt; (ObjectiveC.UIImagePickerController, didFinishPickingMediaWithInfo : Swift.Dictionary&lt;ObjectiveC.NSObject, Swift.AnyObject&gt;) -&gt; ()).(closure #1)"
+                  moduleName = "Waxpacked"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jeremyperonto/Desktop/Waxpacked/Waxpacked/WPCardAddViewController.swift"
+                  timestampString = "452065839.633857"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "440"
+                  endingLineNumber = "440"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Waxpacked/WPCardAddViewController.swift"
+            timestampString = "452065844.245872"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "459"
+            endingLineNumber = "459"
+            landmarkName = "cardBackImagePickerController(_:didFinishPickingMediaWithInfo:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Waxpacked/WPCardAddViewController.swift"
+            timestampString = "452065844.93261"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "460"
+            endingLineNumber = "460"
+            landmarkName = "cardBackImagePickerController(_:didFinishPickingMediaWithInfo:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Waxpacked.WPCardAddViewController.cardBackImagePickerController (Waxpacked.WPCardAddViewController)(ObjectiveC.UIImagePickerController, didFinishPickingMediaWithInfo : Swift.Dictionary&lt;ObjectiveC.NSObject, Swift.AnyObject&gt;) -&gt; ()"
+                  moduleName = "Waxpacked"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jeremyperonto/Desktop/Waxpacked/Waxpacked/WPCardAddViewController.swift"
+                  timestampString = "452065844.943832"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "460"
+                  endingLineNumber = "460"
+                  offsetFromSymbolStart = "1076">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Waxpacked.WPCardAddViewController.(cardBackImagePickerController (Waxpacked.WPCardAddViewController) -&gt; (ObjectiveC.UIImagePickerController, didFinishPickingMediaWithInfo : Swift.Dictionary&lt;ObjectiveC.NSObject, Swift.AnyObject&gt;) -&gt; ()).(closure #1)"
+                  moduleName = "Waxpacked"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jeremyperonto/Desktop/Waxpacked/Waxpacked/WPCardAddViewController.swift"
+                  timestampString = "452065844.944032"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "462"
+                  endingLineNumber = "462"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

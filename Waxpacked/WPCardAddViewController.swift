@@ -434,7 +434,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         let scaledImage = scaleImageWith(pickedImage)
         let imageData = UIImagePNGRepresentation(scaledImage)
         let imageFile:PFFile = PFFile(data: imageData)
-        PFUser.currentUser().setObject(imageFile, forKey: kParseClassNameProfileImage)
+        PFUser.currentUser().setObject(imageFile, forKey: kBaseballCardFrontImage)
         PFUser.currentUser().saveInBackgroundWithBlock {
             (success: Bool, error: NSError!) -> Void in
             if (success) {
@@ -456,7 +456,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
         let scaledImage = scaleImageWith(pickedImage)
         let imageData = UIImagePNGRepresentation(scaledImage)
         let imageFile:PFFile = PFFile(data: imageData)
-        PFUser.currentUser().setObject(imageFile, forKey: kParseClassNameProfileImage)
+        PFUser.currentUser().setObject(imageFile, forKey: kBaseballCardBackImage)
         PFUser.currentUser().saveInBackgroundWithBlock {
             (success: Bool, error: NSError!) -> Void in
             if (success) {
@@ -597,7 +597,7 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func areFieldsClearCheck() {
-        if (playerFirstNameTextField.text != nil && playerLastNameTextField.text != nil && nonPlayerNameTextField.text != nil && cardIdTextField.text != nil && setTextField.text != nil && subSetTextField.text != nil && yearTextField.text != nil && notesTextField.text != nil) {
+        if (playerFirstNameTextField.text != "" && playerLastNameTextField.text != "" && nonPlayerNameTextField.text != "" && cardIdTextField.text != "" && setTextField.text != "" && subSetTextField.text != "" && yearTextField.text != "" && notesTextField.text != "") {
             areAllFieldsClear = false
             println("\(areAllFieldsClear)")
         }

@@ -40,6 +40,8 @@ let kProfilePhotoDimensions = CGSizeMake(300,300)
 
 //Card
 let kBaseballCardPhotoDimensions = CGSizeMake(250,350)
+let kBaseballCardFrontImage = "baseballCardFrontImage"
+let kBaseballCardBackImage = "baseballCardBackImage"
 
 enum kProfileMetros: String {
     case
