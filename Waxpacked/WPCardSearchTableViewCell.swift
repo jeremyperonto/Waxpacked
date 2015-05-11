@@ -19,12 +19,10 @@ class WPCardSearchTableViewCell: PFTableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         cardImageView.frame = CGRectMake(10, 10, 60, 60)
-        
         cardImageView.clipsToBounds = true
         cardImageView.layer.borderWidth = 1.0
         cardImageView.layer.borderColor = UIColor.darkGrayColor().CGColor
         cardImageView.tag = 1
-        
         addSubview(cardImageView)
         
         cardSubjectNameLabel.frame = CGRectMake((contentView.frame.width - cardImageView.frame.maxX)/3, contentView.frame.height * (0.05), 0, 0)

@@ -20,7 +20,7 @@
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>0BE9AEB004B8A183296E3263B27D042EBE116C54</key>
-		<string>../..Waxpacked</string>
+		<string>../..Waxpacked/</string>
 		<key>F1C59AFEE3210F6DD0360C09C5032FE719A4DF50</key>
 		<string>../..</string>
 	</dict>
@@ -46,7 +46,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>0BE9AEB004B8A183296E3263B27D042EBE116C54</string>
 			<key>IDESourceControlWCCName</key>
-			<string>WaxpackedWaxpacked</string>
+			<string>Waxpacked</string>
 		</dict>
 	</array>
 </dict>

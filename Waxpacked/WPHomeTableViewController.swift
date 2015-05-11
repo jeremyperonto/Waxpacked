@@ -59,7 +59,7 @@ class WPHomeTableViewController: PFQueryTableViewController {
     // MARK: - Table view data source
     
     override func queryForTable() -> PFQuery! {
-        let query = PFQuery(className:"BaseballCard")
+        let query = PFQuery(className:"CollectionBaseballCard")
         
         query.orderByAscending("createdAt")
         
@@ -104,6 +104,10 @@ class WPHomeTableViewController: PFQueryTableViewController {
         
         if (object["nonPlayerName"] != nil && object["firstName"] != nil && object["lastName"] != nil){
         
+            
+//            var cardFrontImage = object["baseballCardFrontImage"] as! UIImage
+//            (cell.viewWithTag(1) as! UIImage) = cardFrontImage
+            
             if (object["nonPlayerName"] as! NSString == "N/A") {
                 var cardSubjectFirstName = object["firstName"] as! String
                 var cardSubjectLastName = object["lastName"] as! String
@@ -130,7 +134,6 @@ class WPHomeTableViewController: PFQueryTableViewController {
         else {
             println("No Name")
         }
-        
         
         return cell
     }
