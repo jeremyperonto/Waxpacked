@@ -431,45 +431,51 @@ class WPCardAddViewController: UIViewController, UIImagePickerControllerDelegate
     
     func cardFrontImagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         let pickedImage:UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        let scaledImage = scaleImageWith(pickedImage)
-        let imageData = UIImagePNGRepresentation(scaledImage)
-        let imageFile:PFFile = PFFile(data: imageData)
         
-        PFObject(className:"CollectionBaseballCard").setObject(imageFile, forKey: kBaseballCardFrontImage)
-        PFObject(className:"CollectionBaseballCard").saveInBackgroundWithBlock {
-            (success: Bool, error: NSError!) -> Void in
-            if (success) {
-                self.cardFrontImageView.image = scaledImage
-            } else {
-                var errorAlert = UIAlertController(title: "Oops. Something went wrong.", message: "\(error)", preferredStyle: UIAlertControllerStyle.Alert)
-                errorAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
-                    
-                }))
-                self.presentViewController(errorAlert, animated: true, completion: nil)
-            }
-        }
+        let scaledImage = scaleImageWith(pickedImage)
+        cardFrontImageView.image = scaledImage
+
+//        let imageData = UIImagePNGRepresentation(scaledImage)
+//        let imageFile:PFFile = PFFile(data: imageData)
+//        
+//        PFObject(className:"CollectionBaseballCard").setObject(imageFile, forKey: kBaseballCardFrontImage)
+//        PFObject(className:"CollectionBaseballCard").saveInBackgroundWithBlock {
+//            (success: Bool, error: NSError!) -> Void in
+//            if (success) {
+//                self.cardFrontImageView.image = scaledImage
+//            } else {
+//                var errorAlert = UIAlertController(title: "Oops. Something went wrong.", message: "\(error)", preferredStyle: UIAlertControllerStyle.Alert)
+//                errorAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
+//                    
+//                }))
+//                self.presentViewController(errorAlert, animated: true, completion: nil)
+//            }
+//        }
         
         picker.dismissViewControllerAnimated(true, completion: nil)
+        
     }
     
     func cardBackImagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         let pickedImage:UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        let scaledImage = scaleImageWith(pickedImage)
-        let imageData = UIImagePNGRepresentation(scaledImage)
-        let imageFile:PFFile = PFFile(data: imageData)
-        PFObject(className:"CollectionBaseballCard").setObject(imageFile, forKey: kBaseballCardBackImage)
-        PFObject(className:"CollectionBaseballCard").saveInBackgroundWithBlock {
-            (success: Bool, error: NSError!) -> Void in
-            if (success) {
-                self.cardBackImageView.image = scaledImage
-            } else {
-                var errorAlert = UIAlertController(title: "Oops. Something went wrong.", message: "\(error)", preferredStyle: UIAlertControllerStyle.Alert)
-                errorAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
-                    
-                }))
-                self.presentViewController(errorAlert, animated: true, completion: nil)
-            }
-        }
+
+//        let scaledImage = scaleImageWith(pickedImage)
+//        let imageData = UIImagePNGRepresentation(scaledImage)
+//        let imageFile:PFFile = PFFile(data: imageData)
+//        
+//        PFObject(className:"CollectionBaseballCard").setObject(imageFile, forKey: kBaseballCardBackImage)
+//        PFObject(className:"CollectionBaseballCard").saveInBackgroundWithBlock {
+//            (success: Bool, error: NSError!) -> Void in
+//            if (success) {
+//                self.cardBackImageView.image = scaledImage
+//            } else {
+//                var errorAlert = UIAlertController(title: "Oops. Something went wrong.", message: "\(error)", preferredStyle: UIAlertControllerStyle.Alert)
+//                errorAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
+//                    
+//                }))
+//                self.presentViewController(errorAlert, animated: true, completion: nil)
+//            }
+//        }
         
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
